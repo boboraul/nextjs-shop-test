@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+} 
+.scrollbar-hide {
+    scrollbar-width: none;
+}
+
+.bg-gradient-primary-500 {
+    background-image: linear-gradient(144deg, #536DFF 6.72%, #673299 136.95%);
+}
