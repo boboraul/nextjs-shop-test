@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Forțăm refresh la favicon prin query param */}
-        <link rel="icon" href="/favicon.ico?v=1" />
+        <link rel="icon" href="/favicon.ico?v=3" />
       </head>
       <body className={inter.className}>
         <WixClientContextProvider>
