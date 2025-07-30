@@ -41,7 +41,7 @@ const Add = () => {
         <div className="text-xs">
           Only <span className="text-orange-500">4 items</span> left!
           <br />
-          Don't miss it
+          Don&apos;t miss it
         </div>
 
         <button className="w-36 ml-16 text-sm rounded-3xl ring-1 text-primary-500 py-2 px-4 hover:bg-primary-500 hover:text-white ring-primary-500 disabled:cursor-not-allowed disabled:bg-primary-200 disabled:text-white disabled:ring-none">

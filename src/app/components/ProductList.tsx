@@ -27,7 +27,7 @@ const ProductList = async ({
 
   return (
     <div className="flex mt-8 gap-x-8 gap-y-16 justify-between flex-wrap">
-      {res.items.map((product: products.Product) => (
+      {res.items.map((product: any) => (
         <>
           <Link
             key={product._id}
