@@ -1,5 +1,5 @@
 "use client";
-
+import { useState } from "react";
 import React from "react";
 import { products } from "@wix/stores";
 
@@ -12,16 +12,58 @@ const CustomizeProducts = ({
   variants: products.Variant[];
   productOptions: products.ProductOption[];
 }) => {
-  console.log(productOptions);
+  const [selectedOptions, setSelectedOptions] = useState<{
+    [key: string]: string;
+  }>({});
+
+  const handleOptionSelect = (optionType: string, choice: string) => {
+    setSelectedOptions((prev) => ({ ...prev, [optionType]: choice }));
+  };
+
+  const isVariantInStock = (choices: { [key: string]: string }) => {
+    return variants.some((variant) => {
+      const variantChoices = variant.choices;
+      console.log(variantChoices);
+      if (!variantChoices) return false;
+
+      return (
+        Object.entries(choices).every(
+          ([key, value]) => variantChoices[key] === value
+        ) &&
+        variant.stock?.inStock &&
+        variant.stock?.quantity &&
+        variant.stock?.quantity > 0
+      );
+    });
+  };
+
+  console.log(selectedOptions);
   return (
     <div className="flex flex-col gap-6">
       {productOptions.map((option) => (
         <div className="flex flex-col gap-4" key={option.name}>
-          {option.choices?.map((choice) => (
-            <div className="" key={choice.value}>
-              {choice.description}
-            </div>
-          ))}
+          <p>Choose a {option.name}</p>
+          {option.choices?.map((choice) => {
+            const disabled = !isVariantInStock({
+              ...selectedOptions,
+              [option.name!]: choice.description!,
+            });
+            const selected =
+              selectedOptions[option.name!] === choice.description;
+
+            return (
+              <div
+                className=""
+                key={choice.value}
+                onClick={() =>
+                  handleOptionSelect(option.name!, choice.description!)
+                }
+              >
+                {choice.description} {disabled && " Disabled"}
+                {selected && " Selected"}
+              </div>
+            );
+          })}
         </div>
       ))}
 
