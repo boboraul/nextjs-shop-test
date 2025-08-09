@@ -23,7 +23,7 @@ const CustomizeProducts = ({
   const isVariantInStock = (choices: { [key: string]: string }) => {
     return variants.some((variant) => {
       const variantChoices = variant.choices;
-      console.log(variantChoices);
+
       if (!variantChoices) return false;
 
       return (
@@ -37,33 +37,66 @@ const CustomizeProducts = ({
     });
   };
 
-  console.log(selectedOptions);
   return (
     <div className="flex flex-col gap-6">
       {productOptions.map((option) => (
-        <div className="flex flex-col gap-4" key={option.name}>
+        <div className="flex flex-col gap-2" key={option.name}>
           <p>Choose a {option.name}</p>
-          {option.choices?.map((choice) => {
-            const disabled = !isVariantInStock({
-              ...selectedOptions,
-              [option.name!]: choice.description!,
-            });
-            const selected =
-              selectedOptions[option.name!] === choice.description;
-
-            return (
-              <div
-                className=""
-                key={choice.value}
-                onClick={() =>
-                  handleOptionSelect(option.name!, choice.description!)
-                }
-              >
-                {choice.description} {disabled && " Disabled"}
-                {selected && " Selected"}
-              </div>
-            );
-          })}
+          <ul className="flex items-center gap-3 list-none">
+            {option.choices?.map((choice, i) => {
+              const disabled = !isVariantInStock({
+                ...selectedOptions,
+                [option.name!]: choice.description!,
+              });
+              const selected =
+                selectedOptions[option.name!] === choice.description;
+              const clickHandler = disabled
+                ? undefined
+                : () => handleOptionSelect(option.name!, choice.description!);
+              return option.name == "Color" ? (
+                <li
+                  key={`${option.name}-${choice.description}-${i}`}
+                  className="w-8 h-8 rounded-full ring-1 ring-gray-300 cursor-pointer relative"
+                  style={{
+                    backgroundColor: choice.value,
+                    cursor: disabled ? "not-allowed" : "pointer",
+                  }}
+                  onClick={clickHandler}
+                >
+                  {selected && (
+                    <div className="absolute w-10 h-10 rounded-full ring-2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                  )}
+                  {disabled && (
+                    <div className="absolute w-10 h-[2px] rotate-45 bg-red-600 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                  )}
+                </li>
+              ) : (
+                <li
+                  key={`${option.name}-${choice.description}-${i}`}
+                  className="relative text-primary-500 rounded-md py-1 px-4 text-sm cursor-pointer"
+                  style={{
+                    cursor: disabled ? "not-allowed" : "pointer",
+                    backgroundColor: selected
+                      ? "#536dff"
+                      : disabled
+                      ? "whtie"
+                      : "white",
+                    color: selected && !disabled ? "white" : "#536dff",
+                    border: selected
+                      ? "solid 2px #536dff"
+                      : "solid 1px #536dff",
+                    opacity: disabled ? ".5" : "1",
+                  }}
+                  onClick={clickHandler}
+                >
+                  {choice.description}
+                  {disabled && (
+                    <div className="absolute w-10 h-[2px] rotate-45 bg-red-600 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
         </div>
       ))}
 
