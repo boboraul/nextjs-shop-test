@@ -32,6 +32,7 @@ const ListPage = async ({ searchParams }: { searchParams: any }) => {
       {/* Filters */}
       <Filter />
       {/* Products */}
+      <h1 className="mt-12 text-xl font-semibold">{cat?.collection?.name}</h1>
       <Suspense fallback="loading...">
         <ProductList
           categoryId={cat.collection?._id || ALL_PRODUCTS_ID}

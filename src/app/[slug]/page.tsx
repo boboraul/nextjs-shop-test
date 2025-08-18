@@ -8,7 +8,6 @@ import { wixClientServer } from "../lib/wixClientServer";
 import { notFound } from "next/navigation";
 
 const singlePage = async ({ params }: { params: { slug: string } }) => {
-  console.log(params.slug);
   const wixClient = await wixClientServer();
   const products = await wixClient.products
     .queryProducts()
@@ -49,14 +48,19 @@ const singlePage = async ({ params }: { params: { slug: string } }) => {
         </div>
 
         <div className="h-[2px] bg-gray-100" />
-        {product.variants && product.productOptions && (
+        {product.variants && product.productOptions ? (
           <CustomizeProducts
             productId={product._id!}
             variants={product.variants}
             productOptions={product.productOptions}
           />
+        ) : (
+          <Add
+            productId={product._id!}
+            variantId="0000-00000-0000"
+            stockNumber={product.stock?.quantity || 0}
+          />
         )}
-        <Add />
         <div className="h-[2px bg-gray-100" />
         {product.additionalInfoSections?.map((section: any) => (
           <div className="text-sm" key={section.title}>

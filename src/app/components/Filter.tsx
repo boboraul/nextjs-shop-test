@@ -1,6 +1,22 @@
+"use client";
+
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import React from "react";
 
-const Filter = () => {
+const Filter = async () => {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
+
+  const handleFilterChange = (
+    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
+  ) => {
+    const { name, value } = e.target;
+    const params = new URLSearchParams(searchParams);
+    params.set(name, value);
+    replace(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <div className="mt-12 flex justify-between flex-wrap gap-2">
       <div className="flex gap-2 flex-wrap">
@@ -8,6 +24,7 @@ const Filter = () => {
           className="py-2 px-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-500 rounded-2xl text-xs font-medium bg-gray-200"
           name="type"
           id=""
+          onChange={handleFilterChange}
         >
           <option>Type</option>
           <option value="digital">Digital</option>
@@ -18,6 +35,7 @@ const Filter = () => {
           name="min"
           placeholder="min price"
           className="text-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-500 rounded-2xl px-2 w-24 ring-1 ring-gray-300"
+          onChange={handleFilterChange}
         />
 
         <input
@@ -25,9 +43,11 @@ const Filter = () => {
           name="max"
           placeholder="max price"
           className="text-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-500 rounded-2xl px-2 w-24 ring-1 ring-gray-300"
+          onChange={handleFilterChange}
         />
-        <select
+        {/* <select
           className="py-2 px-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-500 rounded-2xl text-xs font-medium bg-gray-200"
+          onChange={handleFilterChange}
           name="size"
           id=""
         >
@@ -35,10 +55,11 @@ const Filter = () => {
           <option value="s">S</option>
           <option value="m">m</option>
           <option value="l">L</option>
-        </select>
+        </select> */}
 
-        <select
+        {/* <select
           className="py-2 px-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-500 rounded-2xl text-xs font-medium bg-gray-200"
+          onChange={handleFilterChange}
           name="color"
           id=""
         >
@@ -46,37 +67,41 @@ const Filter = () => {
           <option value="white">White</option>
           <option value="black">Black</option>
           <option value="black">Blue</option>
-        </select>
+        </select> */}
 
         <select
           className="py-2 px-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-500 rounded-2xl text-xs font-medium bg-gray-200"
-          name="category"
+          name="cat"
           id=""
+          onChange={handleFilterChange}
         >
           <option>Category</option>
+
           <option value="white">White</option>
         </select>
 
-        <select
+        {/* <select
           className="py-2 px-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-500 rounded-2xl text-xs font-medium bg-gray-200"
           name="all"
           id=""
+          onChange={handleFilterChange}
         >
           <option>All filters</option>
           <option value="allfliters">All filters</option>
-        </select>
+        </select> */}
       </div>
 
       <select
         className="py-2 px-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-500 rounded-2xl text-xs font-medium bg-gray-200"
-        name=""
+        name="sort"
         id=""
+        onChange={handleFilterChange}
       >
         <option>Sort by</option>
-        <option value="">Price (low to high)</option>
-        <option value="">Price (high to low)</option>
-        <option value="">Newest</option>
-        <option value="">Oldest</option>
+        <option value="asc price">Price (low to high)</option>
+        <option value="desc price">Price (high to low)</option>
+        <option value="asc lastUpdated">Newest</option>
+        <option value="desc lastUpdated">Oldest</option>
       </select>
     </div>
   );

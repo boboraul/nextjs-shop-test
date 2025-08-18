@@ -1,7 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { products } from "@wix/stores";
+import Add from "./Add";
 
 const CustomizeProducts = ({
   productId,
@@ -15,6 +16,20 @@ const CustomizeProducts = ({
   const [selectedOptions, setSelectedOptions] = useState<{
     [key: string]: string;
   }>({});
+
+  const [selectedVariant, setSelectedVariant] = useState<products.Variant>();
+
+  useEffect(() => {
+    const variant = variants.find((v) => {
+      const variantChoices = v.choices;
+      if (!variantChoices) return false;
+
+      return Object.entries(selectedOptions).every(
+        ([key, value]) => variantChoices[key] === value
+      );
+    });
+    setSelectedVariant(variant);
+  }, [selectedOptions, variants]);
 
   const handleOptionSelect = (optionType: string, choice: string) => {
     setSelectedOptions((prev) => ({ ...prev, [optionType]: choice }));
@@ -82,9 +97,7 @@ const CustomizeProducts = ({
                       ? "whtie"
                       : "white",
                     color: selected && !disabled ? "white" : "#536dff",
-                    border: selected
-                      ? "solid 2px #536dff"
-                      : "solid 1px #536dff",
+                    border: "solid 1px #536dff",
                     opacity: disabled ? ".5" : "1",
                   }}
                   onClick={clickHandler}
@@ -99,7 +112,11 @@ const CustomizeProducts = ({
           </ul>
         </div>
       ))}
-
+      <Add
+        productId={productId}
+        variantId={selectedVariant?._id || "0000-00000-0000"}
+        stockNumber={selectedVariant?.stock?.quantity || 0}
+      />
       {/* Color */}
       {/* <h4 className="font-medium">Choose a {option.name}</h4>
           <ul className="flex items-center gap-3">

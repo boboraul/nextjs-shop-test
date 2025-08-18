@@ -3,17 +3,25 @@
 import React from "react";
 import { useState } from "react";
 
-const Add = () => {
+const Add = ({
+  productId,
+  variantId,
+  stockNumber,
+}: {
+  productId: string;
+  variantId: string;
+  stockNumber: number;
+}) => {
   const [quantity, setQuantity] = useState(1);
   // Temporary
-  const stock = 4;
+  // const stock = 4;
 
   const handleQuantity = (type: "i" | "d") => {
     if (type === "d" && quantity > 1) {
       setQuantity((prev) => prev - 1);
     }
 
-    if (type === "i" && quantity < stock) {
+    if (type === "i" && quantity < stockNumber) {
       setQuantity((prev) => prev + 1);
     }
   };
@@ -24,14 +32,16 @@ const Add = () => {
       <div className="flex gap-4 items-center">
         <div className="bg-gray-200 w-32 just rounded-3xl flex items-center justify-between">
           <button
-            className="cursor-pointer py-2 px-4 text-xl"
+            className="cursor-pointer py-1 px-4 text-xl"
             onClick={() => handleQuantity("d")}
           >
             -
           </button>
-          {quantity}
+
+          {stockNumber == 0 ? stockNumber : quantity}
+
           <button
-            className="cursor-pointer py-2 px-4 text-xl"
+            className="cursor-pointer py-1 px-4 text-xl"
             onClick={() => handleQuantity("i")}
           >
             +
@@ -39,7 +49,10 @@ const Add = () => {
         </div>
 
         <div className="text-xs">
-          Only <span className="text-orange-500">4 items</span> left!
+          <span className="text-orange-500">
+            {stockNumber} {stockNumber == 1 ? "item" : "items"}
+          </span>{" "}
+          available
           <br />
           Don&apos;t miss it
         </div>
