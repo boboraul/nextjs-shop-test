@@ -26,7 +26,7 @@ const Navbar = () => {
       {/* Bigger screens */}
       <div className="hidden md:flex items-center h-full jusitfy-between gap-8">
         {/* Left */}
-        <div className="w-1/3 xl:w-1/2 flex items-center gap-12">
+        <div className="w-1/3 xl:w-1/2 flex items-center flex-nowrap gap-12">
           <Link href="/" className="flex items-center gap-1">
             <Image
               className="inline-block rotate-10"
@@ -35,7 +35,7 @@ const Navbar = () => {
               width={28}
               height={28}
             />
-            <div className="text-2xl inline-block align-middle">e-Shop</div>
+            <div className="text-2xl inline-block">e-Shop</div>
           </Link>
           <div className="hidden xl:flex items-center gap-4">
             <Link href="/">Homepage</Link>

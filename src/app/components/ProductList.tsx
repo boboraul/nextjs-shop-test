@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { wixClientServer } from "../lib/wixClientServer";
 import DOMPurify from "isomorphic-dompurify";
+import { products } from "@wix/stores";
 
 const PRODUCT_PER_PAGE = 20;
 
@@ -35,6 +36,7 @@ const ProductList = async ({
 
     if (sortType === "asc") {
       productQuery.ascending(sortBy);
+      console.log("my console log: " + sortBy);
     }
 
     if (sortType === "desc") {
@@ -46,7 +48,7 @@ const ProductList = async ({
 
   return (
     <div className="flex mt-8 gap-x-8 gap-y-16 flex-wrap">
-      {res.items.map((product: any) => (
+      {res.items.map((product: products.Product) => (
         <>
           <Link
             key={product._id}
@@ -55,29 +57,31 @@ const ProductList = async ({
           >
             <div className="w-full h-80 relative">
               <Image
-                src={product.media?.mainMedia.image?.url || "/product.png"}
+                src={product.media?.mainMedia?.image?.url || "/product.png"}
                 alt=""
                 fill
                 sizes="25vw"
                 className="absolute object-cover object-top rounded-md z-10 hover:opacity-0 transition-opacity easy duration-500"
               />
-              <Image
-                src={product.media?.items[1]?.image?.url || "/product.png"}
-                alt=""
-                fill
-                sizes="25vw"
-                className="absolute object-cover object-top rounded-md"
-              />
+              {product.media?.items && (
+                <Image
+                  src={product.media?.items[1]?.image?.url || "/product.png"}
+                  alt=""
+                  fill
+                  sizes="25vw"
+                  className="absolute object-cover rounded-md"
+                />
+              )}
             </div>
             <div className="flex justify-between mt-2">
               <span className="font-medium">{product.name}</span>
-              <span>${product.price.price}</span>
+              <span>${product.price?.price}</span>
             </div>
             <div
               className="text-sm h-4 text-gray-500 mt-2"
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(
-                  product.additionalInfoSections.find(
+                  product.additionalInfoSections?.find(
                     (section: any) => section.title === "shortDesc"
                   )?.description || ""
                 ),

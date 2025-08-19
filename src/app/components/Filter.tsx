@@ -3,7 +3,7 @@
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import React from "react";
 
-const Filter = async () => {
+const Filter = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
@@ -16,7 +16,6 @@ const Filter = async () => {
     params.set(name, value);
     replace(`${pathname}?${params.toString()}`);
   };
-
   return (
     <div className="mt-12 flex justify-between flex-wrap gap-2">
       <div className="flex gap-2 flex-wrap">
@@ -76,7 +75,6 @@ const Filter = async () => {
           onChange={handleFilterChange}
         >
           <option>Category</option>
-
           <option value="white">White</option>
         </select>
 
