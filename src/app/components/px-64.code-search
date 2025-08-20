@@ -1,0 +1,32 @@
+# Query: px-64
+# ContextLines: 1
+
+6 results - 4 files
+
+src\app\page.tsx:
+  33        <Slider />
+  34:       <div className="mt-24 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-96">
+  35          <div className="text-2xl">Featured</div>
+
+  44        <div className="mt-24">
+  45:         <div className="text-3xl px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-96 mb-12">
+  46            Categories
+
+  52  
+  53:       {/* <div className="mt-24 px-4 md;px-8 lg:px-16 xl:px-32 2xl:px-96">
+  54          <div className="text-2xl">New Products</div>
+
+src\app\[slug]\page.tsx:
+  22    return (
+  23:     <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-96 relative flex flex-col lg:flex-row gap-16 mt-12">
+  24        {/* Image */}
+
+src\app\components\Footer.tsx:
+  6    return (
+  7:     <div className="footer py-16 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-96 bg-gray-100 text-sm mt-24">
+  8        {/* Top */}
+
+src\app\list\page.tsx:
+  15    return (
+  16:     <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-96 relative mt-12">
+  17        {/* Campaign */}

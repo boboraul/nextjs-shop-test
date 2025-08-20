@@ -30,25 +30,34 @@ const ProductList = async ({
     .limit(limit || PRODUCT_PER_PAGE);
   // .find();
   // console.log(" first PRODUCT!!!!! " + res.items);
+  const res = await productQuery.find();
+  const items = [...res.items];
 
   if (searchParams?.sort) {
-    const [sortType, sortBy] = searchParams.sort.split(" ");
+    const [sortType, sortKey] = searchParams.sort.split(" ");
 
-    if (sortType === "asc") {
-      productQuery.ascending(sortBy);
-      console.log("my console log: " + sortBy);
+    if (sortKey === "price") {
+      items.sort((a: any, b: any) =>
+        sortType === "asc"
+          ? a.price.price - b.price.price
+          : b.price.price - a.price.price
+      );
     }
 
-    if (sortType === "desc") {
-      productQuery.descending(sortBy);
+    if (sortKey === "lastUpdated") {
+      items.sort((a: any, b: any) =>
+        sortType === "asc"
+          ? new Date(a.lastUpdated).getTime() -
+            new Date(b.lastUpdated).getTime()
+          : new Date(b.lastUpdated).getTime() -
+            new Date(a.lastUpdated).getTime()
+      );
     }
   }
 
-  const res = await productQuery.find();
-
   return (
     <div className="flex mt-8 gap-x-8 gap-y-16 flex-wrap">
-      {res.items.map((product: products.Product) => (
+      {items.map((product: products.Product) => (
         <>
           <Link
             key={product._id}

@@ -20,7 +20,7 @@ const SearchBar = () => {
 
   return (
     <form
-      className="flex ic justify-content-between gap-4 bg-gray-100 p-3 rounded-md flex-1"
+      className="flex justify-content-between gap-4 bg-gray-100 p-2 rounded-md flex-1"
       action=""
       onSubmit={handleSearch}
     >

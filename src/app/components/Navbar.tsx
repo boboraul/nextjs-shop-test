@@ -7,7 +7,7 @@ import NavIcons from "./NavIcons";
 
 const Navbar = () => {
   return (
-    <div className="h-20 py-4 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 relative sticky top-0 z-[1020] bg-white">
+    <div className="h-20 py-4 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] relative sticky top-0 z-[1020] bg-white">
       {/* Mobile */}
       <div className="h-full flex items-center justify-between md:hidden">
         <Link href="/" className="flex items-center gap-1">
@@ -18,7 +18,7 @@ const Navbar = () => {
             width={28}
             height={28}
           />
-          <div className="text-2xl tracking-wide">e-Shop</div>
+          <div className="text-2xl tracking-wide whitespace-nowrap">e-Shop</div>
         </Link>
         <Menu />
       </div>
@@ -35,7 +35,7 @@ const Navbar = () => {
               width={28}
               height={28}
             />
-            <div className="text-2xl inline-block">e-Shop</div>
+            <div className="text-xl inline-block whitespace-nowrap">e-Shop</div>
           </Link>
           <div className="hidden xl:flex items-center gap-4">
             <Link href="/">Homepage</Link>
