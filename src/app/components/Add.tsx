@@ -57,8 +57,11 @@ const Add = ({
           Don&apos;t miss it
         </div>
 
-        <button className="w-36 ml-16 text-sm rounded-3xl ring-1 text-primary-500 py-2 px-4 hover:bg-primary-500 hover:text-white ring-primary-500 disabled:cursor-not-allowed disabled:bg-primary-200 disabled:text-white disabled:ring-none">
-          Add to Cart
+        <button
+          disabled={!stockNumber}
+          className="w-36 ml-16 text-sm rounded-3xl ring-1 text-primary-500 py-2 px-4 hover:bg-primary-500 hover:text-white ring-primary-500 disabled:cursor-not-allowed disabled:bg-primary-200 disabled:text-white disabled:ring-0"
+        >
+          {stockNumber > 0 ? "Add to Cart" : "Out of stock"}
         </button>
       </div>
     </div>

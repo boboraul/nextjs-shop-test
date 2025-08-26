@@ -6,8 +6,9 @@ import Link from "next/link";
 import { wixClientServer } from "../lib/wixClientServer";
 import DOMPurify from "isomorphic-dompurify";
 import { products } from "@wix/stores";
+import Pagination from "./Pagination";
 
-const PRODUCT_PER_PAGE = 20;
+const PRODUCT_PER_PAGE = 8;
 
 const ProductList = async ({
   categoryId,
@@ -27,10 +28,16 @@ const ProductList = async ({
     .hasSome("productType", [searchParams?.type || "physical", "digital"])
     .gt("priceData.price", searchParams?.min || 0)
     .lt("priceData.price", searchParams?.max || 999999)
-    .limit(limit || PRODUCT_PER_PAGE);
+    .limit(limit || PRODUCT_PER_PAGE)
+    .skip(
+      searchParams?.page
+        ? parseInt(searchParams.page) * (limit || PRODUCT_PER_PAGE)
+        : 0
+    );
   // .find();
   // console.log(" first PRODUCT!!!!! " + res.items);
   const res = await productQuery.find();
+
   const items = [...res.items];
 
   if (searchParams?.sort) {
@@ -56,7 +63,7 @@ const ProductList = async ({
   }
 
   return (
-    <div className="flex mt-8 gap-x-8 gap-y-16 flex-wrap">
+    <div className="flex mt-8 gap-x-8 gap-y-16 flex-wrap justify-between">
       {items.map((product: products.Product) => (
         <>
           <Link
@@ -102,6 +109,13 @@ const ProductList = async ({
           </Link>
         </>
       ))}
+      {searchParams && (
+        <Pagination
+          currentPage={res.currentPage || 0}
+          hasPrev={res.hasPrev()}
+          hasNext={res.hasNext()}
+        />
+      )}
     </div>
   );
 };
