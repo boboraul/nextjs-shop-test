@@ -50,7 +50,7 @@ const Add = ({
 
         <div className="text-xs">
           <span className="text-orange-500">
-            {stockNumber} {stockNumber == 1 ? "item" : "items"}
+            {stockNumber} {stockNumber == 1 ? "item " : "items "}
           </span>
           available
           <br />
@@ -58,7 +58,7 @@ const Add = ({
         </div>
 
         <button
-          disabled={stockNumber ? true : false}
+          disabled={!stockNumber ? true : false}
           className="w-36 ml-16 text-sm rounded-3xl ring-1 text-primary-500 py-2 px-4 hover:bg-primary-500 hover:text-white ring-primary-500 disabled:cursor-not-allowed disabled:bg-primary-200 disabled:text-white disabled:ring-0"
         >
           {stockNumber > 0 ? "Add to Cart" : "Out of stock"}
