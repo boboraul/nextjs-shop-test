@@ -59,7 +59,7 @@ const Add = ({
 
         <button
           disabled={!stockNumber ? true : false}
-          className="w-36 ml-16 text-sm rounded-3xl ring-1 text-primary-500 py-2 px-4 hover:bg-primary-500 hover:text-white ring-primary-500 disabled:cursor-not-allowed disabled:bg-primary-200 disabled:text-white disabled:ring-0"
+          className="w-36 ml-16 text-sm rounded-3xl ring-1 text-primary-500 py-2 px-4 hover:bg-primary-500 hover:text-white ring-primary-500 disabled:cursor-not-allowed disabled:bg-white disabled:text-gray-600 disabled:ring-gray-500"
         >
           {stockNumber > 0 ? "Add to Cart" : "Out of stock"}
         </button>

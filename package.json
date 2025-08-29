@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@wix/members": "^1.0.322",
     "@wix/sdk": "^1.15.22",
     "@wix/stores": "^1.0.452",
     "headers": "^0.9.6",

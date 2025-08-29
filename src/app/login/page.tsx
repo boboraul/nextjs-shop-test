@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { useWixClient } from "../hooks/useWixClient";
-import { DivideIcon } from "@heroicons/react/16/solid";
+import { LoginState } from "@wix/sdk";
+import Cookies from "js-cookie";
+import { usePathname, useRouter } from "next/navigation";
 
 enum MODE {
   LOGIN = "LOGIN",
@@ -12,6 +14,18 @@ enum MODE {
 }
 
 const LoginPage = () => {
+  const wixClient = useWixClient();
+  const isLoggedIn = wixClient.auth.loggedIn();
+
+  console.log("logged in: " + isLoggedIn);
+
+  const pathName = usePathname();
+  const router = useRouter();
+
+  if (isLoggedIn) {
+    router.push("/");
+  }
+
   const [mode, setMode] = useState(MODE.LOGIN);
 
   const [username, setUsername] = useState("");
@@ -39,9 +53,6 @@ const LoginPage = () => {
       : mode === MODE.RESET_PASSWORD
       ? "Reset"
       : "Verify";
-
-  const wixClient = useWixClient();
-  const pathName = window.location.href;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -87,6 +98,25 @@ const LoginPage = () => {
       }
 
       console.log(response);
+
+      switch (response?.loginState) {
+        case LoginState.SUCCESS:
+          setMessage("Successful! You are being redirected.");
+          const tokens = await wixClient.auth.getMemberTokensForDirectLogin(
+            response.data.sessionToken!
+          );
+
+          Cookies.set("refreshToken", JSON.stringify(tokens.refreshToken), {
+            expires: 2,
+          });
+          wixClient.auth.setTokens(tokens);
+
+          break;
+        case LoginState.FAILURE:
+          setError("Invalid password or email address!");
+        default:
+          break;
+      }
     } catch (err) {
       console.log(err);
       setError("Something went wrong");
@@ -151,7 +181,7 @@ const LoginPage = () => {
             </label>
             <input
               onChange={(e) => setPassword(e.target.value)}
-              type="text"
+              type="password"
               name="password"
               placeholder="password"
               className="ring-2 ring-gray-300 rounded-md p-2"
@@ -203,7 +233,9 @@ const LoginPage = () => {
           </div>
         )}
 
-        {message && <div className="text-success-500 text-sm">{message}</div>}
+        {!error && message && (
+          <div className="text-success-500 text-sm">{message}</div>
+        )}
       </form>
     </div>
   );

@@ -3,10 +3,9 @@
 import Cookies from "js-cookie";
 import { createClient, OAuthStrategy } from "@wix/sdk";
 import { products, collections } from "@wix/stores";
-
 import { ReactNode, createContext } from "react";
 
-// const refreshToken = JSON.parse(Cookies.get("refreshToken") || "{}");
+const refreshToken = JSON.parse(Cookies.get("refreshToken") || "{}");
 
 const wixClient = createClient({
   modules: {
@@ -16,10 +15,10 @@ const wixClient = createClient({
   },
   auth: OAuthStrategy({
     clientId: process.env.NEXT_PUBLIC_WIX_CLIENT_ID!,
-    // tokens: {
-    //   refreshToken,
-    //   accessToken: { value: "", expiresAt: 0 },
-    // },
+    tokens: {
+      refreshToken,
+      accessToken: { value: "", expiresAt: 0 },
+    },
   }),
 });
 
