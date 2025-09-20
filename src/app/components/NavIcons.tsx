@@ -67,12 +67,12 @@ const NavIcons = () => {
           height={22}
           onClick={handleProfile}
         /> */}
-        {isProfileOpen && (
+        {/* {isProfileOpen && (
           <div className="absolute rounded-md bg-white right-0 shadow-md p-2 top-6 text-sm z-20">
             <Link href="/">Profile</Link>
             <div className="mt-2 cursor-pointer">Logout</div>
           </div>
-        )}
+        )} */}
       </div>
       <div className="relative cursor-pointer">
         <svg
