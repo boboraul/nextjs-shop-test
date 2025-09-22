@@ -113,7 +113,19 @@ const LoginPage = () => {
 
           break;
         case LoginState.FAILURE:
-          setError("Invalid password or email address!");
+          if (
+            response.errorCode === "invalidEmail" ||
+            response.errorCode === "invalidPassword"
+          ) {
+            setError("Invalid password or email address!");
+          } else if (response.errorCode === "emailAlreadyExists") {
+            setError("Email already exists!");
+          } else if (response.errorCode === "resetPassword") {
+            setError("You need to reset password!");
+          } else {
+            setError("Something went wrong!");
+          }
+
         default:
           break;
       }

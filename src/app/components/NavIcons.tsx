@@ -1,21 +1,36 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import CartModal from "./CartModal";
+import { useWixClient } from "../hooks/useWixClient";
+import Cookies from "js-cookie";
 
 const NavIcons = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const router = useRouter();
-  const isLoggedIn = false;
+  const wixClient = useWixClient();
+  const isLoggedIn = wixClient.auth.loggedIn();
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleProfile = () => {
     if (!isLoggedIn) {
       router.push("/login");
+    } else {
+      setIsProfileOpen((prev) => !prev);
     }
-    // setIsProfileOpen((prev) => !prev);
+  };
+
+  const handleLogOut = async () => {
+    setIsLoading(true);
+    Cookies.remove("refreshToken");
+    const { logoutUrl } = await wixClient.auth.logout(window.location.href);
+    setIsLoading(false);
+    setIsProfileOpen(false);
+    router.push(logoutUrl);
   };
 
   return (
@@ -67,12 +82,14 @@ const NavIcons = () => {
           height={22}
           onClick={handleProfile}
         /> */}
-        {/* {isProfileOpen && (
-          <div className="absolute rounded-md bg-white right-0 shadow-md p-2 top-6 text-sm z-20">
+        {isProfileOpen && (
+          <div className="absolute rounded-md bg-white right-[-28px] shadow-md p-4 top-10 text-sm z-20">
             <Link href="/">Profile</Link>
-            <div className="mt-2 cursor-pointer">Logout</div>
+            <div className="mt-2 cursor-pointer" onClick={handleLogOut}>
+              {isLoading ? "Logging Out" : "Logout"}
+            </div>
           </div>
-        )} */}
+        )}
       </div>
       <div className="relative cursor-pointer">
         <svg
