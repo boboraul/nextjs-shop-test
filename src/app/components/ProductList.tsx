@@ -91,7 +91,7 @@ const ProductList = async ({
             </div>
             <div className="flex justify-between mt-2">
               <span className="font-medium">{product.name}</span>
-              <span>${product.price?.price}</span>
+              <span>{product.price?.formatted?.price}</span>
             </div>
             <div
               className="text-sm h-4 text-gray-500 mt-2"

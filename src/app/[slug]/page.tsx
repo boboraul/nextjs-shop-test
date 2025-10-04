@@ -33,16 +33,16 @@ const singlePage = async ({ params }: { params: { slug: string } }) => {
         <div className="mprice-box">
           {product.price?.price === product.price?.discountedPrice ? (
             <h2 className="text-2xl text-primary-500 font-medium">
-              ${product.price?.price}
+              {product.price?.formatted?.discountedPrice}
             </h2>
           ) : (
             <div className="flex items-center gap-4">
               <h3 className="text-xl text-gray-500 line-through">
-                ${product.price?.price}
+                {product.price?.formatted?.price}
               </h3>
-              <h2 className="font-medium text-2xl text-primary-500">
-                ${product.price?.discountedPrice}
-              </h2>
+              {/* <h2 className="font-medium text-2xl text-primary-500">
+                {product.price?.discountedPrice}
+              </h2> */}
             </div>
           )}
         </div>

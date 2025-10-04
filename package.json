@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@wix/ecom": "^1.0.1404",
     "@wix/members": "^1.0.322",
     "@wix/sdk": "^1.15.22",
     "@wix/stores": "^1.0.452",
@@ -18,7 +19,8 @@
     "js-cookie": "^3.0.5",
     "next": "14.2.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",

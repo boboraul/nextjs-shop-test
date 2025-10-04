@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useState } from "react";
+import { useWixClient } from "../hooks/useWixClient";
 
 const Add = ({
   productId,
@@ -24,6 +25,23 @@ const Add = ({
     if (type === "i" && quantity < stockNumber) {
       setQuantity((prev) => prev + 1);
     }
+  };
+
+  const wixClient = useWixClient();
+
+  const addItem = async () => {
+    const response = await wixClient.currentCart.addToCurrentCart({
+      lineItems: [
+        {
+          catalogReference: {
+            appId: process.env.NEXT_PUBLIC_WIX_APP_ID!,
+            catalogItemId: productId,
+            ...(variantId && { options: { variantId } }),
+          },
+          quantity: quantity,
+        },
+      ],
+    });
   };
 
   return (
@@ -58,6 +76,7 @@ const Add = ({
         </div>
 
         <button
+          onClick={addItem}
           disabled={!stockNumber ? true : false}
           className="w-36 ml-16 text-sm rounded-3xl ring-1 text-primary-500 py-2 px-4 hover:bg-primary-500 hover:text-white ring-primary-500 disabled:cursor-not-allowed disabled:bg-white disabled:text-gray-600 disabled:ring-gray-500"
         >

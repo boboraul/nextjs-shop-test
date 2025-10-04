@@ -83,6 +83,9 @@ const LoginPage = () => {
             email,
             pathName
           );
+          setMessage(
+            "Password reset email sent. Please check your e-mail inbox"
+          );
           break;
 
         case MODE.EMAIL_VERIFICATION:
@@ -96,8 +99,6 @@ const LoginPage = () => {
           setIsLoading(false);
           break;
       }
-
-      console.log(response);
 
       switch (response?.loginState) {
         case LoginState.SUCCESS:
@@ -125,7 +126,10 @@ const LoginPage = () => {
           } else {
             setError("Something went wrong!");
           }
-
+        case LoginState.EMAIL_VERIFICATION_REQUIRED:
+          setMode(MODE.EMAIL_VERIFICATION);
+        case LoginState.OWNER_APPROVAL_REQUIRED:
+          setMessage("Your account is pending approval");
         default:
           break;
       }
