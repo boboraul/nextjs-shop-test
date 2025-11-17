@@ -8,8 +8,12 @@ const CustomizeProducts = ({
   productId,
   variants,
   productOptions,
+  productName,
+  productImage,
 }: {
   productId: string;
+  productName: string;
+  productImage: string;
   variants: products.Variant[];
   productOptions: products.ProductOption[];
 }) => {
@@ -116,6 +120,8 @@ const CustomizeProducts = ({
         productId={productId}
         variantId={selectedVariant?._id || "0000-00000-0000"}
         stockNumber={selectedVariant?.stock?.quantity || 0}
+        productName={productName}
+        productImage={productImage}
       />
       {/* Color */}
       {/* <h4 className="font-medium">Choose a {option.name}</h4>

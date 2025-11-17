@@ -1,18 +1,36 @@
 "use client";
 
 import Cookies from "js-cookie";
-import { createClient, OAuthStrategy } from "@wix/sdk";
+import { createClient, OAuthStrategy, WixClient } from "@wix/sdk";
 import { products, collections } from "@wix/stores";
 import { currentCart } from "@wix/ecom";
+import * as wixData from "@wix/data";
+import { members } from "@wix/members";
 import { ReactNode, createContext } from "react";
 
+// Token refresh
 const refreshToken = JSON.parse(Cookies.get("refreshToken") || "{}");
 
-const wixClient = createClient({
+// Definim modulele clientului
+type MyWixModules = {
+  products: typeof products;
+  collections: typeof collections;
+  currentCart: typeof currentCart;
+  data: typeof wixData;
+  members: typeof members;
+};
+
+// Tipul clientului complet
+export type MyWixClient = WixClient<undefined, any, MyWixModules>;
+
+// Cream clientul
+const wixClient: MyWixClient = createClient({
   modules: {
-    collections,
     products,
+    collections,
     currentCart,
+    data: wixData,
+    members,
   },
   auth: OAuthStrategy({
     clientId: process.env.NEXT_PUBLIC_WIX_CLIENT_ID!,
@@ -21,11 +39,12 @@ const wixClient = createClient({
       accessToken: { value: "", expiresAt: 0 },
     },
   }),
-});
+}) as MyWixClient;
 
-export type WixClient = typeof wixClient;
-export const WixClientContext = createContext<WixClient>(wixClient);
+// Context
+export const WixClientContext = createContext<MyWixClient | null>(null);
 
+// Provider
 export const WixClientContextProvider = ({
   children,
 }: {

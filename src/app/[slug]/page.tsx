@@ -40,9 +40,9 @@ const singlePage = async ({ params }: { params: { slug: string } }) => {
               <h3 className="text-xl text-gray-500 line-through">
                 {product.price?.formatted?.price}
               </h3>
-              {/* <h2 className="font-medium text-2xl text-primary-500">
+              <h2 className="font-medium text-2xl text-primary-500">
                 {product.price?.discountedPrice}
-              </h2> */}
+              </h2>
             </div>
           )}
         </div>
@@ -53,12 +53,16 @@ const singlePage = async ({ params }: { params: { slug: string } }) => {
             productId={product._id!}
             variants={product.variants}
             productOptions={product.productOptions}
+            productName={product.name!}
+            productImage={product.media?.mainMedia?.image?.url!}
           />
         ) : (
           <Add
             productId={product._id!}
             variantId="0000-00000-0000"
             stockNumber={product.stock?.quantity || 0}
+            productName={product.name!}
+            productImage={product.media?.mainMedia?.image?.url!}
           />
         )}
         <div className="h-[2px bg-gray-100" />

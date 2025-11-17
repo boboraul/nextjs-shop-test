@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Forțăm refresh la favicon prin query param */}
+        {/* Fortam refresh la favicon prin query param */}
         <link rel="icon" href="/favicon.ico?v=3" />
       </head>
       <body className={inter.className}>

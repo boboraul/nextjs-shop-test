@@ -2,8 +2,18 @@ import { create } from "zustand";
 import { currentCart } from "@wix/ecom";
 import { WixClient } from "../Context/wixContext";
 
+//Because sdk @wix/ecom doesn`t have subtotal field in currentCart.Cart
+export type ExtendedCart = currentCart.Cart & {
+  subtotal?: { amount?: number; formattedAmount?: string };
+  subtotalAfterDiscounts?: { amount?: number; formattedAmount?: string };
+  totals?: {
+    subtotal?: { amount?: number; formattedAmount?: string };
+    total?: { amount?: number; formattedAmount?: string };
+  };
+};
+
 type CartState = {
-  cart: currentCart.Cart | undefined;
+  cart: ExtendedCart | undefined;
   isLoading: boolean;
   counter: number;
   getCart: (wixClient: WixClient) => void;
@@ -41,6 +51,7 @@ export const useCartStore = create<CartState>((set) => ({
       }
     }
   },
+
   addItem: async (wixClient, productId, variantId, quantity) => {
     set((state) => ({ ...state, isLoading: true }));
     const response = await wixClient.currentCart.addToCurrentCart({
@@ -62,6 +73,7 @@ export const useCartStore = create<CartState>((set) => ({
       isLoading: false,
     });
   },
+
   removeItem: async (wixClient, itemId) => {
     set((state) => ({ ...state, isLoading: true }));
     const response = await wixClient.currentCart.removeLineItemsFromCurrentCart(

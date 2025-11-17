@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@wix/data": "^1.0.316",
     "@wix/ecom": "^1.0.1404",
     "@wix/members": "^1.0.322",
     "@wix/sdk": "^1.15.22",
