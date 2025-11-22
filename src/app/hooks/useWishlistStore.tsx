@@ -12,7 +12,7 @@ type WishlistItem = {
   createdAt?: string;
 };
 
-const wishlisttId = "jdo2u3dohad8yt12dghqasdau";
+const wishlistId = "jdo2u3dohad8yt12dghqasdau";
 
 type WishlistStore = {
   items: WishlistItem[];
@@ -30,6 +30,7 @@ export const useWishlistStore = create<WishlistStore>((set, get) => ({
     set({ isLoading: true });
     try {
       const client = wixClientBrowser() as any;
+
       const result = await client.data.items
         .query("Wishlist")
         .eq("userId", userId)
@@ -45,7 +46,7 @@ export const useWishlistStore = create<WishlistStore>((set, get) => ({
   addItem: async (item) => {
     try {
       const client = wixClientBrowser() as any;
-      const result = await client.data.items.insert(wishlisttId, item);
+      const result = await client.data.items.insert(wishlistId, item);
       set((state) => ({ items: [...state.items, result] }));
     } catch (error) {
       console.error("Eroare la adăugare în wishlist:", error);
