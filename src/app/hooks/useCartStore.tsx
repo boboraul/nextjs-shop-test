@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { currentCart } from "@wix/ecom";
-import { WixClient } from "../Context/wixContext";
+import { MyWixClient } from "../Context/wixContext";
 
 //Because sdk @wix/ecom doesn`t have subtotal field in currentCart.Cart
 export type ExtendedCart = currentCart.Cart & {
@@ -16,14 +16,14 @@ type CartState = {
   cart: ExtendedCart | undefined;
   isLoading: boolean;
   counter: number;
-  getCart: (wixClient: WixClient) => void;
+  getCart: (wixClient: MyWixClient) => void;
   addItem: (
-    wixClient: WixClient,
+    wixClient: MyWixClient,
     productId: string,
     variantId: string,
     quantity: number
   ) => void;
-  removeItem: (wixClient: WixClient, itemId: string) => void;
+  removeItem: (wixClient: MyWixClient, itemId: string) => void;
 };
 
 export const useCartStore = create<CartState>((set) => ({

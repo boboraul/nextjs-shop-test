@@ -26,7 +26,7 @@ const AddToWishlistButton = ({
   useEffect(() => {
     if (!userId) return;
     fetchWishlist(userId);
-  }, [userId]);
+  }, [userId, fetchWishlist]);
 
   useEffect(() => {
     console.log("Wishlist items:", items);
