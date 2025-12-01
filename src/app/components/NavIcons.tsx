@@ -9,6 +9,7 @@ import WishlistModal from "./WishlistModal";
 import { useWixClient } from "../hooks/useWixClient";
 import Cookies from "js-cookie";
 import { useCartStore } from "../hooks/useCartStore";
+import { useWishlistStore } from "../hooks/useWishlistStore";
 
 const NavIcons = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -42,6 +43,8 @@ const NavIcons = () => {
   };
 
   const { cart, counter, getCart } = useCartStore();
+  const { items } = useWishlistStore();
+  const wishCounter = items.length;
 
   useEffect(() => {
     getCart(wixClient);
@@ -73,8 +76,10 @@ const NavIcons = () => {
             d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
           />
         </svg>
-        {counter > 0 && (
-          <div className="absolute top-0 right-0 w-2 h-2 bg-primary-500 rounded-full"></div>
+        {wishCounter > 0 && (
+          <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary-500 text-[6px] leading-[16px] text-white flex justify-center align-center rounded-full">
+            {wishCounter}
+          </div>
         )}
 
         {isWishListOpen && <WishlistModal />}
@@ -138,7 +143,7 @@ const NavIcons = () => {
           className="cursor-pointer"
           onClick={() => setIsCartOpen((prev) => !prev)}
         /> */}
-        <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary-500 text-[8px] leading-[16px] text-white flex justify-center align-center rounded-full">
+        <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary-500 text-[6px] leading-[16px] text-white flex justify-center align-center rounded-full">
           {counter}
         </div>
         {isCartOpen && <CartModal />}

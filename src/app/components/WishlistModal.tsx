@@ -1,19 +1,19 @@
 "use client";
 import Image from "next/image";
-import { useCartStore } from "../hooks/useCartStore";
+import { useWishlistStore } from "../hooks/useWishlistStore";
 import { media as wixMedia } from "@wix/sdk";
 import { useWixClient } from "../hooks/useWixClient";
 
 const WishlistModal = () => {
   const wixClient = useWixClient();
-  const { cart, isLoading, removeItem } = useCartStore();
+  const { isLoading, removeItem, items } = useWishlistStore();
 
   return (
     <div className="absolute bg-white min-w-[280px] border-t cursor-default rounded-md right-0 shadow-md p-3 top-7 text-sm z-20">
       <h4 className="text-sm pb-2 border-b">Wishlist</h4>
       {isLoading ? (
         "Loading..."
-      ) : !cart?.lineItems ? (
+      ) : !items ? (
         <div className="empty text-center pt-2">
           <span>Wishlist is empty</span>
         </div>
@@ -21,15 +21,15 @@ const WishlistModal = () => {
         <>
           {/* List */}
           <div className="list overflow-y-auto max-h-[300px]">
-            {cart.lineItems.map((item) => (
+            {items.map((item) => (
               <div className="item flex gap-4 mt-2" key={item._id}>
-                {item.image && (
+                {item.productImage && (
                   <Image
-                    alt={item.productName?.original ?? "Product image"}
+                    alt={item.productName ?? "Product image"}
                     width={80}
                     height={100}
                     src={wixMedia.getScaledToFillImageUrl(
-                      item.image,
+                      item.productImage,
                       72,
                       96,
                       {}
@@ -42,16 +42,14 @@ const WishlistModal = () => {
                   <div className="">
                     {/* Title */}
                     <div className="flex items-center justify-between gap-8">
-                      <h3 className="name font-semibold">
-                        {item.productName?.original}
-                      </h3>
-                      <div className="price bg-gray-50 rounded-sm p-1">
+                      <h3 className="name font-semibold">{item.productName}</h3>
+                      {/* <div className="price bg-gray-50 rounded-sm p-1">
                         {item.price?.formattedAmount}
-                      </div>
+                      </div> */}
                     </div>
                     <div className="flex justify-end text-sm mt-1">
                       <button
-                        onClick={() => removeItem(wixClient, item._id!)}
+                        onClick={() => removeItem(item._id!)}
                         className="border-0 text-red-400 text-xs"
                       >
                         Remove

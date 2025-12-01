@@ -1,7 +1,7 @@
 "use client";
 
 import { useWishlistStore } from "../hooks/useWishlistStore";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { HeartIcon } from "@heroicons/react/24/outline";
 
 type AddToWishlistButtonProps = {
@@ -20,6 +20,17 @@ const AddToWishlistButton = ({
 }: AddToWishlistButtonProps) => {
   const { addItem } = useWishlistStore();
   const [loading, setLoading] = useState(false);
+
+  const { fetchWishlist, items } = useWishlistStore();
+
+  useEffect(() => {
+    if (!userId) return;
+    fetchWishlist(userId);
+  }, [userId]);
+
+  useEffect(() => {
+    console.log("Wishlist items:", items);
+  }, [items]);
 
   const handleAdd = async () => {
     setLoading(true);

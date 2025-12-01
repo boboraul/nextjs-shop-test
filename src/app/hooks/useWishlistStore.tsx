@@ -32,7 +32,7 @@ export const useWishlistStore = create<WishlistStore>((set, get) => ({
       const client = wixClientBrowser() as any;
 
       const result = await client.data.items
-        .query("Wishlist")
+        .query(wishlistId)
         .eq("userId", userId)
         .find();
       set({ items: result.items || [] });
@@ -56,7 +56,7 @@ export const useWishlistStore = create<WishlistStore>((set, get) => ({
   removeItem: async (itemId) => {
     try {
       const client = wixClientBrowser() as any;
-      await client.data.items.remove("Wishlist", itemId);
+      await client.data.items.remove(wishlistId, itemId);
       set((state) => ({
         items: state.items.filter((item) => item._id !== itemId),
       }));

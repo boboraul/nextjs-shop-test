@@ -18,7 +18,8 @@ const singlePage = async ({ params }: { params: { slug: string } }) => {
     return notFound();
   }
   const product = products.items[0];
-  console.log(product.price?.currency);
+  console.log(product._id);
+
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] relative flex flex-col lg:flex-row gap-16 mt-12">
       {/* Image */}
