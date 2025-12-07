@@ -1,12 +1,13 @@
 // "use client";
 
-import { Suspense, useContext, useEffect } from "react";
-import Slider from "./components/Slider";
-import ProductList from "./components/ProductList";
-import CategoryList from "./components/CategoryList";
 import { WixClientContext } from "./Context/wixContext";
 import { useWixClient } from "./hooks/useWixClient";
 import { wixClientServer } from "./lib/wixClientServer";
+import { Suspense } from "react";
+import HomeClient from "./components/HomeClient";
+import Slider from "./components/Slider";
+import ProductList from "./components/ProductList";
+import CategoryList from "./components/CategoryList";
 
 const HomePage = async () => {
   // const wixClient = useWixClient();
