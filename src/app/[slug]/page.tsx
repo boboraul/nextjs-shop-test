@@ -7,13 +7,11 @@ import Add from "../components/Add";
 import { wixClientServer } from "../lib/wixClientServer";
 import { notFound } from "next/navigation";
 
-type PageProps = {
-  params: Promise<{
-    slug: string;
-  }>;
-};
-
-const singlePage = async ({ params }: PageProps) => {
+const singlePage = async ({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) => {
   const wixClient = await wixClientServer();
   const { slug } = await params;
 
