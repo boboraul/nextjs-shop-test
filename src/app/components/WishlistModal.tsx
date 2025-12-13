@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import { useWishlistStore } from "../hooks/useWishlistStore";
 import { media as wixMedia } from "@wix/sdk";

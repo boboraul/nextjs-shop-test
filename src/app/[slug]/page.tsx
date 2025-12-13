@@ -9,9 +9,11 @@ import { notFound } from "next/navigation";
 
 const singlePage = async ({ params }: { params: { slug: string } }) => {
   const wixClient = await wixClientServer();
+  const { slug } = await params;
+
   const products = await wixClient.products
     .queryProducts()
-    .eq("slug", params.slug)
+    .eq("slug", slug)
     .find();
 
   if (!products.items[0]) {
