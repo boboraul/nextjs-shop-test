@@ -7,13 +7,9 @@ import Add from "../components/Add";
 import { wixClientServer } from "../lib/wixClientServer";
 import { notFound } from "next/navigation";
 
-const singlePage = async ({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) => {
+const singlePage = async ({ params }: { params: { slug: string } }) => {
   const wixClient = await wixClientServer();
-  const { slug } = await params;
+  const { slug } = params;
 
   const products = await wixClient.products
     .queryProducts()
