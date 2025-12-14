@@ -1,10 +1,10 @@
 // "use client";
 
-import { WixClientContext } from "./Context/wixContext";
-import { useWixClient } from "./hooks/useWixClient";
-import { wixClientServer } from "./lib/wixClientServer";
+// import { WixClientContext } from "./Context/wixContext";
+// import { useWixClient } from "./hooks/useWixClient";
+// import { wixClientServer } from "./lib/wixClientServer";
 import { Suspense } from "react";
-import HomeClient from "./components/HomeClient";
+// import HomeClient from "./components/HomeClient";
 import Slider from "./components/Slider";
 import ProductList from "./components/ProductList";
 import CategoryList from "./components/CategoryList";

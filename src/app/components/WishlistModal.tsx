@@ -3,11 +3,16 @@
 import Image from "next/image";
 import { useWishlistStore } from "../hooks/useWishlistStore";
 import { media as wixMedia } from "@wix/sdk";
-import { useWixClient } from "../hooks/useWixClient";
+import { useRouter } from "next/navigation";
 
 const WishlistModal = () => {
-  const wixClient = useWixClient();
+  // const wixClient = useWixClient();
   const { isLoading, removeItem, items } = useWishlistStore();
+  const router = useRouter();
+
+  const handleWishlist = () => {
+    router.push("/wishlist");
+  };
 
   return (
     <div className="absolute bg-white min-w-[280px] border-t cursor-default rounded-md right-0 shadow-md p-3 top-7 text-sm z-20">
@@ -65,7 +70,10 @@ const WishlistModal = () => {
           {/* Bottom Wishlist */}
           <div className="flex justify-center mt-3 border-t text-xs pt-3">
             <hr />
-            <button className="rounded-md py-2 px-4 bg-black text-white">
+            <button
+              className="rounded-md py-2 px-4 bg-black text-white"
+              onClick={handleWishlist}
+            >
               View Wishlist
             </button>
           </div>

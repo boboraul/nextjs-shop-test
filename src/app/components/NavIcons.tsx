@@ -30,7 +30,11 @@ const NavIcons = () => {
   };
 
   const handleWishlist = () => {
-    setIsWishListOpen((prev) => !prev);
+    if (isLoggedIn) {
+      setIsWishListOpen((prev) => !prev);
+    } else {
+      return;
+    }
   };
 
   const handleLogOut = async () => {
@@ -119,6 +123,7 @@ const NavIcons = () => {
           </div>
         )}
       </div>
+
       <div className="relative cursor-pointer">
         <svg
           onClick={() => setIsCartOpen((prev) => !prev)}
