@@ -6,7 +6,7 @@ import CustomizeProducts from "../components/CustomizeProducts";
 import Add from "../components/Add";
 import { wixClientServer } from "../lib/wixClientServer";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 export default async function Page({
   params,
