@@ -43,9 +43,9 @@ const NavIcons = () => {
     router.push(logoutUrl);
   };
 
-  const { cart, counter, getCart } = useCartStore();
-  const { items } = useWishlistStore();
-  const wishCounter = items.length;
+  const { counter, getCart } = useCartStore();
+
+  const wishCounter = useWishlistStore((s) => s.items.length);
 
   useEffect(() => {
     getCart(wixClient);

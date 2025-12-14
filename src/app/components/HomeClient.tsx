@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useContext } from "react";
+// import { useEffect, useContext } from "react";
 import Slider from "./Slider";
 import ProductList from "./ProductList";
 import CategoryList from "./CategoryList";

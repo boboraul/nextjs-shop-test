@@ -1,4 +1,6 @@
 // src/app/api/login/route.ts
+// Unused for now
+
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {

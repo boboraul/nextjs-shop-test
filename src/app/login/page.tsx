@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useWixClient } from "../hooks/useWixClient";
 import { LoginState } from "@wix/sdk";
 import Cookies from "js-cookie";
@@ -22,9 +22,11 @@ const LoginPage = () => {
   const pathName = usePathname();
   const router = useRouter();
 
-  if (isLoggedIn) {
-    router.push("/");
-  }
+  useEffect(() => {
+    if (isLoggedIn) {
+      router.replace("/");
+    }
+  }, [isLoggedIn, router]);
 
   const [mode, setMode] = useState(MODE.LOGIN);
 

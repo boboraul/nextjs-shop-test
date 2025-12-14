@@ -22,7 +22,7 @@ type WishlistStore = {
   removeItem: (itemId: string) => Promise<void>;
 };
 
-export const useWishlistStore = create<WishlistStore>((set, get) => ({
+export const useWishlistStore = create<WishlistStore>((set) => ({
   items: [],
   isLoading: false,
 

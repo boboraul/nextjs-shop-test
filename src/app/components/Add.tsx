@@ -49,7 +49,7 @@ const Add = ({
         const { member } = await wixClient.members.getCurrentMember();
         if (member) setUserId(member._id ?? null);
       } catch (error) {
-        console.error("Eroare la obținerea userului:", error);
+        // console.error("Eroare la obținerea userului:", error);
         setUserId(null);
       }
     };
