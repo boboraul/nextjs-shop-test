@@ -22,12 +22,6 @@ const LoginPage = () => {
   const pathName = usePathname();
   const router = useRouter();
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      router.replace("/");
-    }
-  }, [isLoggedIn, router]);
-
   const [mode, setMode] = useState(MODE.LOGIN);
 
   const [username, setUsername] = useState("");
@@ -113,7 +107,8 @@ const LoginPage = () => {
             expires: 2,
           });
           wixClient.auth.setTokens(tokens);
-
+          router.replace("/");
+          
           break;
         case LoginState.FAILURE:
           if (
