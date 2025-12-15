@@ -13,13 +13,6 @@ import { ReactNode, createContext } from "react";
 
 const refreshToken = Cookies.get("wixRefreshToken");
 
-if (refreshToken) {
-  wixClient.auth.setTokens({
-    refreshToken,
-    accessToken: undefined,
-  });
-}
-
 // Definim modulele clientului
 type MyWixModules = {
   products: typeof products;
@@ -31,6 +24,13 @@ type MyWixModules = {
 
 // Tipul clientului complet
 export type MyWixClient = WixClient<undefined, any, MyWixModules>;
+
+if (refreshToken) {
+  myWixClient.auth.setTokens({
+    refreshToken,
+    accessToken: undefined,
+  });
+}
 
 // Cream clientul
 const wixClient: MyWixClient = createClient({
