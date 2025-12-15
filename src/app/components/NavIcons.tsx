@@ -30,10 +30,7 @@ const NavIcons = () => {
   };
 
   const handleWishlist = () => {
-    if (isLoggedIn) {
-      setIsWishListOpen((prev) => !prev);
-    } else {
-      return;
+    setIsWishListOpen((prev) => !prev);
     }
   };
 
