@@ -58,7 +58,8 @@ export const useCartStore = create<CartState>((set) => ({
       lineItems: [
         {
           catalogReference: {
-            appId: process.env.NEXT_PUBLIC_WIX_APP_ID!,
+            // process.env.NEXT_PUBLIC_WIX_APP_ID!,
+            appId: "wix-stores", 
             catalogItemId: productId,
             ...(variantId && { options: { variantId } }),
           },
