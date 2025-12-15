@@ -9,7 +9,7 @@ import { members } from "@wix/members";
 import { ReactNode, createContext } from "react";
 
 // Token refresh
-const refreshToken = JSON.parse(Cookies.get("refreshToken") || "{}");
+const refreshToken = Cookies.get("refreshToken");
 
 // Definim modulele clientului
 type MyWixModules = {
@@ -34,10 +34,7 @@ const wixClient: MyWixClient = createClient({
   },
   auth: OAuthStrategy({
     clientId: process.env.NEXT_PUBLIC_WIX_CLIENT_ID!,
-    tokens: {
-      refreshToken,
-      accessToken: { value: "", expiresAt: 0 },
-    },
+    tokens: refreshToken ? ({ refreshToken } as any) : undefined,
   }),
 }) as MyWixClient;
 

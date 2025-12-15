@@ -103,12 +103,15 @@ const LoginPage = () => {
             response.data.sessionToken!
           );
 
-          Cookies.set("refreshToken", JSON.stringify(tokens.refreshToken), {
+          Cookies.set("refreshToken", tokens.refreshToken.value, {
             expires: 2,
+            secure: true,
+            sameSite: "lax",
           });
+
           wixClient.auth.setTokens(tokens);
           router.replace("/");
-          
+
           break;
         case LoginState.FAILURE:
           if (
