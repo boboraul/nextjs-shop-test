@@ -19,7 +19,7 @@ const WishlistModal = () => {
       <h4 className="text-sm pb-2 border-b">Wishlist</h4>
       {isLoading ? (
         "Loading..."
-      ) : !items ? (
+      ) : items ? (
         <div className="empty text-center pt-2">
           <span>Wishlist is empty</span>
         </div>
