@@ -94,14 +94,13 @@ const Add = ({
           {stockNumber > 0 ? "Add to Cart" : "Out of stock"}
         </button>
 
-        {userId && (
-          <AddToWishlistButton
-            userId={userId}
-            productId={productId}
-            productName={productName}
-            productImage={productImage}
-          />
-        )}
+        <AddToWishlistButton
+          userId={userId}
+          productId={productId}
+          productName={productName}
+          productImage={productImage}
+        />
+        
       </div>
     </div>
   );
