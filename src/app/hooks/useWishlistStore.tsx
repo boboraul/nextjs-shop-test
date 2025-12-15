@@ -35,7 +35,7 @@ export const useWishlistStore = create<WishlistStore>((set) => ({
         .query(wishlistId)
         .eq("userId", userId)
         .find();
-      set({ items: result.items || [] });
+      set({ items: (result.items as WishlistItem[]) ?? [] });
     } catch (error) {
       console.error("Eroare la fetch wishlist:", error);
     } finally {
@@ -47,7 +47,7 @@ export const useWishlistStore = create<WishlistStore>((set) => ({
     try {
       const client = wixClientBrowser() as any;
       const result = await client.data.items.insert(wishlistId, item);
-      set((state) => ({ items: [...state.items, result] }));
+      set((state) => ({ items: [...state.items, result as WishlistItem] }));
     } catch (error) {
       console.error("Eroare la adăugare în wishlist:", error);
     }

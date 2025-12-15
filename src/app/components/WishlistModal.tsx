@@ -13,13 +13,13 @@ const WishlistModal = () => {
   const handleWishlist = () => {
     router.push("/wishlist");
   };
-
+  console.log(items);
   return (
     <div className="absolute bg-white min-w-[280px] border-t cursor-default rounded-md right-0 shadow-md p-3 top-7 text-sm z-20">
       <h4 className="text-sm pb-2 border-b">Wishlist</h4>
       {isLoading ? (
         "Loading..."
-      ) : items ? (
+      ) : items.length == 0 ? (
         <div className="empty text-center pt-2">
           <span>Wishlist is empty</span>
         </div>
