@@ -31,7 +31,6 @@ const NavIcons = () => {
 
   const handleWishlist = () => {
     setIsWishListOpen((prev) => !prev);
-    }
   };
 
   const handleLogOut = async () => {
