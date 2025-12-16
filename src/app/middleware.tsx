@@ -1,4 +1,3 @@
-// middleware.ts
 import { OAuthStrategy, createClient } from "@wix/sdk";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -9,6 +8,7 @@ export const middleware = async (request: NextRequest) => {
     return res;
   }
 
+  // Wix visitor tokens - identify this browser as a Wix visitor
   const wixClient = createClient({
     auth: OAuthStrategy({
       clientId: process.env.NEXT_PUBLIC_WIX_CLIENT_ID!,
@@ -17,6 +17,7 @@ export const middleware = async (request: NextRequest) => {
 
   const tokens = await wixClient.auth.generateVisitorTokens();
 
+  // HttpOnly visitor token used by Wix APIs (anonymous user)
   res.cookies.set("refreshToken", tokens.refreshToken.value, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
