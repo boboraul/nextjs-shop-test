@@ -106,7 +106,7 @@ const LoginPage = () => {
           Cookies.set("refreshToken", tokens.refreshToken.value, {
             expires: 2,
             secure: true,
-            sameSite: "lax",
+            sameSite: "none",
           });
 
           wixClient.auth.setTokens(tokens);
