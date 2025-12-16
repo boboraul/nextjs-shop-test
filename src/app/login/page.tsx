@@ -110,7 +110,9 @@ const LoginPage = () => {
           });
 
           wixClient.auth.setTokens(tokens);
+          
           router.replace("/");
+          router.refresh();
 
           break;
         case LoginState.FAILURE:
