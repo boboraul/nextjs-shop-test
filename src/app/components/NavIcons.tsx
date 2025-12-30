@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import React from "react";
 // import Image from "next/image";
 import { useState, useEffect } from "react";
@@ -8,7 +8,7 @@ import Link from "next/link";
 import CartModal from "./CartModal";
 import WishlistModal from "./WishlistModal";
 import { useWixClient } from "../hooks/useWixClient";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import { useCartStore } from "../hooks/useCartStore";
 import { useWishlistStore } from "../hooks/useWishlistStore";
 
@@ -18,8 +18,29 @@ const NavIcons = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const router = useRouter();
   const wixClient = useWixClient();
-  const isLoggedIn = wixClient.auth.loggedIn();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    let cancelled = false;
+
+    (async () => {
+      try {
+        const res = await fetch("/api/auth/me", { cache: "no-store" });
+        if (!res.ok) return;
+        const data = await res.json();
+        if (cancelled) return;
+        setIsLoggedIn(data.loggedIn);
+      } catch {
+        setIsLoggedIn(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [pathname]);
 
   const handleProfile = () => {
     if (!isLoggedIn) {
@@ -34,22 +55,35 @@ const NavIcons = () => {
   };
 
   const handleLogOut = async () => {
-    setIsLoading(true);
-    Cookies.remove("refreshToken");
-    const { logoutUrl } = await wixClient.auth.logout(window.location.href);
-    setIsLoading(false);
-    setIsProfileOpen(false);
-    setIsWishListOpen(false);
-    router.push(logoutUrl);
+    try {
+      setIsLoading(true);
+
+      await fetch("/api/auth/logout", {
+        method: "POST",
+      });
+
+      setIsProfileOpen(false);
+      setIsWishListOpen(false);
+
+      // daca ai si state local isLoggedIn in NavIcons, seteaza-l pe false aici
+      setIsLoggedIn(false);
+
+      router.push("/");
+      router.refresh();
+    } catch (e) {
+      console.error("Logout failed", e);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const { counter, getCart } = useCartStore();
+  const { counter } = useCartStore();
 
   const wishCounter = useWishlistStore((s) => s.items.length);
 
-  useEffect(() => {
-    getCart(wixClient);
-  }, [wixClient, getCart]);
+  // useEffect(() => {
+  //   getCart(wixClient);
+  // }, [wixClient, getCart]);
 
   return (
     <div className="flex item-center gap-4 xl:gap-6 relative">
@@ -77,7 +111,8 @@ const NavIcons = () => {
             d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
           />
         </svg>
-        {wishCounter > 0 && (
+
+        {wishCounter > 0 && isLoggedIn && (
           <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary-500 text-[6px] leading-[16px] text-white flex justify-center align-center rounded-full">
             {wishCounter}
           </div>

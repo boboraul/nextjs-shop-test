@@ -1,7 +1,7 @@
 "use client";
 
 import { create } from "zustand";
-import { wixClientBrowser } from "../lib/wixClientBrowser";
+import type { MyWixClient } from "../Context/wixContext";
 
 type WishlistItem = {
   _id?: string;
@@ -17,21 +17,20 @@ const wishlistId = "jdo2u3dohad8yt12dghqasdau";
 type WishlistStore = {
   items: WishlistItem[];
   isLoading: boolean;
-  fetchWishlist: (userId: string) => Promise<void>;
-  addItem: (item: WishlistItem) => Promise<void>;
-  removeItem: (itemId: string) => Promise<void>;
+  fetchWishlist: (client: MyWixClient, userId: string) => Promise<void>;
+  addItem: (client: MyWixClient, item: WishlistItem) => Promise<void>;
+  removeItem: (client: MyWixClient, itemId: string) => Promise<void>;
 };
 
 export const useWishlistStore = create<WishlistStore>((set) => ({
   items: [],
   isLoading: false,
 
-  fetchWishlist: async (userId) => {
+  fetchWishlist: async (client, userId) => {
     set({ isLoading: true });
-    try {
-      const client = wixClientBrowser() as any;
 
-      const result = await client.data.items
+    try {
+      const result = await (client as any).data.items
         .query(wishlistId)
         .eq("userId", userId)
         .find();
@@ -43,20 +42,18 @@ export const useWishlistStore = create<WishlistStore>((set) => ({
     }
   },
 
-  addItem: async (item) => {
+  addItem: async (client, item) => {
     try {
-      const client = wixClientBrowser() as any;
-      const result = await client.data.items.insert(wishlistId, item);
+      const result = await (client as any).data.items.insert(wishlistId, item);
       set((state) => ({ items: [...state.items, result as WishlistItem] }));
     } catch (error) {
       console.error("Eroare la adăugare în wishlist:", error);
     }
   },
 
-  removeItem: async (itemId) => {
+  removeItem: async (client, itemId) => {
     try {
-      const client = wixClientBrowser() as any;
-      await client.data.items.remove(wishlistId, itemId);
+      await (client as any).data.items.remove(wishlistId, itemId);
       set((state) => ({
         items: state.items.filter((item) => item._id !== itemId),
       }));

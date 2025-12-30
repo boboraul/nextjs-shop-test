@@ -1,90 +1,90 @@
 import { create } from "zustand";
-import { currentCart } from "@wix/ecom";
-import { MyWixClient } from "../Context/wixContext";
+import { persist } from "zustand/middleware";
 
-//Because sdk @wix/ecom doesn`t have subtotal field in currentCart.Cart
-export type ExtendedCart = currentCart.Cart & {
-  subtotal?: { amount?: number; formattedAmount?: string };
-  subtotalAfterDiscounts?: { amount?: number; formattedAmount?: string };
-  totals?: {
-    subtotal?: { amount?: number; formattedAmount?: string };
-    total?: { amount?: number; formattedAmount?: string };
-  };
+export type CartItem = {
+  productId: string;
+  variantId?: string;
+  quantity: number;
+  productName?: string;
+  productImage?: string;
+  price?: number;
+  selectedVariant?: Record<string, string>;
 };
 
 type CartState = {
-  cart: ExtendedCart | undefined;
-  isLoading: boolean;
+  items: CartItem[];
   counter: number;
-  getCart: (wixClient: MyWixClient) => void;
-  addItem: (
-    wixClient: MyWixClient,
+
+  addItem: (item: CartItem) => void;
+  removeItem: (productId: string, variantId?: string) => void;
+  updateQuantity: (
     productId: string,
-    variantId: string,
-    quantity: number
+    quantity: number,
+    variantId?: string
   ) => void;
-  removeItem: (wixClient: MyWixClient, itemId: string) => void;
+  clearCart: () => void;
 };
 
-export const useCartStore = create<CartState>((set) => ({
-  cart: {},
-  isLoading: true,
-  counter: 0,
-  getCart: async (wixClient) => {
-    try {
-      const cart = await wixClient.currentCart.getCurrentCart();
-      set({
-        cart: cart || {},
-        isLoading: false,
-        counter: cart?.lineItems?.length || 0,
-      });
-    } catch (err: any) {
-      // If no cart exists yet → just treat as empty
-      if (err.response?.status === 404) {
-        set({
-          cart: undefined,
-          isLoading: false,
-          counter: 0,
-        });
-      } else {
-        set((prev) => ({ ...prev, isLoading: false }));
-      }
+export const useCartStore = create<CartState>()(
+  persist(
+    (set) => ({
+      items: [],
+      counter: 0,
+
+      addItem: (item) =>
+        set((state) => {
+          const existing = state.items.find(
+            (i) =>
+              i.productId === item.productId && i.variantId === item.variantId
+          );
+
+          const items = existing
+            ? state.items.map((i) =>
+                i.productId === item.productId && i.variantId === item.variantId
+                  ? { ...i, quantity: i.quantity + item.quantity }
+                  : i
+              )
+            : [...state.items, item];
+
+          return {
+            items,
+            counter: items.reduce((s, i) => s + i.quantity, 0),
+          };
+        }),
+
+      removeItem: (productId, variantId) =>
+        set((state) => {
+          const items = state.items.filter(
+            (i) => !(i.productId === productId && i.variantId === variantId)
+          );
+
+          return {
+            items,
+            counter: items.reduce((s, i) => s + i.quantity, 0),
+          };
+        }),
+
+      updateQuantity: (productId, quantity, variantId) =>
+        set((state) => {
+          const items = state.items.map((i) =>
+            i.productId === productId && i.variantId === variantId
+              ? { ...i, quantity }
+              : i
+          );
+
+          return {
+            items,
+            counter: items.reduce((s, i) => s + i.quantity, 0),
+          };
+        }),
+
+      clearCart: () => ({
+        items: [],
+        counter: 0,
+      }),
+    }),
+    {
+      name: "cart-storage",
     }
-  },
-
-  addItem: async (wixClient, productId, variantId, quantity) => {
-    set((state) => ({ ...state, isLoading: true }));
-    const response = await wixClient.currentCart.addToCurrentCart({
-      lineItems: [
-        {
-          catalogReference: {
-            // process.env.NEXT_PUBLIC_WIX_APP_ID!,
-            appId: "wix-stores", 
-            catalogItemId: productId,
-            ...(variantId && { options: { variantId } }),
-          },
-          quantity: quantity,
-        },
-      ],
-    });
-
-    set({
-      cart: response.cart,
-      counter: response.cart?.lineItems?.length,
-      isLoading: false,
-    });
-  },
-
-  removeItem: async (wixClient, itemId) => {
-    set((state) => ({ ...state, isLoading: true }));
-    const response = await wixClient.currentCart.removeLineItemsFromCurrentCart(
-      [itemId]
-    );
-
-    set({
-      cart: response.cart,
-      counter: response.cart?.lineItems?.length,
-      isLoading: false,
-    });
-  },
-}));
+  )
+);

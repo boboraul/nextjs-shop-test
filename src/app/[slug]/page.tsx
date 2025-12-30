@@ -27,6 +27,11 @@ export default async function Page({
   }
 
   const product = products.items[0];
+  console.log("product ", product.price?.formatted?.price);
+  const price =
+    product.price?.price === product.price?.discountedPrice
+      ? product.price?.discountedPrice
+      : product.price?.discountedPrice;
 
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] relative flex flex-col lg:flex-row gap-16 mt-12">
@@ -37,6 +42,22 @@ export default async function Page({
       <div className="w-full lg:w-1/2 flex flex-col gap-6">
         <h1 className="text-4xl font-medium">{product.name}</h1>
         <p className="description text-gray-500">{product.description}</p>
+        <div className="price-box">
+          {product.price?.price === product.price?.discountedPrice ? (
+            <h2 className="text-2xl text-primary-500 font-medium">
+              {product.price?.discountedPrice} {product.price?.currency}
+            </h2>
+          ) : (
+            <div className="flex items-center gap-4">
+              <h3 className="text-xl text-gray-500 line-through">
+                {product.price?.price} {product.price?.currency}
+              </h3>
+              <h2 className="font-medium text-2xl text-primary-500">
+                {product.price?.discountedPrice} {product.price?.currency}
+              </h2>
+            </div>
+          )}
+        </div>
 
         {product.variants && product.productOptions ? (
           <CustomizeProducts
@@ -45,6 +66,7 @@ export default async function Page({
             productOptions={product.productOptions}
             productName={product.name!}
             productImage={product.media?.mainMedia?.image?.url!}
+            price={price}
           />
         ) : (
           <Add
@@ -53,6 +75,7 @@ export default async function Page({
             stockNumber={product.stock?.quantity || 0}
             productName={product.name!}
             productImage={product.media?.mainMedia?.image?.url!}
+            price={price}
           />
         )}
       </div>

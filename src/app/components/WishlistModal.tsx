@@ -3,17 +3,24 @@
 import Image from "next/image";
 import { useWishlistStore } from "../hooks/useWishlistStore";
 import { media as wixMedia } from "@wix/sdk";
+import { useWixClient } from "../hooks/useWixClient";
 import { useRouter } from "next/navigation";
 
 const WishlistModal = () => {
-  // const wixClient = useWixClient();
+  const wixClient = useWixClient();
   const { isLoading, removeItem, items } = useWishlistStore();
   const router = useRouter();
 
   const handleWishlist = () => {
     router.push("/wishlist");
   };
+
+  const handleRemove = (id: string) => {
+    removeItem(wixClient, id);
+  };
+
   console.log(items);
+
   return (
     <div className="absolute bg-white min-w-[280px] border-t cursor-default rounded-md right-0 shadow-md p-3 top-7 text-sm z-20">
       <h4 className="text-sm pb-2 border-b">Wishlist</h4>
@@ -55,7 +62,7 @@ const WishlistModal = () => {
                     </div>
                     <div className="flex justify-end text-sm mt-1">
                       <button
-                        onClick={() => removeItem(item._id!)}
+                        onClick={() => handleRemove(item._id!)}
                         className="border-0 text-red-400 text-xs"
                       >
                         Remove

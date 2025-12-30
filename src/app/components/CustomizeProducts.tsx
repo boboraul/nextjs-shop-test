@@ -10,12 +10,14 @@ const CustomizeProducts = ({
   productOptions,
   productName,
   productImage,
+  price,
 }: {
   productId: string;
   productName: string;
   productImage: string;
   variants: products.Variant[];
   productOptions: products.ProductOption[];
+  price?: number;
 }) => {
   const [selectedOptions, setSelectedOptions] = useState<{
     [key: string]: string;
@@ -119,10 +121,13 @@ const CustomizeProducts = ({
       <Add
         productId={productId}
         variantId={selectedVariant?._id || "0000-00000-0000"}
+        selectedVariant={selectedVariant?.choices}
         stockNumber={selectedVariant?.stock?.quantity || 0}
         productName={productName}
         productImage={productImage}
+        price={price}
       />
+
       {/* Color */}
       {/* <h4 className="font-medium">Choose a {option.name}</h4>
           <ul className="flex items-center gap-3">

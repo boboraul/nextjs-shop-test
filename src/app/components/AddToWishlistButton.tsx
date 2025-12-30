@@ -2,10 +2,9 @@
 
 import { useWishlistStore } from "../hooks/useWishlistStore";
 import { useState, useEffect } from "react";
-// import { HeartIcon } from "@heroicons/react/24/outline";
+import { useWixClient } from "../hooks/useWixClient";
 
 type AddToWishlistButtonProps = {
-  userId: string | null;
   productId: string;
   productName: string;
   productImage?: string;
@@ -13,30 +12,61 @@ type AddToWishlistButtonProps = {
 };
 
 const AddToWishlistButton = ({
-  userId,
   productId,
   productName,
   productImage,
 }: AddToWishlistButtonProps) => {
-  const { addItem } = useWishlistStore();
+  const wixClient = useWixClient();
+  const { fetchWishlist, addItem, items } = useWishlistStore();
   const [loading, setLoading] = useState(false);
 
-  const { fetchWishlist, items } = useWishlistStore();
+  // userId folosit in wishlist (vine din /api/auth/me)
+  const [userId, setUserId] = useState<string | null>(null);
 
+  // 1) Luam user-ul logat din /api/auth/me
+  useEffect(() => {
+    let cancelled = false;
+
+    (async () => {
+      try {
+        const res = await fetch("/api/auth/me", { cache: "no-store" });
+        if (!res.ok) return;
+        const data = await res.json();
+        if (cancelled) return;
+
+        // folosim id-ul intern din sesiune (nu email)
+        setUserId(data.user?.id ?? null);
+        console.log("wishlist userId:", data.user?.id);
+      } catch {
+        setUserId(null);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // 2) Cand avem userId, incarcam wishlist-ul userului curent
   useEffect(() => {
     if (!userId) return;
-    fetchWishlist(userId);
-  }, [userId, fetchWishlist]);
+    fetchWishlist(wixClient, userId);
+  }, [userId, wixClient, fetchWishlist]);
 
   useEffect(() => {
     console.log("Wishlist items:", items);
   }, [items]);
 
   const handleAdd = async () => {
+    if (!userId) {
+      console.warn("User not logged in, cannot add to wishlist");
+      return;
+    }
+
     setLoading(true);
 
     try {
-      await addItem({
+      await addItem(wixClient, {
         userId,
         productId,
         productName,

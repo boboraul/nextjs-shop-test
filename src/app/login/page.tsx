@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useWixClient } from "../hooks/useWixClient";
 import { LoginState } from "@wix/sdk";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 import { usePathname, useRouter } from "next/navigation";
 
 enum MODE {
@@ -15,9 +15,15 @@ enum MODE {
 
 const LoginPage = () => {
   const wixClient = useWixClient();
-  const isLoggedIn = wixClient.auth.loggedIn();
+  const [loggedIn, setLoggedIn] = useState(false);
 
-  console.log("logged in: " + isLoggedIn);
+  useEffect(() => {
+    fetch("/api/auth/me")
+      .then((r) => r.json())
+      .then((d) => setLoggedIn(d.loggedIn));
+  }, []);
+
+  console.log("logged in: " + loggedIn);
 
   const pathName = usePathname();
   const router = useRouter();
@@ -99,18 +105,22 @@ const LoginPage = () => {
       switch (response?.loginState) {
         case LoginState.SUCCESS:
           setMessage("Successful! You are being redirected.");
+
           const tokens = await wixClient.auth.getMemberTokensForDirectLogin(
             response.data.sessionToken!
           );
 
-          Cookies.set("refreshToken", tokens.refreshToken.value, {
-            expires: 2,
-            secure: true,
-            sameSite: "none",
+          // Trimitem spre backend TOT ce ne trebuie pentru sesiune
+          await fetch("/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              accessToken: tokens.accessToken.value,
+              refreshToken: tokens.refreshToken.value,
+              email,
+            }),
           });
 
-          wixClient.auth.setTokens(tokens);
-          
           router.replace("/");
           router.refresh();
 

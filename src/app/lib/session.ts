@@ -8,8 +8,11 @@ export type SessionUser = {
 
 export type SessionData = {
   user?: SessionUser;
-  // put here Wix member tokens too
-  // wixAccessToken?: string;
+
+  wixMemberTokens?: {
+    accessToken?: string; // <-- optional
+    refreshToken: string;
+  };
 };
 
 export const sessionOptions = {

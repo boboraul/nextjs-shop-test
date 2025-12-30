@@ -3,18 +3,14 @@
 import Image from "next/image";
 import { useCartStore } from "../hooks/useCartStore";
 import { media as wixMedia } from "@wix/sdk";
-import { useWixClient } from "../hooks/useWixClient";
 
 const CartModal = () => {
-  const wixClient = useWixClient();
-  const { cart, isLoading, removeItem } = useCartStore();
+  const { items, removeItem } = useCartStore();
 
   return (
     <div className="absolute bg-white min-w-[320px] border-t cursor-default rounded-md right-0 shadow-md p-3 top-6 text-sm z-20">
       <h4 className="text-sm pb-2 border-b">Shopping Cart</h4>
-      {isLoading ? (
-        "Loading..."
-      ) : !cart?.lineItems ? (
+      {!items ? (
         <div className="empty text-center pt-2">
           <span>Cart is empty</span>
         </div>
@@ -22,15 +18,18 @@ const CartModal = () => {
         <>
           {/* List */}
           <div className="list overflow-y-auto max-h-[300px]">
-            {cart.lineItems.map((item) => (
-              <div className="item flex gap-4 mt-2" key={item._id}>
-                {item.image && (
+            {items.map((item) => (
+              <div
+                className="item flex gap-4 mt-3"
+                key={`${item.productId}-${item.variantId ?? "default"}`}
+              >
+                {item.productImage && (
                   <Image
-                    alt={item.productName?.original ?? "Product image"}
+                    alt={item.productName ?? "Product image"}
                     width={80}
                     height={100}
                     src={wixMedia.getScaledToFillImageUrl(
-                      item.image,
+                      item.productImage,
                       72,
                       96,
                       {}
@@ -43,25 +42,33 @@ const CartModal = () => {
                   <div className="">
                     {/* Title */}
                     <div className="flex items-center justify-between gap-8">
-                      <h3 className="name font-semibold">
-                        {item.productName?.original}
-                      </h3>
+                      <h3 className="name font-semibold">{item.productName}</h3>
                       <div className="price bg-gray-50 rounded-sm p-1">
-                        {item.quantity} x {item.price?.formattedAmount}
+                        {item.quantity} x {item.price}
                       </div>
-                    </div>
-                    {/* Desc */}
-                    <div className="availability text-sm text-gray-500">
-                      {item.availability?.status}
                     </div>
                   </div>
                   {/* Bottom */}
                   <div className="flex justify-between text-sm mt-1">
-                    <span className="qty text-gray-500 text-xs">
-                      Qty. {item.quantity}
-                    </span>
+                    <div className="info flex-col">
+                      <span className="gty text-gray-500 text-xs">
+                        Qty. {item.quantity}
+                      </span>
+
+                      <span className="variant text-gray-500 text-[10px] ml-2">
+                        {item?.selectedVariant &&
+                          Object.entries(item.selectedVariant).map(
+                            ([key, value]) => (
+                              <small className="block leading-tight" key={key}>
+                                {value}
+                              </small>
+                            )
+                          )}
+                      </span>
+                    </div>
+                    <div className="price-modal"></div>
                     <button
-                      onClick={() => removeItem(wixClient, item._id!)}
+                      onClick={() => removeItem(item.productId, item.variantId)}
                       className="border-0 text-red-400 text-xs"
                     >
                       Remove
@@ -74,7 +81,7 @@ const CartModal = () => {
           {/* Bottom Cart */}
           <div className="bottom-cart items-center font-semibold flex justify-between border-t mt-3 pt-2">
             <span>Subtotal</span>
-            <span>{cart?.subtotal?.formattedAmount}</span>
+            {/* <span>{items?.subtotal?.formattedAmount}</span> */}
           </div>
           {/* <p className="text-gray-500 text-sm mt-2 mb-3">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit,
