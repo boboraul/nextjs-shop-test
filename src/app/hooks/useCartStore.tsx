@@ -8,7 +8,9 @@ export type CartItem = {
   productName?: string;
   productImage?: string;
   price?: number;
+  currency?: string;
   selectedVariant?: Record<string, string>;
+  productUrl?: string;
 };
 
 type CartState = {

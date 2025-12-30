@@ -9,12 +9,14 @@ type AddToWishlistButtonProps = {
   productName: string;
   productImage?: string;
   createdAt?: string;
+  productUrl?: string;
 };
 
 const AddToWishlistButton = ({
   productId,
   productName,
   productImage,
+  productUrl,
 }: AddToWishlistButtonProps) => {
   const wixClient = useWixClient();
   const { fetchWishlist, addItem, items } = useWishlistStore();
@@ -23,7 +25,7 @@ const AddToWishlistButton = ({
   // userId folosit in wishlist (vine din /api/auth/me)
   const [userId, setUserId] = useState<string | null>(null);
 
-  // 1) Luam user-ul logat din /api/auth/me
+  // Luam user-ul logat din /api/auth/me
   useEffect(() => {
     let cancelled = false;
 
@@ -47,7 +49,7 @@ const AddToWishlistButton = ({
     };
   }, []);
 
-  // 2) Cand avem userId, incarcam wishlist-ul userului curent
+  // Cand avem userId, incarcam wishlist-ul userului curent
   useEffect(() => {
     if (!userId) return;
     fetchWishlist(wixClient, userId);
@@ -72,6 +74,7 @@ const AddToWishlistButton = ({
         productName,
         productImage,
         createdAt: new Date().toISOString(),
+        productUrl,
       });
       console.log("✅ You have successfully added to Wishlist!");
     } catch (error) {

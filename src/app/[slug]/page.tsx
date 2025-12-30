@@ -27,7 +27,8 @@ export default async function Page({
   }
 
   const product = products.items[0];
-  console.log("product ", product.price?.formatted?.price);
+  console.log("my product ", product);
+
   const price =
     product.price?.price === product.price?.discountedPrice
       ? product.price?.discountedPrice
@@ -67,6 +68,8 @@ export default async function Page({
             productName={product.name!}
             productImage={product.media?.mainMedia?.image?.url!}
             price={price}
+            currency={product.price?.currency}
+            productUrl={product.slug}
           />
         ) : (
           <Add
@@ -76,6 +79,8 @@ export default async function Page({
             productName={product.name!}
             productImage={product.media?.mainMedia?.image?.url!}
             price={price}
+            currency={product.price?.currency}
+            productUrl={product.slug}
           />
         )}
       </div>

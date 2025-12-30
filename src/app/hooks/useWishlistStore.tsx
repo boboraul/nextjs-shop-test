@@ -10,6 +10,7 @@ type WishlistItem = {
   productName: string;
   productImage?: string;
   createdAt?: string;
+  productUrl?: string;
 };
 
 const wishlistId = "jdo2u3dohad8yt12dghqasdau";

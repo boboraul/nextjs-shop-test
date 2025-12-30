@@ -11,6 +11,8 @@ const CustomizeProducts = ({
   productName,
   productImage,
   price,
+  currency,
+  productUrl,
 }: {
   productId: string;
   productName: string;
@@ -18,6 +20,8 @@ const CustomizeProducts = ({
   variants: products.Variant[];
   productOptions: products.ProductOption[];
   price?: number;
+  currency?: string;
+  productUrl?: string;
 }) => {
   const [selectedOptions, setSelectedOptions] = useState<{
     [key: string]: string;
@@ -126,6 +130,8 @@ const CustomizeProducts = ({
         productName={productName}
         productImage={productImage}
         price={price}
+        currency={currency}
+        productUrl={productUrl}
       />
 
       {/* Color */}

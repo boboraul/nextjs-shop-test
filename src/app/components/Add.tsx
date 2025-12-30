@@ -13,6 +13,8 @@ const Add = ({
   productImage,
   createdAt,
   price,
+  currency,
+  productUrl,
 }: {
   productId: string;
   variantId: string;
@@ -22,6 +24,8 @@ const Add = ({
   productImage: string;
   createdAt?: string;
   price?: number;
+  currency?: string;
+  productUrl?: string;
 }) => {
   const [quantity, setQuantity] = useState(1);
 
@@ -66,6 +70,7 @@ const Add = ({
           <br />
           Don&apos;t miss it
         </div>
+
         <button
           onClick={() =>
             addItem({
@@ -76,6 +81,8 @@ const Add = ({
               productImage,
               selectedVariant,
               price,
+              currency,
+              productUrl,
             })
           }
           disabled={!stockNumber ? true : false}
@@ -90,6 +97,7 @@ const Add = ({
           productName={productName}
           productImage={productImage}
           createdAt={createdAt}
+          productUrl={productUrl}
         />
       </div>
     </div>
