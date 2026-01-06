@@ -48,8 +48,9 @@ const Wishlist = () => {
               <Link
                 href={`/${item.productUrl!}`}
                 className="w-full flex-col gap-44 sm:w-[45%] lg:w-[22%]"
+                key={item._id}
               >
-                <div className="item w-full" key={item._id}>
+                <div className="item w-full">
                   {item.productImage && (
                     <Image
                       alt={item.productName ?? "Product image"}
@@ -57,12 +58,11 @@ const Wishlist = () => {
                       height={400}
                       src={wixMedia.getScaledToFillImageUrl(
                         item.productImage,
-                        400,
-                        400,
+                        640,
+                        640,
                         {}
                       )}
                       className="object-cover rounded-md"
-                      key={item._id}
                     />
                   )}
                   <div className="w-full">
