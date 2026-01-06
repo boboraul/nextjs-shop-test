@@ -21,7 +21,7 @@ const WishlistModal = () => {
   };
 
   return (
-    <div className="absolute bg-white min-w-[280px] border-t cursor-default rounded-md right-0 shadow-md p-3 top-7 text-sm z-20">
+    <div className="absolute bg-white min-w-[350px] border-t cursor-default rounded-md right-0 shadow-md p-3 top-7 text-sm z-20">
       <h4 className="text-sm pb-2 border-b">Wishlist</h4>
       {isLoading ? (
         "Loading..."
@@ -34,7 +34,7 @@ const WishlistModal = () => {
           {/* List */}
           <div className="list overflow-y-auto max-h-[300px]">
             {items.map((item) => (
-              <div className="item flex gap-4 mt-2" key={item._id}>
+              <div className="item flex gap-1 mt-2" key={item._id}>
                 {item.productImage && (
                   <Link href={`/${item.productUrl!}`}>
                     <Image
@@ -47,11 +47,11 @@ const WishlistModal = () => {
                         96,
                         {}
                       )}
-                      className="object-cover rounded-md"
+                      className="object-cover"
                     />
                   </Link>
                 )}
-                <div className="w-full">
+                <div className="w-full bg-gray-50 p-2">
                   {/* Top */}
                   <div className="">
                     {/* Title */}

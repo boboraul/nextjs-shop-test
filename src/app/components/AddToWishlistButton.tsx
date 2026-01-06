@@ -10,6 +10,7 @@ type AddToWishlistButtonProps = {
   productImage?: string;
   createdAt?: string;
   productUrl?: string;
+  price?: number;
 };
 
 const AddToWishlistButton = ({
@@ -17,6 +18,7 @@ const AddToWishlistButton = ({
   productName,
   productImage,
   productUrl,
+  price,
 }: AddToWishlistButtonProps) => {
   const wixClient = useWixClient();
   const { fetchWishlist, addItem, items } = useWishlistStore();
@@ -75,6 +77,7 @@ const AddToWishlistButton = ({
         productImage,
         createdAt: new Date().toISOString(),
         productUrl,
+        price,
       });
       console.log("✅ You have successfully added to Wishlist!");
     } catch (error) {
@@ -85,7 +88,7 @@ const AddToWishlistButton = ({
   };
 
   return (
-    <button onClick={handleAdd} disabled={loading}>
+    <button onClick={handleAdd} disabled={loading} className="heart">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

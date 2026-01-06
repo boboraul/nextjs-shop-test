@@ -113,7 +113,7 @@ const NavIcons = () => {
         </svg>
 
         {wishCounter > 0 && isLoggedIn && (
-          <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary-500 text-[6px] leading-[16px] text-white flex justify-center align-center rounded-full">
+          <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary-500 text-[6px] leading-[16px] text-white flex justify-center items-center rounded-full">
             {wishCounter}
           </div>
         )}
@@ -180,7 +180,7 @@ const NavIcons = () => {
           className="cursor-pointer"
           onClick={() => setIsCartOpen((prev) => !prev)}
         /> */}
-        <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary-500 text-[6px] leading-[16px] text-white flex justify-center align-center rounded-full">
+        <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary-500 text-[6px] leading-[16px] text-white flex justify-center items-center rounded-full">
           {counter}
         </div>
         {isCartOpen && <CartModal />}

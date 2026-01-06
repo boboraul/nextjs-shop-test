@@ -6,6 +6,7 @@ import { media as wixMedia } from "@wix/sdk";
 import { useWishlistStore } from "../hooks/useWishlistStore";
 import Link from "next/link";
 import { useWixClient } from "../hooks/useWixClient";
+import { link } from "fs";
 
 const Wishlist = () => {
   const { isLoading, removeItem, items } = useWishlistStore();
@@ -44,38 +45,48 @@ const Wishlist = () => {
         ) : (
           <>
             {items.map((item) => (
-              <div
-                className="item w-full flex-col gap-44 sm:w-[45%] lg:w-[22%]"
-                key={item._id}
+              <Link
+                href={`/${item.productUrl!}`}
+                className="w-full flex-col gap-44 sm:w-[45%] lg:w-[22%]"
               >
-                {item.productImage && (
-                  <Image
-                    alt={item.productName ?? "Product image"}
-                    width={100}
-                    height={100}
-                    src={item.productImage}
-                    className="object-cover rounded-md"
-                  />
-                )}
-                <div className="w-full">
-                  {/* Title */}
-                  <div className="flex items-center justify-between gap-8">
-                    <h3 className="name font-semibold">{item.productName}</h3>
-                    {/* <div className="price bg-gray-50 rounded-sm p-1">
-                      {item.price?.formattedAmount}
-                    </div> */}
-                  </div>
+                <div className="item w-full" key={item._id}>
+                  {item.productImage && (
+                    <Image
+                      alt={item.productName ?? "Product image"}
+                      width={400}
+                      height={400}
+                      src={wixMedia.getScaledToFillImageUrl(
+                        item.productImage,
+                        400,
+                        400,
+                        {}
+                      )}
+                      className="object-cover rounded-md"
+                      key={item._id}
+                    />
+                  )}
+                  <div className="w-full">
+                    {/* Title */}
+                    <div className="flex items-center justify-between gap-8">
+                      <h3 className="name font-semibold">{item.productName}</h3>
+                      <div className="price rounded-sm p-1">{item.price}</div>
+                    </div>
 
-                  <div className="text-sm mt-1">
+                    <button className="rounded-2xl mt-4 ring-1 ring-primary-500 bg-primary-500 text-white px-4 py-2 text-xs hover:bg-white hover:text-primary-500 easy duration-200">
+                      Add to Cart
+                    </button>
+
+                    {/* <div className="text-sm mt-1">
                     <button
                       onClick={() => handleRemove(item._id!)}
                       className="border-0 text-red-400 text-xs"
                     >
                       Remove
                     </button>
+                  </div> */}
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </>
         )}

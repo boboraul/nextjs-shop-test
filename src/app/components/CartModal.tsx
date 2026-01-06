@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCartStore } from "../hooks/useCartStore";
 import { media as wixMedia } from "@wix/sdk";
+import Link from "next/link";
 
 const CartModal = () => {
   const { items, removeItem } = useCartStore();
@@ -13,10 +14,12 @@ const CartModal = () => {
 
   const subtotalFormatted = subtotal.toFixed(2);
 
-  const currency = items[0].currency;
+  const item = items[0];
+
+  console.log("cart items ", item);
 
   return (
-    <div className="absolute bg-white min-w-[375px] border-t cursor-default rounded-md right-0 shadow-md p-3 top-6 text-sm z-20">
+    <div className="absolute bg-white min-w-[350px] border-t cursor-default rounded-md right-0 shadow-md p-3 top-6 text-sm z-20">
       <h4 className="text-sm pb-2 border-b">Shopping Cart</h4>
       {items.length == 0 ? (
         <div className="empty text-center pb-2 pt-3">
@@ -32,18 +35,20 @@ const CartModal = () => {
                 key={`${item.productId}-${item.variantId ?? "default"}`}
               >
                 {item.productImage && (
-                  <Image
-                    alt={item.productName ?? "Product image"}
-                    width={80}
-                    height={100}
-                    src={wixMedia.getScaledToFillImageUrl(
-                      item.productImage,
-                      72,
-                      96,
-                      {}
-                    )}
-                    className="object-cover"
-                  />
+                  <Link href={`/${item.productUrl!}`}>
+                    <Image
+                      alt={item.productName ?? "Product image"}
+                      width={80}
+                      height={100}
+                      src={wixMedia.getScaledToFillImageUrl(
+                        item.productImage,
+                        72,
+                        96,
+                        {}
+                      )}
+                      className="object-cover"
+                    />
+                  </Link>
                 )}
                 <div className="w-full bg-gray-50 p-2">
                   {/* Top */}
@@ -52,17 +57,21 @@ const CartModal = () => {
                     <div className="price whitespace-nowrap">
                       {item.quantity} x
                       <span className="font-semibold ml-1">
-                        {item.price} {currency}
+                        {item.price} {item.currency}
                       </span>
                     </div>
 
                     {/* Title */}
-                    <div className="flex items-center justify-between gap-8 mt-1">
-                      <h3 className="name font-semibold">{item.productName}</h3>
+                    <div className="flex items-center justify-between gap-8">
+                      <Link href={`/${item.productUrl!}`}>
+                        <h3 className="name font-semibold">
+                          {item.productName}
+                        </h3>
+                      </Link>
                     </div>
                   </div>
                   {/* Bottom */}
-                  <div className="flex justify-between text-sm mt-1">
+                  <div className="flex justify-between text-sm">
                     <div className="info flex">
                       <span className="variant text-gray-500">
                         {item?.selectedVariant &&
@@ -107,28 +116,14 @@ const CartModal = () => {
           <div className="bottom-cart items-center font-semibold flex justify-between border-t mt-3 pt-2">
             <span>Subtotal:</span>
             <span>
-              {subtotalFormatted} {currency}
+              {subtotalFormatted} {items[0].currency}
             </span>
             {/* <span>{items?.subtotal?.formattedAmount}</span> */}
           </div>
 
-          <div className="flex justify-center mt-3">
+          <div className="flex justify-center mt-3 pt-3">
             <button className="rounded-md py-2 px-4 text-[14px] bg-black text-white flex">
               To Checkout
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="h-4 w-4 mt-2 ml-1"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"
-                />
-              </svg>
             </button>
           </div>
         </>

@@ -98,6 +98,7 @@ const Add = ({
           productImage={productImage}
           createdAt={createdAt}
           productUrl={productUrl}
+          price={price}
         />
       </div>
     </div>

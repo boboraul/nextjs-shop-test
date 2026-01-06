@@ -11,6 +11,7 @@ type WishlistItem = {
   productImage?: string;
   createdAt?: string;
   productUrl?: string;
+  price?: number;
 };
 
 const wishlistId = "jdo2u3dohad8yt12dghqasdau";
