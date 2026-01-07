@@ -23,7 +23,7 @@ const AddToWishlistButton = ({
   currency,
 }: AddToWishlistButtonProps) => {
   const wixClient = useWixClient();
-  const { fetchWishlist, addItem, items } = useWishlistStore();
+  const { fetchWishlist, addItem, removeItem, items } = useWishlistStore();
   const [loading, setLoading] = useState(false);
 
   // userId folosit in wishlist (vine din /api/auth/me)
@@ -98,8 +98,20 @@ const AddToWishlistButton = ({
     }
   };
 
+  const handleRemove = (id: string) => {
+    removeItem(wixClient, id);
+  };
+
+  const wishlistItem = items.find((item) => item.productId === productId);
+
   return (
-    <button onClick={handleAdd} disabled={loading} className="heart">
+    <button
+      onClick={() =>
+        added && wishlistItem ? handleRemove(wishlistItem._id!) : handleAdd()
+      }
+      disabled={loading}
+      className="heart"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill={added ? "currentColor" : "none"}
