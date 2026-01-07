@@ -11,6 +11,7 @@ type AddToWishlistButtonProps = {
   createdAt?: string;
   productUrl?: string;
   price?: number;
+  currency?: string;
 };
 
 const AddToWishlistButton = ({
@@ -19,6 +20,7 @@ const AddToWishlistButton = ({
   productImage,
   productUrl,
   price,
+  currency,
 }: AddToWishlistButtonProps) => {
   const wixClient = useWixClient();
   const { fetchWishlist, addItem, items } = useWishlistStore();
@@ -57,9 +59,17 @@ const AddToWishlistButton = ({
     fetchWishlist(wixClient, userId);
   }, [userId, wixClient, fetchWishlist]);
 
+  console.log("prod id ", productId);
+
   useEffect(() => {
     console.log("Wishlist items:", items);
   }, [items]);
+
+  const added = items.some((item) => item.productId === productId);
+
+  useEffect(() => {
+    console.log("added: " + added);
+  }, [added]);
 
   const handleAdd = async () => {
     if (!userId) {
@@ -78,6 +88,7 @@ const AddToWishlistButton = ({
         createdAt: new Date().toISOString(),
         productUrl,
         price,
+        currency,
       });
       console.log("✅ You have successfully added to Wishlist!");
     } catch (error) {
@@ -91,7 +102,7 @@ const AddToWishlistButton = ({
     <button onClick={handleAdd} disabled={loading} className="heart">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        fill="none"
+        fill={added ? "currentColor" : "none"}
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"

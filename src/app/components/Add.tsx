@@ -99,6 +99,7 @@ const Add = ({
           createdAt={createdAt}
           productUrl={productUrl}
           price={price}
+          currency={currency}
         />
       </div>
     </div>

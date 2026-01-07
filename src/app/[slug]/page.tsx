@@ -33,6 +33,9 @@ export default async function Page({
       ? product.price?.discountedPrice
       : product.price?.discountedPrice;
 
+  const currency =
+    product.price?.currency == "RON" ? "Lei" : product.price?.currency;
+
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] relative flex flex-col lg:flex-row gap-16 mt-12">
       <div className="w-full lg:w-1/2 lg:sticky top-20 h-max">
@@ -45,15 +48,15 @@ export default async function Page({
         <div className="price-box">
           {product.price?.price === product.price?.discountedPrice ? (
             <h2 className="text-2xl text-primary-500 font-medium">
-              {product.price?.discountedPrice} {product.price?.currency}
+              {product.price?.discountedPrice} {currency}
             </h2>
           ) : (
             <div className="flex items-center gap-4">
               <h3 className="text-xl text-gray-500 line-through">
-                {product.price?.price} {product.price?.currency}
+                {product.price?.price} {currency}
               </h3>
               <h2 className="font-medium text-2xl text-primary-500">
-                {product.price?.discountedPrice} {product.price?.currency}
+                {product.price?.discountedPrice} {currency}
               </h2>
             </div>
           )}
@@ -67,7 +70,7 @@ export default async function Page({
             productName={product.name!}
             productImage={product.media?.mainMedia?.image?.url!}
             price={price}
-            currency={product.price?.currency}
+            currency={currency}
             productUrl={product.slug}
           />
         ) : (
@@ -78,7 +81,7 @@ export default async function Page({
             productName={product.name!}
             productImage={product.media?.mainMedia?.image?.url!}
             price={price}
-            currency={product.price?.currency}
+            currency={currency}
             productUrl={product.slug}
           />
         )}

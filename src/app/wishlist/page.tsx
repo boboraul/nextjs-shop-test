@@ -15,6 +15,7 @@ const Wishlist = () => {
   const handleRemove = (id: string) => {
     removeItem(wixClient, id);
   };
+  console.log("wish items ", items);
 
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] relative mt-4">
@@ -45,48 +46,57 @@ const Wishlist = () => {
         ) : (
           <>
             {items.map((item) => (
-              <Link
-                href={`/${item.productUrl!}`}
-                className="w-full flex-col gap-44 sm:w-[45%] lg:w-[22%]"
+              <div
+                className="w-full flex-col gap-44 sm:w-[45%] lg:w-[22%] relative"
                 key={item._id}
               >
-                <div className="item w-full">
-                  {item.productImage && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6 text-red-400 cursor-pointer absolute top-2 right-2"
+                  onClick={() => handleRemove(item._id!)}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                  />
+                </svg>
+
+                {item.productImage && (
+                  <Link href={`/${item.productUrl!}`} className="">
                     <Image
                       alt={item.productName ?? "Product image"}
                       width={400}
                       height={400}
                       src={wixMedia.getScaledToFillImageUrl(
                         item.productImage,
-                        640,
-                        640,
+                        247,
+                        320,
                         {}
                       )}
                       className="object-cover rounded-md"
                     />
-                  )}
-                  <div className="w-full">
-                    {/* Title */}
-                    <div className="flex items-center justify-between gap-8">
-                      <h3 className="name font-semibold">{item.productName}</h3>
-                      <div className="price rounded-sm p-1">{item.price}</div>
+                  </Link>
+                )}
+
+                <div className="w-full">
+                  {/* Title */}
+                  <div className="flex items-center justify-between gap-8">
+                    <h3 className="name font-semibold">{item.productName}</h3>
+                    <div className="price rounded-sm p-1">
+                      {item.price} {item.currency}
                     </div>
-
-                    <button className="rounded-2xl mt-4 ring-1 ring-primary-500 bg-primary-500 text-white px-4 py-2 text-xs hover:bg-white hover:text-primary-500 easy duration-200">
-                      Add to Cart
-                    </button>
-
-                    {/* <div className="text-sm mt-1">
-                    <button
-                      onClick={() => handleRemove(item._id!)}
-                      className="border-0 text-red-400 text-xs"
-                    >
-                      Remove
-                    </button>
-                  </div> */}
                   </div>
+
+                  <button className="rounded-2xl mt-4 ring-1 ring-primary-500 bg-primary-500 text-white px-4 py-2 text-xs hover:bg-white hover:text-primary-500 easy duration-200">
+                    Add to Cart
+                  </button>
                 </div>
-              </Link>
+              </div>
             ))}
           </>
         )}
