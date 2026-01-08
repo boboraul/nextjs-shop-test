@@ -1,14 +1,19 @@
 import { OAuthStrategy, createClient } from "@wix/sdk";
 import { NextRequest, NextResponse } from "next/server";
 
-export const middleware = async (request: NextRequest) => {
+export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
 
-  if (request.cookies.get("refreshToken")) {
+  // DACA avem deja refreshToken → nu mai facem nimic
+  if (req.cookies.get("refreshToken")) {
     return res;
   }
 
-  // Wix visitor tokens - identify this browser as a Wix visitor
+  // IMPORTANT: NU rula middleware pe request-uri API
+  if (req.nextUrl.pathname.startsWith("/api")) {
+    return res;
+  }
+
   const wixClient = createClient({
     auth: OAuthStrategy({
       clientId: process.env.NEXT_PUBLIC_WIX_CLIENT_ID!,
@@ -17,18 +22,17 @@ export const middleware = async (request: NextRequest) => {
 
   const tokens = await wixClient.auth.generateVisitorTokens();
 
-  // HttpOnly visitor token used by Wix APIs (anonymous user)
   res.cookies.set("refreshToken", tokens.refreshToken.value, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: true,
     sameSite: "lax",
     path: "/",
     maxAge: 60 * 60 * 24 * 30,
   });
 
   return res;
-};
+}
 
 export const config = {
-  matcher: ["/((?!_next|favicon.ico|api/auth).*)"],
+  matcher: ["/((?!_next|favicon.ico).*)"],
 };
