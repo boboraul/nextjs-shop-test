@@ -29,7 +29,6 @@ export async function POST(req: Request) {
   await session.save();
 
   return NextResponse.json(
-    { ok: true },
-    { headers: { "Set-Cookie": "" } }
+    { ok: true }
   );
 }
