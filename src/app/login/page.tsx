@@ -24,7 +24,7 @@ const LoginPage = () => {
   }, []);
 
   console.log("logged in: " + loggedIn);
-  console.log('test');
+  console.log('test1');
 
   const pathName = usePathname();
   const router = useRouter();
