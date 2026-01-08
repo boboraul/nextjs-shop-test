@@ -28,3 +28,7 @@ export const middleware = async (request: NextRequest) => {
 
   return res;
 };
+
+export const config = {
+  matcher: ["/((?!_next|favicon.ico|api/auth).*)"],
+};
