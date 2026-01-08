@@ -28,5 +28,8 @@ export async function POST(req: Request) {
   session.wixMemberTokens = { refreshToken, accessToken };
   await session.save();
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json(
+    { ok: true },
+    { headers: { "Set-Cookie": "" } }
+  );
 }
