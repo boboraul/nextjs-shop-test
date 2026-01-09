@@ -1,15 +1,34 @@
-import { OAuthStrategy } from "@wix/sdk";
 import { NextResponse } from "next/server";
+import { getSession } from "../../../lib/session";
+import crypto from "crypto";
 
-export async function GET() {
-  const wixOAuth = new OAuthStrategy({
-    clientId: process.env.WIX_CLIENT_ID!,
-    redirectUri: `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/callback`,
-  });
+export async function POST(req: Request) {
+  const { accessToken, refreshToken, email } = await req.json();
 
-  const { authUrl } = wixOAuth.getAuthUrl();
+    if (!refreshToken || !accessToken) {
+    return NextResponse.json(
+        { ok: false, error: "missing_tokens" },
+        { status: 400 }
+    );
+    }
 
-  console.log("WIX AUTH URL:", authUrl);
+  const session = await getSession();
 
-  return NextResponse.redirect(authUrl);
+  // Generam un ID stabil din email (hash)
+  const userId = crypto
+    .createHash("sha256")
+    .update(email)
+    .digest("hex");
+
+  session.user = { 
+    id: userId,
+    email,
+  };
+  
+  session.wixMemberTokens = { refreshToken, accessToken };
+  await session.save();
+
+  return NextResponse.json(
+    { ok: true }
+  ); 
 }
