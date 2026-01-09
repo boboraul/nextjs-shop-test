@@ -4,10 +4,19 @@ import { getSession } from "../../../lib/session";
 export const runtime = "nodejs";
 
 export async function GET() {
-  const session = await getSession();
+  try {
+    const session = await getSession();
 
-  return NextResponse.json({
-    loggedIn: Boolean(session.user),
-    user: session.user ?? null,
-  });
+    return NextResponse.json({
+      loggedIn: Boolean(session?.user),
+      user: session?.user ?? null,
+    });
+  } catch (e) {
+    console.error("ME ERROR:", e);
+
+    return NextResponse.json(
+      { loggedIn: false, user: null },
+      { status: 200 }
+    );
+  }
 }
