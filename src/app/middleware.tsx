@@ -23,7 +23,7 @@ export async function middleware(req: NextRequest) {
 
   res.cookies.set("refreshToken", tokens.refreshToken.value, {
     httpOnly: true,
-    secure: true,      // 🔴 OBLIGATORIU pe Vercel
+    secure: true,
     sameSite: "lax",
     path: "/",
     maxAge: 60 * 60 * 24 * 30,
