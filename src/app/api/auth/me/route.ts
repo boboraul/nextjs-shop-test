@@ -20,3 +20,5 @@ export async function GET() {
     );
   }
 }
+
+// export async function GET() { const session = await getSession(); return NextResponse.json({ loggedIn: Boolean(session.user), user: session.user ?? null, }); }
