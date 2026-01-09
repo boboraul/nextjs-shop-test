@@ -7,17 +7,15 @@ export type SessionUser = {
 };
 
 export type SessionData = {
-  user?: SessionUser;
-
-  wixMemberTokens?: {
-    accessToken?: string; // <-- optional
-    refreshToken: string;
+  user?: {
+    id: string;
+    email?: string;
   };
 };
 
 export const sessionOptions = {
   password: process.env.SESSION_PASSWORD!,
-  cookieName: "app_session",
+  cookieName: "site_session",
   cookieOptions: {
     httpOnly: true,
     sameSite: "lax" as const,
