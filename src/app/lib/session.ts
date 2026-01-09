@@ -6,12 +6,7 @@ export type SessionUser = {
   email?: string;
 };
 
-export type SessionData = {
-  user?: {
-    id: string;
-    email?: string;
-  };
-};
+export type SessionData = { user?: SessionUser; wixMemberTokens?: { accessToken?: string; // <-- optional refreshToken: string; }; };
 
 export const sessionOptions = {
   password: process.env.SESSION_PASSWORD!,
