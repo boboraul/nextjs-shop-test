@@ -4,7 +4,6 @@ import { createClient, OAuthStrategy } from "@wix/sdk";
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
 
-  // NU rula pe API routes
   if (req.nextUrl.pathname.startsWith("/api")) {
     return res;
   }
