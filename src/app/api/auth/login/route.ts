@@ -28,9 +28,7 @@ export async function POST(req: Request) {
   session.wixMemberTokens = { refreshToken, accessToken };
   await session.save();
 
-  console.log("WIX AUTH URL:", authUrl);
   return NextResponse.json(
     { ok: true }
-  );
-  
+  ); 
 }
