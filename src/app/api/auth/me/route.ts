@@ -1,24 +1,22 @@
 import { NextResponse } from "next/server";
-import { getSession } from "../../../lib/session";
-
-export const runtime = "nodejs";
+import { cookies } from "next/headers";
+import { verifySession } from "../../../lib/auth";
 
 export async function GET() {
-  try {
-    const session = await getSession();
+  const cookieStore = await cookies();
+  const token = cookieStore.get("session")?.value;
 
-    return NextResponse.json({
-      loggedIn: Boolean(session?.user),
-      user: session?.user ?? null,
-    });
-  } catch (e) {
-    console.error("ME ERROR:", e);
-
-    return NextResponse.json(
-      { loggedIn: false, user: null },
-      { status: 200 }
-    );
+  if (!token) {
+    return NextResponse.json({ loggedIn: false });
   }
-}
 
-// export async function GET() { const session = await getSession(); return NextResponse.json({ loggedIn: Boolean(session.user), user: session.user ?? null, }); }
+  const payload = verifySession(token);
+  if (!payload) {
+    return NextResponse.json({ loggedIn: false });
+  }
+
+  return NextResponse.json({
+    loggedIn: true,
+    user: { id: payload.id, email: payload.email },
+  });
+}

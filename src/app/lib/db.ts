@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-const dbPath = path.join(process.cwd(), "src/lib/users.json");
+const dbPath = path.join(process.cwd(), "src/app/lib/users.json");
 
 export type User = {
   id: string;

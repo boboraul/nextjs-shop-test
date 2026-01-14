@@ -1,34 +1,34 @@
 import { NextResponse } from "next/server";
-import { getSession } from "../../../lib/session";
-import crypto from "crypto";
+import { readUsers } from "../../../lib/db";
+import { signSession } from "../../../lib/auth";
 
 export async function POST(req: Request) {
-  const { accessToken, refreshToken, email } = await req.json();
+  const { email, password } = await req.json();
 
-    if (!refreshToken || !accessToken) {
-    return NextResponse.json(
-        { ok: false, error: "missing_tokens" },
-        { status: 400 }
-    );
-    }
+  if (!email || !password) {
+    return NextResponse.json({ error: "Invalid data" }, { status: 400 });
+  }
 
-  const session = await getSession();
+  const users = readUsers();
+  const user = users.find((u) => u.email === email && u.password === password);
 
-  // Generam un ID stabil din email (hash)
-  const userId = crypto
-    .createHash("sha256")
-    .update(email)
-    .digest("hex");
+  if (!user) {
+    return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
+  }
 
-  session.user = { 
-    id: userId,
-    email,
-  };
-  
-  session.wixMemberTokens = { refreshToken, accessToken };
-  await session.save();
+  const token = signSession({ id: user.id, email: user.email });
 
-  return NextResponse.json(
-    { ok: true }
-  ); 
+  const res = NextResponse.json({
+    ok: true,
+    user: { id: user.id, email: user.email },
+  });
+
+  res.cookies.set("session", token, {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    path: "/",
+  });
+
+  return res;
 }

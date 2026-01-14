@@ -45,37 +45,37 @@ export const WixClientContextProvider = ({
   }, []);
 
   // 2) Dupa mount, incercam sa-l "ridicam" la member folosind accessToken din sesiune
-  useEffect(() => {
-    let cancelled = false;
+  // useEffect(() => {
+  //   let cancelled = false;
 
-    (async () => {
-      try {
-        const res = await fetch("/api/auth/wix-access-token", {
-          cache: "no-store",
-        });
+  //   (async () => {
+  //     try {
+  //       const res = await fetch("/api/auth/wix-access-token", {
+  //         cache: "no-store",
+  //       });
 
-        if (!res.ok) return;
+  //       if (!res.ok) return;
 
-        const data = await res.json();
-        if (cancelled) return;
+  //       const data = await res.json();
+  //       if (cancelled) return;
 
-        if (data.loggedIn && data.accessToken) {
-          wixClient.auth.setTokens({
-            accessToken: { value: data.accessToken },
-          } as any);
-        }
-      } catch (err) {
-        console.error(
-          "Failed to hydrate Wix client with member access token",
-          err
-        );
-      }
-    })();
+  //       if (data.loggedIn && data.accessToken) {
+  //         wixClient.auth.setTokens({
+  //           accessToken: { value: data.accessToken },
+  //         } as any);
+  //       }
+  //     } catch (err) {
+  //       console.error(
+  //         "Failed to hydrate Wix client with member access token",
+  //         err
+  //       );
+  //     }
+  //   })();
 
-    return () => {
-      cancelled = true;
-    };
-  }, [wixClient]);
+  //   return () => {
+  //     cancelled = true;
+  //   };
+  // }, [wixClient]);
 
   return (
     <WixClientContext.Provider value={wixClient}>

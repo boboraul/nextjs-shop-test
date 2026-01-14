@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { WixClientContextProvider } from "./Context/wixContext";
 import WishlistInitializer from "./components/WishlistInitializer";
+import { ConfigProvider } from "./Context/ConfigProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,12 +27,14 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico?v=3" />
       </head>
       <body className={inter.className}>
-        <WixClientContextProvider>
-          <WishlistInitializer />
-          <Navbar />
-          {children}
-          <Footer />
-        </WixClientContextProvider>
+        <ConfigProvider>
+          <WixClientContextProvider>
+            <WishlistInitializer />
+            <Navbar />
+            {children}
+            <Footer />
+          </WixClientContextProvider>
+        </ConfigProvider>
       </body>
     </html>
   );
