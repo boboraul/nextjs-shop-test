@@ -7,6 +7,6 @@ export const wixContactsClient = createClient({
   },
   auth: ApiKeyStrategy({
     apiKey: process.env.WIX_API_KEY!,
-    accountId: process.env.WIX_SITE_ID!,
+    siteId: process.env.WIX_SITE_ID!,
   }),
 });

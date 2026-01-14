@@ -1,5 +1,16 @@
 {
   "users": [
-   
+    {
+      "id": "08adc105-3275-4788-9b8d-1962e5bfa743",
+      "email": "bobo@yahoo.com",
+      "password": "010388",
+      "createdAt": "2026-01-14T18:59:31.766Z"
+    },
+    {
+      "id": "0749c1ca-7f80-4d95-a42f-78a67e14afea",
+      "email": "adi@gmail.com",
+      "password": "010388",
+      "createdAt": "2026-01-14T19:01:04.093Z"
+    }
   ]
 }
