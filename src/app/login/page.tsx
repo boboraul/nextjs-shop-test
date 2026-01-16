@@ -84,7 +84,7 @@ const LoginPage = () => {
         });
 
         
-        setIsLoggedIn(false);
+        setLoggedIn(false);
 
         router.refresh();
       } catch (e) {
