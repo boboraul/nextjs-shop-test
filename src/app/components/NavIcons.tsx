@@ -65,7 +65,6 @@ const NavIcons = () => {
       setIsProfileOpen(false);
       setIsWishListOpen(false);
 
-      // daca ai si state local isLoggedIn in NavIcons, seteaza-l pe false aici
       setIsLoggedIn(false);
 
       router.push("/");
