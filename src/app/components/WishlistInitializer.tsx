@@ -45,7 +45,7 @@ const WishlistInitializer = () => {
     };
   }, []);
 
-  // 2 Cand avem user.id, incarcam wishlist-ul pentru user-ul respectiv
+  // Cand avem user.id, incarcam wishlist-ul pentru user-ul respectiv
   useEffect(() => {
     if (!user?.id) return;
 

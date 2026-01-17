@@ -16,6 +16,7 @@ const LoginPage = () => {
   const [mode, setMode] = useState<MODE>(MODE.LOGIN);
 
   const [email, setEmail] = useState("");
+
   const [password, setPassword] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
@@ -26,9 +27,18 @@ const LoginPage = () => {
   const btnTitle = mode === MODE.LOGIN ? "Log in" : "Register";
 
   useEffect(() => {
-    fetch("/api/auth/me")
-      .then((r) => r.json())
-      .then((d) => setLoggedIn(d.loggedIn));
+    const loadUser = async () => {
+      const res = await fetch("/api/auth/me");
+      const data = await res.json();
+
+      setLoggedIn(data.loggedIn);
+
+      if (data.loggedIn) {
+        setEmail(data.user.email);
+      }
+    };
+
+    loadUser();
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -75,38 +85,39 @@ const LoginPage = () => {
     }
   };
 
-    const handleLogOut = async () => {
-      try {
-        setIsLoading(true);
+  const handleLogOut = async () => {
+    try {
+      setIsLoading(true);
 
-        await fetch("/api/auth/logout", {
-          method: "POST",
-        });
+      await fetch("/api/auth/logout", {
+        method: "POST",
+      });
 
-        
-        setLoggedIn(false);
+      setLoggedIn(false);
 
-        router.refresh();
-      } catch (e) {
-        console.error("Logout failed", e);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+      router.refresh();
+    } catch (e) {
+      console.error("Logout failed", e);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="h-[calc(100vh-400px)] mt-10 md:mt-0 py-4 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] flex items-center justify-center">
-    {loggedIn ? (
-          <div className="loggedin text-center">
-            <p className="text-success-500 text-sm">You are logged in</p>
-             <button
-            disabled={isLoading} onClick={handleLogOut}
+      {loggedIn ? (
+        <div className="loggedin text-center">
+          <h5 className="my-4">Hello, {email}!</h5>
+          <p className="text-success-500 text-sm">You are logged in</p>
+          <button
+            disabled={isLoading}
+            onClick={handleLogOut}
             className="bg-primary-500 mt-4 w-full text-white rounded-md p-1 disabled:bg-gray-300 disabled:cursor:not-allowed"
-            >
-              Log out
-            </button>
-          </div>
-        ) : (
+          >
+            Log out
+          </button>
+        </div>
+      ) : (
         <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
           <h1 className="font-bold text-primary-500 text-xl">
             {formTitle ? formTitle : "Form Title"}
@@ -145,7 +156,9 @@ const LoginPage = () => {
             {btnTitle}
           </button>
 
-          {error && <div className="text-danger-500 font-semibold">{error}</div>}
+          {error && (
+            <div className="text-danger-500 font-semibold">{error}</div>
+          )}
 
           {mode === MODE.LOGIN && (
             <div
@@ -169,7 +182,7 @@ const LoginPage = () => {
             <div className="text-success-500 text-sm">{message}</div>
           )}
         </form>
-        )}
+      )}
     </div>
   );
 };

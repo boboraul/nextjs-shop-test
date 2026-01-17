@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { readUsers } from "../../../lib/db";
 import { signSession } from "../../../lib/auth";
+import bcrypt from "bcryptjs";
 
 export async function POST(req: Request) {
   const { email, password } = await req.json();
@@ -10,9 +11,15 @@ export async function POST(req: Request) {
   }
 
   const users = readUsers();
-  const user = users.find((u) => u.email === email && u.password === password);
+  const user = users.find((u) => u.email === email);
 
   if (!user) {
+    return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
+  }
+
+  const ok = await bcrypt.compare(password, user.password);
+
+  if (!ok) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
   }
 

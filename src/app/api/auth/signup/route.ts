@@ -2,11 +2,14 @@ import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { readUsers, writeUsers } from "../../../lib/db";
 import { wixContactsClient } from "../../../lib/wixContactsClient";
+import bcrypt from "bcryptjs";
 
 export const runtime = "nodejs";
 
+
 export async function POST(req: Request) {
   const { email, password } = await req.json();
+  const passwordHash = await bcrypt.hash(password, 10);
 
   if (!email || !password) {
     return NextResponse.json({ error: "Invalid data" }, { status: 400 });
@@ -24,7 +27,7 @@ export async function POST(req: Request) {
   const newUser = {
     id: userId,
     email,
-    password,
+    password: passwordHash,
     createdAt: new Date().toISOString(),
   };
 
