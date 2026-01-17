@@ -21,6 +21,23 @@ const NavIcons = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const pathname = usePathname();
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [name, setName] = useState(false);
+
+  useEffect(() => {
+    const loadUser = async () => {
+      const res = await fetch("/api/auth/me");
+      const data = await res.json();
+
+      setLoggedIn(data.loggedIn);
+
+      if (data.loggedIn) {
+        setName(data.user.formattedName);
+      }
+    };
+
+    loadUser();
+  }, [isLoggedIn]);
 
   useEffect(() => {
     let cancelled = false;
@@ -120,7 +137,7 @@ const NavIcons = () => {
         {isWishListOpen && <WishlistModal />}
       </div>
 
-      <div className="relative cursor-pointer">
+      <div className="relative flex items-end cursor-pointer">
         <svg
           onClick={handleProfile}
           xmlns="http://www.w3.org/2000/svg"
@@ -151,6 +168,15 @@ const NavIcons = () => {
               {isLoading ? "Logging Out" : "Logout"}
             </div>
           </div>
+        )}
+        {loggedIn && (
+          <small className="flex items-center">
+            Hello,
+            <span className="text-primary-500 truncate max-w-[80px] inline-block ml-1">
+              {name}
+            </span>
+            !
+          </small>
         )}
       </div>
 

@@ -4,6 +4,7 @@ const SECRET = process.env.AUTH_SECRET!;
 
 type SessionPayload = {
   id: string;
+  name: string;
   email: string;
   iat: number;
 };

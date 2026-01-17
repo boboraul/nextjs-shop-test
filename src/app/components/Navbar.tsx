@@ -31,7 +31,7 @@ const Navbar = () => {
       {/* Bigger screens */}
       <div className="hidden md:flex items-center h-full jusitfy-between gap-8">
         {/* Left */}
-        <div className="w-1/3 xl:w-1/2 flex items-center flex-nowrap gap-12">
+        <div className="w-1/7 xl:w-1/2 flex items-center flex-nowrap gap-12">
           <Link href="/" className="flex items-center gap-1">
             <Image
               className="inline-block rotate-10"
@@ -40,7 +40,9 @@ const Navbar = () => {
               width={28}
               height={28}
             />
-            <div className="text-xl inline-block whitespace-nowrap">e-Shop</div>
+            <div className="text-xl inline-block whitespace-nowrap pr-5">
+              e-Shop
+            </div>
           </Link>
           <div className="hidden xl:flex items-center gap-4">
             <Link href="/">Homepage</Link>
@@ -51,7 +53,7 @@ const Navbar = () => {
           </div>
         </div>
         {/* Right */}
-        <div className="w-2/3 xl:w-1/2 flex items-center justify-between gap-8">
+        <div className="w-full xl:w-1/2 flex items-center justify-between gap-8">
           <SearchBar />
           <NavIcons />
         </div>

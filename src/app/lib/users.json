@@ -1,16 +1,25 @@
 {
   "users": [
     {
-      "id": "08adc105-3275-4788-9b8d-1962e5bfa743",
+      "id": "61f90c09-f3ce-4fdc-a4f9-fc9e0b1cfc03",
+      "name": "Bogdan",
       "email": "bobo@yahoo.com",
-      "password": "010388",
-      "createdAt": "2026-01-14T18:59:31.766Z"
+      "password": "$2b$10$mjR5W3LJup1S45v7Efs7MOwfVEIPNusjjNcWsR4LUyOZH5tD1IpxG",
+      "createdAt": "2026-01-17T22:42:14.868Z"
     },
     {
-      "id": "0749c1ca-7f80-4d95-a42f-78a67e14afea",
-      "email": "adi@gmail.com",
-      "password": "010388",
-      "createdAt": "2026-01-14T19:01:04.093Z"
+      "id": "87854ab9-617c-4af7-86c0-5f4231c5eaa9",
+      "name": "Bogdan",
+      "email": "bogdan@yahoo.com",
+      "password": "$2b$10$uH1E8LPiL50i1UWUpjbpZOeb8oTO0X5HEE.3OLDqy3Vok57nli7VC",
+      "createdAt": "2026-01-17T22:50:19.223Z"
+    },
+    {
+      "id": "27765dd5-0eaf-42c1-86ad-0ccc8040dd6a",
+      "name": "Bogdan Vasilescu",
+      "email": "bobica@yahoo.com",
+      "password": "$2b$10$AWmZJEQ5CXczrG54pFCuY.xhj8UX8zj./rQ9TEUuhFRDNl3k9wEV.",
+      "createdAt": "2026-01-17T22:51:11.447Z"
     }
   ]
 }

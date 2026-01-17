@@ -4,7 +4,7 @@ import { signSession } from "../../../lib/auth";
 import bcrypt from "bcryptjs";
 
 export async function POST(req: Request) {
-  const { email, password } = await req.json();
+  const { name, email, password } = await req.json();
 
   if (!email || !password) {
     return NextResponse.json({ error: "Invalid data" }, { status: 400 });
@@ -23,11 +23,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
   }
 
-  const token = signSession({ id: user.id, email: user.email });
+  const token = signSession({ id: user.id, email: user.email, name: user.name });
 
   const res = NextResponse.json({
     ok: true,
-    user: { id: user.id, email: user.email },
+    user: { id: user.id, email: user.email, name: user.name },
   });
 
   res.cookies.set("session", token, {

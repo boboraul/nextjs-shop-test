@@ -5,6 +5,7 @@ const dbPath = path.join(process.cwd(), "src/app/lib/users.json");
 
 export type User = {
   id: string;
+  name: string;
   email: string;
   password: string;
   createdAt: string;

@@ -16,7 +16,7 @@ const LoginPage = () => {
   const [mode, setMode] = useState<MODE>(MODE.LOGIN);
 
   const [email, setEmail] = useState("");
-
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +34,7 @@ const LoginPage = () => {
       setLoggedIn(data.loggedIn);
 
       if (data.loggedIn) {
-        setEmail(data.user.email);
+        setName(data.user.name);
       }
     };
 
@@ -54,7 +54,7 @@ const LoginPage = () => {
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ name, email, password }),
       });
 
       if (!res.ok) {
@@ -107,7 +107,7 @@ const LoginPage = () => {
     <div className="h-[calc(100vh-400px)] mt-10 md:mt-0 py-4 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] flex items-center justify-center">
       {loggedIn ? (
         <div className="loggedin text-center">
-          <h5 className="my-4">Hello, {email}!</h5>
+          <h5 className="my-4">Hello, {name}!</h5>
           <p className="text-success-500 text-sm">You are logged in</p>
           <button
             disabled={isLoading}
@@ -122,6 +122,21 @@ const LoginPage = () => {
           <h1 className="font-bold text-primary-500 text-xl">
             {formTitle ? formTitle : "Form Title"}
           </h1>
+
+          {mode === MODE.REGISTER && (
+            <div className="form-group flex flex-col gap-1">
+              <label className="text-md text-gray-500" htmlFor="">
+                Name
+              </label>
+              <input
+                onChange={(e) => setName(e.target.value)}
+                type="text"
+                name="namel"
+                placeholder="John Doe"
+                className="ring-2 ring-gray-300 rounded-md p-2"
+              />
+            </div>
+          )}
 
           <div className="form-group flex flex-col gap-1">
             <label className="text-md text-gray-500" htmlFor="">
