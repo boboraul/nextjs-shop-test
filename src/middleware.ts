@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const PROTECTED_PREFIXES = ["/account", "/wishlist"];
+const PROTECTED_PREFIXES = ["/account", "/wishlist", "/login"];
 
 function isProtected(pathname: string) {
   return PROTECTED_PREFIXES.some(
@@ -11,6 +11,7 @@ function isProtected(pathname: string) {
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
+  const url = req.nextUrl.clone();
 
   // ignore next internals + api
   if (
@@ -29,10 +30,15 @@ export function middleware(req: NextRequest) {
   const session = req.cookies.get("session")?.value;
 
   if (!session) {
-    const url = req.nextUrl.clone();
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
+
+  if (session && url.pathname == "/login") {
+    url.pathname = "/";
+    return NextResponse.redirect(url);
+  }
+ 
 
   return NextResponse.next();
 }

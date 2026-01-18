@@ -162,9 +162,14 @@ const NavIcons = () => {
           onClick={handleProfile}
         /> */}
         {isProfileOpen && (
-          <div className="absolute rounded-md bg-white right-[-28px] shadow-md p-4 top-10 text-sm z-20">
-            <Link href="/">Profile</Link>
-            <div className="mt-2 cursor-pointer" onClick={handleLogOut}>
+          <div className="absolute rounded-md bg-white right-[-30px] min-w-[150px] shadow-md p-3 top-10 text-sm z-20">
+            <Link href="/" className="border-b py-2 mt-1 w-full">
+              My Account
+            </Link>
+            <div
+              className="cursor-pointer py-2 mt-1 w-full"
+              onClick={handleLogOut}
+            >
               {isLoading ? "Logging Out" : "Logout"}
             </div>
           </div>
