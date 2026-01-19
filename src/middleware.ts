@@ -22,24 +22,19 @@ export function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  // only protect these routes
-  if (!isProtected(pathname)) {
-    return NextResponse.next();
-  }
-
   const session = req.cookies.get("session")?.value;
-
-  if (!session) {
-    url.pathname = "/login";
-    return NextResponse.redirect(url);
-  }
 
   if (session && url.pathname == "/login") {
     url.pathname = "/";
     return NextResponse.redirect(url);
   }
- 
 
+    // only protect these routes
+  if (isProtected(pathname) && !session) {
+    url.pathname = "/login";
+    return NextResponse.next();
+  }
+ 
   return NextResponse.next();
 }
 
