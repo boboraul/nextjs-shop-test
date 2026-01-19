@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const PROTECTED_PREFIXES = ["/account", "/wishlist", "/login"];
+const PROTECTED_PREFIXES = ["/account", "/wishlist"];
 
 function isProtected(pathname: string) {
   return PROTECTED_PREFIXES.some(
