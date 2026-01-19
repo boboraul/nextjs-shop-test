@@ -44,7 +44,7 @@ const Add = ({
   return (
     <div className="flex flex-col gap-4">
       <h4 className="font-medium">Choose quantity</h4>
-      <div className="flex gap-4 items-center">
+      <div className="flex gap-2 items-center">
         <div className="bg-gray-200 w-32 just rounded-3xl flex items-center justify-between">
           <button
             className="cursor-pointer py-1 px-4 text-xl"
