@@ -70,7 +70,7 @@ const ProductList = async ({
         <React.Fragment key={product._id}>
           <Link
             href={"/" + product.slug}
-            className="w-full flex-col gap-10 sm:w-1/2 lg:w-1/4"
+            className="w-full flex-col gap-10 sm:w-[40%] lg:w-[22%]"
           >
             <div className="w-full h-80 relative">
               <Image
