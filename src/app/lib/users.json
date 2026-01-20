@@ -20,6 +20,13 @@
       "email": "bobica@yahoo.com",
       "password": "$2b$10$AWmZJEQ5CXczrG54pFCuY.xhj8UX8zj./rQ9TEUuhFRDNl3k9wEV.",
       "createdAt": "2026-01-17T22:51:11.447Z"
+    },
+    {
+      "id": "84a2ad5a-7948-41ad-a21b-71e61cb02d77",
+      "name": "Victor",
+      "email": "victor@gmail.com",
+      "password": "$2b$10$8wDgdpq9cPXHvkUYRjSb9.KC5MhUOYAaYGdK8VaHLMcth/P7P29B.",
+      "createdAt": "2026-01-20T18:56:12.453Z"
     }
   ]
 }
