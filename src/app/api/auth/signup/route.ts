@@ -6,7 +6,6 @@ import bcrypt from "bcryptjs";
 
 export const runtime = "nodejs";
 
-
 export async function POST(req: Request) {
   const { name, email, password } = await req.json();
   const passwordHash = await bcrypt.hash(password, 10);
