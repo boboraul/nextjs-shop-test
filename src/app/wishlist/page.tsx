@@ -36,7 +36,7 @@ const Wishlist = () => {
       </div>
 
       {/* Products */}
-      <div className="flex mt-8 gap-x-8 gap-y-16 flex-wrap justify-between">
+      <div className="flex mt-8 gap-8 flex-wrap justify-between">
         {isLoading ? (
           "Loading..."
         ) : items.length < 1 ? (
@@ -47,7 +47,7 @@ const Wishlist = () => {
           <>
             {items.map((item) => (
               <div
-                className="w-full flex-col gap-44 sm:w-[45%] lg:w-[22%] relative"
+                className="flex-col gap-25 w-[45%] lg:w-[22%] relative"
                 key={item._id}
               >
                 <svg
@@ -76,7 +76,7 @@ const Wishlist = () => {
                         item.productImage,
                         247,
                         320,
-                        {}
+                        {},
                       )}
                       className="object-cover rounded-md"
                     />

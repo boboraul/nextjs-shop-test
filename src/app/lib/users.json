@@ -1,32 +1,5 @@
 {
   "users": [
-    {
-      "id": "61f90c09-f3ce-4fdc-a4f9-fc9e0b1cfc03",
-      "name": "Bogdan",
-      "email": "bobo@yahoo.com",
-      "password": "$2b$10$mjR5W3LJup1S45v7Efs7MOwfVEIPNusjjNcWsR4LUyOZH5tD1IpxG",
-      "createdAt": "2026-01-17T22:42:14.868Z"
-    },
-    {
-      "id": "87854ab9-617c-4af7-86c0-5f4231c5eaa9",
-      "name": "Bogdan",
-      "email": "bogdan@yahoo.com",
-      "password": "$2b$10$uH1E8LPiL50i1UWUpjbpZOeb8oTO0X5HEE.3OLDqy3Vok57nli7VC",
-      "createdAt": "2026-01-17T22:50:19.223Z"
-    },
-    {
-      "id": "27765dd5-0eaf-42c1-86ad-0ccc8040dd6a",
-      "name": "Bogdan Vasilescu",
-      "email": "bobica@yahoo.com",
-      "password": "$2b$10$AWmZJEQ5CXczrG54pFCuY.xhj8UX8zj./rQ9TEUuhFRDNl3k9wEV.",
-      "createdAt": "2026-01-17T22:51:11.447Z"
-    },
-    {
-      "id": "84a2ad5a-7948-41ad-a21b-71e61cb02d77",
-      "name": "Victor",
-      "email": "victor@gmail.com",
-      "password": "$2b$10$8wDgdpq9cPXHvkUYRjSb9.KC5MhUOYAaYGdK8VaHLMcth/P7P29B.",
-      "createdAt": "2026-01-20T18:56:12.453Z"
-    }
+   
   ]
 }

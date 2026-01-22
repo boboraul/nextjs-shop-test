@@ -20,7 +20,7 @@ const WishlistModal = () => {
     removeItem(wixClient, id);
   };
 
-  console.log('wishmodal items ', items)
+  console.log("wishmodal items ", items);
 
   return (
     <div className="absolute bg-white min-w-[250px] border-t cursor-default rounded-md right-0 shadow-md p-3 top-7 text-sm z-20">
@@ -47,7 +47,7 @@ const WishlistModal = () => {
                         item.productImage,
                         72,
                         96,
-                        {}
+                        {},
                       )}
                       className="object-cover"
                     />
@@ -62,10 +62,12 @@ const WishlistModal = () => {
                         <h3 className="name font-semibold">
                           {item.productName}
                         </h3>
-                      </Link>                    
+                      </Link>
                     </div>
                     <div className="price">
-                      <span>{item.price} {item.currency}</span>
+                      <span>
+                        {item.price} {item.currency}
+                      </span>
                     </div>
                     <div className="flex justify-end text-sm mt-1">
                       <svg
@@ -94,7 +96,7 @@ const WishlistModal = () => {
           <div className="flex justify-center mt-3 border-t text-xs pt-3">
             <hr />
             <button
-              className="rounded-md py-2 px-4 bg-black text-white"
+              className="rounded-2xl ring-1 ring-primary-500 text-primary-500 px-4 py-1 text-xs hover:bg-primary-500 hover:text-white easy duration-200"
               onClick={handleWishlist}
             >
               View Wishlist

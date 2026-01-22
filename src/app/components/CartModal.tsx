@@ -44,7 +44,7 @@ const CartModal = () => {
                         item.productImage,
                         72,
                         96,
-                        {}
+                        {},
                       )}
                       className="object-cover"
                     />
@@ -83,7 +83,7 @@ const CartModal = () => {
                               >
                                 {value}
                               </p>
-                            )
+                            ),
                           )}
                       </span>
 
@@ -121,8 +121,8 @@ const CartModal = () => {
             {/* <span>{items?.subtotal?.formattedAmount}</span> */}
           </div>
 
-          <div className="flex justify-center mt-3 pt-3">
-            <button className="rounded-md py-2 px-4 text-[14px] bg-black text-white flex">
+          <div className="flex justify-center mt-3 pt-3 border-t">
+            <button className="rounded-2xl ring-1 ring-primary-500 text-primary-500 px-4 py-1 text-xs hover:bg-primary-500 hover:text-white easy duration-200">
               To Checkout
             </button>
           </div>

@@ -1,71 +1,72 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
-import { readUsers, writeUsers } from "../../../lib/db";
-import { wixContactsClient } from "../../../lib/wixContactsClient";
 import bcrypt from "bcryptjs";
+import { wixContactsClient } from "../../../lib/wixContactsClient";
+import { wixDataClient } from "../../../lib/wixDataClient";
 
 export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   const { name, email, password } = await req.json();
-  const passwordHash = await bcrypt.hash(password, 10);
 
-  if (!email || !password) {
+  if (!name || !email || !password) {
     return NextResponse.json({ error: "Invalid data" }, { status: 400 });
   }
 
-  const users = readUsers();
-  const exists = users.find((u) => u.email === email);
+  const usersCollectionId = process.env.WIX_USERS_COLLECTION_ID!;
 
-  if (exists) {
+  // verifica daca exista deja user cu email
+  const existing = await wixDataClient.data.items
+    .query(usersCollectionId)
+    .eq("email", email)
+    .limit(1)
+    .find();
+
+  if (existing.items.length > 0) {
     return NextResponse.json({ error: "User exists" }, { status: 409 });
   }
 
   const userId = crypto.randomUUID();
+  const passwordHash = await bcrypt.hash(password, 10);
+  const registeredAt = new Date().toISOString();
 
-    const capitalizeName = (value: string) => {
-      return value
-        .trim()
-        .toLowerCase()
-        .split(" ")
-        .filter(Boolean)
-        .map(
-          (word) => word.charAt(0).toUpperCase() + word.slice(1)
-        )
-        .join(" ");
-  };
-
-  const formattedName = capitalizeName(name);
-
-  const newUser = {
-    id: userId,
-    name: formattedName,
-    email,
-    password: passwordHash,
-    createdAt: new Date().toISOString(),
-  };
-
-
-  users.push(newUser);
-  writeUsers(users);
+  // creeaza contact in Wix (CRM)
+  let wixContactId: string | undefined;
 
   try {
-    await wixContactsClient.contacts.createContact({
+    const contact = await wixContactsClient.contacts.createContact({
       emails: { items: [{ email }] },
-     
       extendedFields: {
         ["custom.externalUserId"]: userId,
       } as any,
     } as any);
-} catch (e: any) {
-  return NextResponse.json(
-    {
-      error: "Wix createContact failed",
-      details: e?.message || String(e),
-    },
-    { status: 500 }
-  );
-}
+
+    // tipurile difera, pastram robust:
+    wixContactId = (contact as any)?._id || (contact as any)?.contact?._id;
+  } catch (e: any) {
+    return NextResponse.json(
+      { error: "Wix createContact failed", details: e?.message || String(e) },
+      { status: 500 }
+    );
+  }
+
+  // scrie userul in colectia Users
+  try {
+    await wixDataClient.data.items.insert(usersCollectionId, {
+      userId,
+      email,
+      username: name,
+      password: passwordHash,
+      registeredAt,
+      externalUserId: userId,
+      wixContactId: wixContactId || null,
+    } as any);
+  } catch (e: any) {
+    return NextResponse.json(
+      { error: "Wix Data insert failed", details: e?.message || String(e) },
+      { status: 500 }
+    );
+  }
 
   return NextResponse.json({ ok: true });
 }
