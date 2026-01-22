@@ -19,7 +19,7 @@ const CartModal = () => {
   console.log("cart items ", item);
 
   return (
-    <div className="absolute bg-white min-w-[350px] border-t cursor-default rounded-md right-0 shadow-md p-3 top-6 text-sm z-20">
+    <div className="absolute bg-white min-w-[250px] border-t cursor-default rounded-md right-0 shadow-md p-3 top-6 text-sm z-20">
       <h4 className="text-sm pb-2 border-b">Shopping Cart</h4>
       {items.length == 0 ? (
         <div className="empty text-center pb-2 pt-3">
