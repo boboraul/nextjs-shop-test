@@ -163,11 +163,11 @@ const NavIcons = () => {
         /> */}
         {isProfileOpen && (
           <div className="absolute rounded-md bg-white right-[-30px] min-w-[150px] shadow-md p-3 top-10 text-sm z-20">
-            <Link href="/" className="border-b py-2 mt-1 w-full">
+            <Link href="/" className="border-b pt-2 mt-1 w-full">
               My Account
             </Link>
             <div
-              className="cursor-pointer py-2 mt-1 w-full"
+              className="cursor-pointer pt-2 mt-1 w-full"
               onClick={handleLogOut}
             >
               {isLoading ? "Logging Out" : "Logout"}
