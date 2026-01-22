@@ -63,8 +63,7 @@ const WishlistModal = () => {
                           {item.productName}
                         </h3>
                       </Link>
-                      
-                      </div>
+                    
                     </div>
                     <div className="flex justify-end text-sm mt-1">
                       <svg
