@@ -55,15 +55,17 @@ const WishlistModal = () => {
                 )}
                 <div className="w-full bg-gray-50 p-2">
                   {/* Top */}
-                  <div className="">
+                  <div className="info">
                     {/* Title */}
-                    <div className="flex items-center justify-between gap-8">
+                    <div className="name">
                       <Link href={`/${item.productUrl!}`}>
                         <h3 className="name font-semibold">
                           {item.productName}
                         </h3>
-                      </Link>
-                    
+                      </Link>                    
+                    </div>
+                    <div className="price">
+                      <span>{item.price} {item.currency}</span>
                     </div>
                     <div className="flex justify-end text-sm mt-1">
                       <svg
