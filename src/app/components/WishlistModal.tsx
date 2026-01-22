@@ -23,7 +23,7 @@ const WishlistModal = () => {
   console.log('wishmodal items ', items)
 
   return (
-    <div className="absolute bg-white min-w-[350px] border-t cursor-default rounded-md right-0 shadow-md p-3 top-7 text-sm z-20">
+    <div className="absolute bg-white min-w-[250px] border-t cursor-default rounded-md right-0 shadow-md p-3 top-7 text-sm z-20">
       <h4 className="text-sm pb-2 border-b">Wishlist</h4>
       {isLoading ? (
         "Loading..."
