@@ -85,12 +85,13 @@ const Wishlist = () => {
 
                 <div className="w-full">
                   {/* Title */}
-                  <div className="flex items-center justify-between gap-8">
-                    <h3 className="name font-semibold">{item.productName}</h3>
-                    <div className="price rounded-sm p-1">
+                  <div className="name">
+                    <h3 className="name font-semibold">{item.productName}</h3> 
+                  </div>
+                  {/* Price */}
+                   <div className="price p-1">
                       {item.price} {item.currency}
                     </div>
-                  </div>
 
                   <button className="rounded-2xl mt-4 ring-1 ring-primary-500 bg-primary-500 text-white px-4 py-2 text-xs hover:bg-white hover:text-primary-500 easy duration-200">
                     Add to Cart
