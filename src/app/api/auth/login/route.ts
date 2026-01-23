@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import { signSession } from "/../../../lib/auth";
-import { wixDataClient } from "/../../../lib/wixDataClient";
+import { signSession } from "../../../lib/auth";
+import { wixDataClient } from "../../../lib/wixDataClient";
 
 export const runtime = "nodejs";
 
