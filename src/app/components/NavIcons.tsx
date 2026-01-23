@@ -32,7 +32,7 @@ const NavIcons = () => {
       setLoggedIn(data.loggedIn);
 
       if (data.loggedIn) {
-        setName(data.user.formattedName);
+        setName(data.user.name);
       }
     };
 
