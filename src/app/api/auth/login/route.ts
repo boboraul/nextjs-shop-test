@@ -35,7 +35,7 @@ export async function POST(req: Request) {
   const token = signSession({
     id: user.userId,
     email: user.email,
-    name: user.userName,
+    name: user.username,
   });
 
   const res = NextResponse.json({
