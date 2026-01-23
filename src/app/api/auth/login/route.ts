@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
-import { readUsers } from "../../../lib/db";
-import { signSession } from "../../../lib/auth";
 import bcrypt from "bcryptjs";
+import { signSession } from "/../../../lib/auth";
+import { wixDataClient } from "/../../../lib/wixDataClient";
+
+export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   const { email, password } = await req.json();
@@ -10,8 +12,15 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid data" }, { status: 400 });
   }
 
-  const users = readUsers();
-  const user = users.find((u) => u.email === email);
+  const usersCollectionId = process.env.WIX_USERS_COLLECTION_ID!;
+
+  const result = await wixDataClient.data.items
+    .query(usersCollectionId)
+    .eq("email", email)
+    .limit(1)
+    .find();
+
+  const user = result.items?.[0] as any;
 
   if (!user) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
@@ -23,11 +32,15 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
   }
 
-  const token = signSession({ id: user.id, email: user.email, name: user.name });
+  const token = signSession({
+    id: user.userId,
+    email: user.email,
+    name: user.userName,
+  });
 
   const res = NextResponse.json({
     ok: true,
-    user: { id: user.id, email: user.email, name: user.name },
+    user: { id: user.userId, email: user.email, name: user.userName },
   });
 
   res.cookies.set("session", token, {
