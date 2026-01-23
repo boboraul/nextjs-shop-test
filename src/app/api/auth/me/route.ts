@@ -15,8 +15,16 @@ export async function GET() {
     return NextResponse.json({ loggedIn: false });
   }
 
+  function capitalize(name: string) {
+    const s = name.trim();
+    if (!s) return s;
+    return s[0].toUpperCase() + s.slice(1).toLowerCase();
+  }
+
+  const formattedName = capitalize(payload.name);
+
   return NextResponse.json({
     loggedIn: true,
-    user: { id: payload.id, email: payload.email, name: payload.name },
+    user: { id: payload.id, email: payload.email, name: formattedName },
   });
 }
