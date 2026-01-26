@@ -13,6 +13,16 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid data" }, { status: 400 });
   }
 
+  const required = ["WIX_API_KEY", "WIX_SITE_ID", "WIX_USERS_COLLECTION_ID"];
+  const missing = required.filter((k) => !process.env[k]);
+
+  if (missing.length) {
+    return NextResponse.json(
+      { error: "Missing env vars", missing },
+      { status: 500 }
+    );
+  }
+
   const usersCollectionId = process.env.WIX_USERS_COLLECTION_ID!;
 
   // verifica daca exista deja user cu email

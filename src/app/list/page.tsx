@@ -9,7 +9,7 @@ const ListPage = async ({ searchParams }: { searchParams: any }) => {
   const ALL_PRODUCTS_ID = "00000000-000000-000000-000000000001";
 
   const cat = await wixClient.collections.getCollectionBySlug(
-    searchParams.cat || "all-products"
+    searchParams.cat || "all-products",
   );
 
   return (
