@@ -20,16 +20,25 @@ const wishlistId = "jdo2u3dohad8yt12dghqasdau";
 type WishlistStore = {
   items: WishlistItem[];
   isLoading: boolean;
+  userId: string | null; // NEW: tinem userId global in store
+  setUserId: (id: string | null) => void; // NEW: setter pt userId
+  userIdLoaded: string | null; // NEW: guard anti-refetch (pt acelasi user)
+
   fetchWishlist: (client: MyWixClient, userId: string) => Promise<void>;
   addItem: (client: MyWixClient, item: WishlistItem) => Promise<void>;
   removeItem: (client: MyWixClient, itemId: string) => Promise<void>;
 };
 
-export const useWishlistStore = create<WishlistStore>((set) => ({
+export const useWishlistStore = create<WishlistStore>((set, get) => ({
   items: [],
   isLoading: false,
+  userId: null, // NEW
+  setUserId: (id) => set({ userId: id }), // NEW
+  userIdLoaded: null, // NEW
 
   fetchWishlist: async (client, userId) => {
+    if (get().userIdLoaded === userId) return; // NEW: nu mai refacem fetch-ul si nu mai clipeste UI-ul
+
     set({ isLoading: true });
 
     try {
@@ -37,7 +46,10 @@ export const useWishlistStore = create<WishlistStore>((set) => ({
         .query(wishlistId)
         .eq("userId", userId)
         .find();
-      set({ items: (result.items as WishlistItem[]) ?? [] });
+      set({
+        items: (result.items as WishlistItem[]) ?? [],
+        userIdLoaded: userId, // NEW: marcam ca am incarcat pt user-ul asta
+      });
     } catch (error) {
       console.error("Eroare la fetch wishlist:", error);
     } finally {

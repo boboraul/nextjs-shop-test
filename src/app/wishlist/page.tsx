@@ -43,10 +43,9 @@ const Wishlist = () => {
         ) : (
           <>
             {items.map((item) => (
-             
               <ProductBox
                 key={item._id}
-                id={item._id!}
+                id={item.productId}
                 slug={item.productUrl!}
                 name={item.productName!}
                 price={item.price!}
@@ -54,7 +53,6 @@ const Wishlist = () => {
                 shortDescHtml={""}
                 currency={item.currency}
               />
-             
             ))}
           </>
         )}

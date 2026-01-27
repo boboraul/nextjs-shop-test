@@ -13,9 +13,11 @@ const WishlistInitializer = () => {
   const wixClient = useWixClient();
   const { fetchWishlist } = useWishlistStore();
 
+  const setUserId = useWishlistStore((s) => s.setUserId); // NEW: luam setterul din store
+
   const [user, setUser] = useState<MeUser | null>(null);
 
-  // 1 Afla user-ul logat din /api/auth/me
+  // Afla user-ul logat din /api/auth/me
   useEffect(() => {
     let cancelled = false;
 
@@ -24,6 +26,8 @@ const WishlistInitializer = () => {
         const res = await fetch("/api/auth/me", { cache: "no-store" });
         if (!res.ok) {
           setUser(null);
+          setUserId(null); // NEW: daca nu e logat, resetam userId global
+
           return;
         }
 
@@ -32,18 +36,21 @@ const WishlistInitializer = () => {
 
         if (data.loggedIn && data.user?.id) {
           setUser({ id: data.user.id, email: data.user.email });
+          setUserId(data.user.id); // NEW: salvam userId global pentru toate inimioarele
         } else {
           setUser(null);
+          setUserId(null); // NEW
         }
       } catch {
         setUser(null);
+        setUserId(null); // NEW
       }
     })();
 
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [setUserId]); // NEW: dep
 
   // Cand avem user.id, incarcam wishlist-ul pentru user-ul respectiv
   useEffect(() => {

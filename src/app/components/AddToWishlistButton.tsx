@@ -23,54 +23,14 @@ const AddToWishlistButton = ({
   price,
   currency,
   size = "md", // default
-
 }: AddToWishlistButtonProps) => {
   const wixClient = useWixClient();
-  const { fetchWishlist, addItem, removeItem, items } = useWishlistStore();
+  const { addItem, removeItem, items } = useWishlistStore();
   const [loading, setLoading] = useState(false);
-    const svgClass =
-    size === "sm"
-      ? "w-5 h-5 text-primary-500"
-      : "w-8 h-8 text-primary-500";
 
-  // userId folosit in wishlist (vine din /api/auth/me)
-  const [userId, setUserId] = useState<string | null>(null);
-
-  // Luam user-ul logat din /api/auth/me
-  useEffect(() => {
-    let cancelled = false;
-
-    (async () => {
-      try {
-        const res = await fetch("/api/auth/me", { cache: "no-store" });
-        if (!res.ok) return;
-        const data = await res.json();
-        if (cancelled) return;
-
-        // folosim id-ul intern din sesiune (nu email)
-        setUserId(data.user?.id ?? null);
-        console.log("wishlist userId:", data.user?.id);
-      } catch {
-        setUserId(null);
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  // Cand avem userId, incarcam wishlist-ul userului curent
-  useEffect(() => {
-    if (!userId) return;
-    fetchWishlist(wixClient, userId);
-  }, [userId, wixClient, fetchWishlist]);
-
-  console.log("prod id ", productId);
-
-  useEffect(() => {
-    console.log("Wishlist items:", items);
-  }, [items]);
+  const userId = useWishlistStore((s) => s.userId); // NEW: userId vine din store (setat de WishlistInitializer)
+  const svgClass =
+    size === "sm" ? "w-5 h-5 text-primary-500" : "w-8 h-8 text-primary-500";
 
   const added = items.some((item) => item.productId === productId);
 
@@ -88,7 +48,7 @@ const AddToWishlistButton = ({
 
     try {
       await addItem(wixClient, {
-        userId,
+        userId, // NEW: userId vine din store
         productId,
         productName,
         productImage,
