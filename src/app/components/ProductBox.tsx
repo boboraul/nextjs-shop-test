@@ -38,6 +38,7 @@ export default function ProductBox({
             productImage={imageUrl}
             price={price}
             currency={currency}
+            size="sm"
           />
       </div>
       <Link href={"/" + slug}>
