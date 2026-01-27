@@ -22,7 +22,7 @@ const AddToWishlistButton = ({
   productUrl,
   price,
   currency,
-  size = md, // default
+  size = "md", // default
 
 }: AddToWishlistButtonProps) => {
   const wixClient = useWixClient();
