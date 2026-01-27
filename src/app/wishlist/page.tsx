@@ -1,17 +1,16 @@
 "use client";
 
-import React, { Suspense } from "react";
+// import React, { Suspense } from "react";
 import Image from "next/image";
 import { media as wixMedia } from "@wix/sdk";
 import { useWishlistStore } from "../hooks/useWishlistStore";
-import Link from "next/link";
-import { useWixClient } from "../hooks/useWixClient";
-import SafeHtml from "../components/SafeHtml";
+// import Link from "next/link";
+// import { useWixClient } from "../hooks/useWixClient";
+// import SafeHtml from "../components/SafeHtml";
 import ProductBox from "../components/ProductBox";
 
 const Wishlist = () => {
   const { isLoading, items } = useWishlistStore();
-  const wixClient = useWixClient();
 
   console.log("wish items ", items);
 
