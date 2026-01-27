@@ -35,8 +35,8 @@ export default function ProductBox({
             productId={id}
             productName={name}
             productUrl={slug}
-            productImage={productImage}
-            price={priceNumber}
+            productImage={imageUrl}
+            price={price}
             currency={currency}
           />
       </div>
