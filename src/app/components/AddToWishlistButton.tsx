@@ -12,6 +12,7 @@ type AddToWishlistButtonProps = {
   productUrl?: string;
   price?: number;
   currency?: string;
+  size?: "sm" | "md"; // wishlist heart icon size
 };
 
 const AddToWishlistButton = ({
@@ -21,10 +22,16 @@ const AddToWishlistButton = ({
   productUrl,
   price,
   currency,
+  size = md, // default
+
 }: AddToWishlistButtonProps) => {
   const wixClient = useWixClient();
   const { fetchWishlist, addItem, removeItem, items } = useWishlistStore();
   const [loading, setLoading] = useState(false);
+    const svgClass =
+    size === "sm"
+      ? "w-5 h-5 text-primary-500"
+      : "w-8 h-8 text-primary-500";
 
   // userId folosit in wishlist (vine din /api/auth/me)
   const [userId, setUserId] = useState<string | null>(null);
@@ -118,7 +125,7 @@ const AddToWishlistButton = ({
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="w-8 h-8 text-primary-500"
+        className="svgClass"
       >
         <path
           strokeLinecap="round"
