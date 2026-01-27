@@ -125,7 +125,7 @@ const AddToWishlistButton = ({
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="svgClass"
+        className={svgClass}
       >
         <path
           strokeLinecap="round"
