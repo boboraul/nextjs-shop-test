@@ -21,7 +21,7 @@ const WishlistInitializer = () => {
   useEffect(() => {
     let cancelled = false;
 
-    (async () => {
+    const init = async () => {
       try {
         const res = await fetch("/api/auth/me", { cache: "no-store" });
         if (!res.ok) {
@@ -45,14 +45,21 @@ const WishlistInitializer = () => {
         setUser(null);
         setUserId(null); // NEW
       }
-    })();
+    };
+
+    init();
+
+    const onAuthChanged = () => init(); // Facem refetch la user
+    window.addEventListener("auth:changed", onAuthChanged);
 
     return () => {
       cancelled = true;
+      window.removeEventListener("auth:changed", onAuthChanged);
     };
   }, [setUserId]); // NEW: dep
 
   // Cand avem user.id, incarcam wishlist-ul pentru user-ul respectiv
+  // user.id este data.user.id returnat de endpoint-ul /api/auth/me
   useEffect(() => {
     if (!user?.id) return;
 

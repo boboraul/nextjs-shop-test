@@ -61,7 +61,7 @@ const LoginPage = () => {
         setError(
           mode === MODE.LOGIN
             ? "Invalid email or password!"
-            : "Email already exists or invalid data!"
+            : "Email already exists or invalid data!",
         );
         setIsLoading(false);
         return;
@@ -75,6 +75,8 @@ const LoginPage = () => {
       }
 
       setMessage("Successful! You are being redirected.");
+      window.dispatchEvent(new Event("auth:changed"));
+
       router.replace("/");
       router.refresh();
     } catch (err) {

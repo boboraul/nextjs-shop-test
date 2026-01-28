@@ -33,7 +33,15 @@ export const useWishlistStore = create<WishlistStore>((set, get) => ({
   items: [],
   isLoading: false,
   userId: null, // NEW
-  setUserId: (id) => set({ userId: id }), // NEW
+  setUserId: (id) =>
+    set((state) => {
+      if (state.userId === id) return { userId: id };
+      return {
+        userId: id,
+        userIdLoaded: null, // reset guard
+        items: [], // optional: goleste lista pana vine noul fetch
+      };
+    }), // NEW
   userIdLoaded: null, // NEW
 
   fetchWishlist: async (client, userId) => {
