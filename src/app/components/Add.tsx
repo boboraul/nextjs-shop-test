@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useCartStore } from "../hooks/useCartStore";
 import AddToWishlistButton from "./AddToWishlistButton";
 
@@ -41,14 +41,7 @@ const Add = ({
     }
   };
   
-  const disabled = stockNumber === 0 || quantity > stockNumber;
-
-  console.log('disabled ' + disabled);
-
-  useEffect(() => {
-  console.log("quantity", quantity, "stock", stockNumber, "disabled", stockNumber === 0 || quantity > stockNumber);
-}, [quantity, stockNumber]);
-
+  const disabled = stockNumber === 0;
 
   return (
     <div className="flex flex-col gap-4">
