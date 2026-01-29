@@ -49,12 +49,11 @@ const WishlistInitializer = () => {
 
     init();
 
-    const onAuthChanged = () => init(); // Facem refetch la user
-    window.addEventListener("auth:changed", onAuthChanged);
+    window.addEventListener("auth:changed", init); //refetch la wishlist pt user actual
 
     return () => {
       cancelled = true;
-      window.removeEventListener("auth:changed", onAuthChanged);
+      window.removeEventListener("auth:changed", init);
     };
   }, [setUserId]); // NEW: dep
 

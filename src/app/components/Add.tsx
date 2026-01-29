@@ -29,7 +29,7 @@ const Add = ({
 }) => {
   const [quantity, setQuantity] = useState(1);
 
-  const { addItem } = useCartStore();
+  const { addItem, items } = useCartStore();
 
   const handleQuantity = (type: "i" | "d") => {
     if (type === "d" && quantity > 1) {
@@ -41,9 +41,24 @@ const Add = ({
     }
   };
 
+  const cartQty =
+    items.find(
+      (item) => productId === item.productId && variantId === item.variantId,
+    )?.quantity ?? 0;
+
+  const disabled = stockNumber === 0 || cartQty >= stockNumber;
+
   return (
     <div className="flex flex-col gap-4">
-      <h4 className="font-medium">Choose quantity</h4>
+      <div className="qty-title flex justify-between">
+        <h4 className="font-medium">Choose quantity</h4>{" "}
+        {disabled && (
+          <h6 className="text-center text-danger-500 bg-gray-200 rounded-md p-2 mr-10">
+            Stock limit reached !
+          </h6>
+        )}
+      </div>
+
       <div className="flex gap-2 items-center">
         <div className="bg-gray-200 w-32 just rounded-3xl flex items-center justify-between">
           <button
@@ -85,7 +100,7 @@ const Add = ({
               productUrl,
             })
           }
-          disabled={!stockNumber ? true : false}
+          disabled={disabled}
           className="w-36 ml-auto text-sm rounded-3xl ring-1 text-primary-500 py-2 px-4 hover:bg-primary-500 hover:text-white ring-primary-500 disabled:cursor-not-allowed disabled:bg-white disabled:text-gray-600 disabled:ring-gray-500"
         >
           {stockNumber > 0 ? "Add to Cart" : "Out of stock"}
