@@ -40,9 +40,10 @@ const Add = ({
       setQuantity((prev) => prev + 1);
     }
   };
-
+  
   const disabled = stockNumber === 0 || quantity > stockNumber;
-  console.log(disabled);
+
+  console.log('disabled ' + disabled);
 
   return (
     <div className="flex flex-col gap-4">
