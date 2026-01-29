@@ -45,7 +45,9 @@ const Add = ({
 
   console.log('disabled ' + disabled);
 
-  console.log(typeof quantity, typeof stockNumber);
+  useEffect(() => {
+  console.log("quantity", quantity, "stock", stockNumber, "disabled", stockNumber === 0 || quantity > stockNumber);
+}, [quantity, stockNumber]);
 
 
   return (
