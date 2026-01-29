@@ -181,8 +181,8 @@ const NavIcons = () => {
             Hello,
             <span className="text-primary-500 truncate max-w-[80px] inline-block ml-1">
               {name}
-            </span>
-            !
+            </span> !
+           
           </small>
         )}
       </div>
