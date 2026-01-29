@@ -23,7 +23,7 @@ const config: Config = {
           // 200: '#c2caff',
           300: '#a3adff',
           // 400: '#8490ff',
-          500: '#536dff', // your base color
+          500: '#536dff', // base color
           // 600: '#3e57e0',
           // 700: '#2d44b3',
           // 800: '#1d3085',
@@ -43,6 +43,6 @@ const config: Config = {
     },
     
   },
-  plugins: [],
+  // plugins: [require("@tailwindcss/line-clamp")],
 };
 export default config;
