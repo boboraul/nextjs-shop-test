@@ -62,7 +62,7 @@ export default function ProductBox({
           )}
         </div>
         <div className="flex justify-between mt-2">
-          <p className="font-medium line-clamp-2">{name}</span>
+          <p className="font-medium line-clamp-2 mb-0">{name}</p>
           <span>
             {price} {currency ? currency : ""}
           </span>
