@@ -109,7 +109,7 @@ const LoginPage = () => {
     <div className="h-[calc(100vh-400px)] mt-10 md:mt-0 py-4 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] flex items-center justify-center">
       {loggedIn ? (
         <div className="loggedin text-center">
-          <h5 className="my-4">Hello, {name}!</h5>
+          <h5 className="my-4">Hello, {name} !</h5>
           <p className="text-success-500 text-sm">You are logged in</p>
           <button
             disabled={isLoading}
