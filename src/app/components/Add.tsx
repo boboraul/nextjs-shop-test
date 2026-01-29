@@ -40,8 +40,6 @@ const Add = ({
       setQuantity((prev) => prev + 1);
     }
   };
-  
-  const disabled = stockNumber === 0;
 
   const cartQty =
     items.find(
