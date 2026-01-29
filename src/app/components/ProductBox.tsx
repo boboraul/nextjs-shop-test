@@ -49,7 +49,7 @@ export default function ProductBox({
             alt=""
             fill
             sizes="25vw"
-            className="absolute object-cover object-top rounded-md z-10 hover:opacity-0 transition-opacity easy duration-500"
+            className={`absolute object-cover object-top rounded-md z-10 ${secondaryImageUrl ? "hover:opacity-0 transition-opacity easy duration-500" : ""}`}
           />
           {secondaryImageUrl && (
             <Image
