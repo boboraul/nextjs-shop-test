@@ -41,6 +41,9 @@ const Add = ({
     }
   };
 
+  const disabled = stockNumber === 0 || quantity > stockNumber;
+  console.log(disabled);
+
   return (
     <div className="flex flex-col gap-4">
       <h4 className="font-medium">Choose quantity</h4>
@@ -85,7 +88,7 @@ const Add = ({
               productUrl,
             })
           }
-          disabled={stockNumber === 0 || quantity > stockNumber}
+          disabled={disabled}
           className="w-36 ml-auto text-sm rounded-3xl ring-1 text-primary-500 py-2 px-4 hover:bg-primary-500 hover:text-white ring-primary-500 disabled:cursor-not-allowed disabled:bg-white disabled:text-gray-600 disabled:ring-gray-500"
         >
           {stockNumber > 0 ? "Add to Cart" : "Out of stock"}
