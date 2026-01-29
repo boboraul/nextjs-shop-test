@@ -45,6 +45,9 @@ const Add = ({
 
   console.log('disabled ' + disabled);
 
+  console.log(typeof quantity, typeof stockNumber);
+
+
   return (
     <div className="flex flex-col gap-4">
       <h4 className="font-medium">Choose quantity</h4>
