@@ -53,7 +53,7 @@ const Add = ({
       <div className="qty-title flex justify-between relative">
         <h4 className="font-medium">Choose quantity</h4>{" "}
         {disabled && (
-          <h6 className="text-center text-danger-500 absolute right-0 bg-gray-200 -mt-6 rounded-md p-2 mr-10">
+          <h6 className="text-center text-danger-500 absolute right-0 bg-gray-200 -mt-6 rounded-md p-2 mr-[60px]">
             Out of stock
           </h6>
         )}
