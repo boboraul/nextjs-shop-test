@@ -19,9 +19,9 @@ const Wishlist = () => {
       {/* Wishlist Banner */}
       <div className="bg-gradient-primary-500 px-4 flex flex-col lg:flex-row justify-between h-96 lg:h-64">
         <div className="w-full lg:w-2/3 flex py-6 lg:py-0 flex-col items-center justify-center gap-4">
-          <h1 className="text-2xl lg:text-3xl text-white text-center lg:text-left font-semi-bold leading-[32px]">
-            Step into summer with 25% off every
-            <br /> warm-weather essential
+          <h1 className="text-2xl lg:text-3xl text-white text-center lg:text-right font-semi-bold leading-[32px]">
+            Save it now. Come back
+            <br /> when you’re ready!
           </h1>
           <button className="rounded-3xl bg-white w-max text-primary-500 py-3 px-5 text-sm">
             Buy now
@@ -29,7 +29,7 @@ const Wishlist = () => {
         </div>
         <div className="relative w-full h-64 lg:h-full lg:w-1/3">
           <Image
-            src="/woman.png"
+            src="/wishlist-woman.png"
             alt="wishlist"
             fill
             className="object-contain"
