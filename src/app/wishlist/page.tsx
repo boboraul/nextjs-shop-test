@@ -17,7 +17,15 @@ const Wishlist = () => {
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] relative mt-4">
       {/* Wishlist Banner */}
-      <div className="bg-gradient-primary-500 px-4 flex flex-col lg:flex-row justify-between h-96 lg:h-64">
+      <div className="bg-gradient-primary-500 pr-4 flex flex-col lg:flex-row justify-between h-96 lg:h-64">
+        <div className="relative w-full h-64 lg:h-full lg:w-1/3">
+          <Image
+            src="/wishlist-woman.png"
+            alt="wishlist"
+            fill
+            className="object-contain"
+          />
+        </div>
         <div className="w-full lg:w-2/3 flex py-6 lg:py-0 flex-col items-center justify-center gap-4">
           <h1 className="text-2xl lg:text-3xl text-white text-center lg:text-right font-semi-bold leading-[32px]">
             Save it now. Come back
@@ -27,14 +35,7 @@ const Wishlist = () => {
             Buy now
           </button>
         </div>
-        <div className="relative w-full h-64 lg:h-full lg:w-1/3">
-          <Image
-            src="/wishlist-woman.png"
-            alt="wishlist"
-            fill
-            className="object-contain"
-          />
-        </div>
+        
       </div>
 
       {/* Products */}
