@@ -31,7 +31,7 @@ const Wishlist = () => {
             Save it now. Come back
             <br /> when you’re ready!
           </h1>
-          <button className="rounded-3xl w-max text-white ring-1 ring-white py-3 px-5 text-sm">
+          <button className="rounded-3xl w-max text-white ring-1 ring-white py-3 px-5 text-sm hover:bg-white hover:text-primary-500">
             Buy now
           </button>
         </div>
