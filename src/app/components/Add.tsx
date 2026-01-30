@@ -50,10 +50,10 @@ const Add = ({
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="qty-title flex justify-between">
+      <div className="qty-title flex justify-between relative">
         <h4 className="font-medium">Choose quantity</h4>{" "}
         {disabled && (
-          <h6 className="text-center text-danger-500 bg-gray-200 rounded-md p-2 mr-10">
+          <h6 className="text-center text-danger-500 absolute right-0 bg-gray-200 -mt-6 rounded-md p-2 mr-10">
             Stock limit reached !
           </h6>
         )}
