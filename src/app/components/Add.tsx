@@ -52,9 +52,9 @@ const Add = ({
     <div className="flex flex-col gap-4">
       <div className="qty-title flex justify-between relative">
         <h4 className="font-medium">Choose quantity</h4>{" "}
-        {disabled && stockNumber > 0 && (
+        {disabled && (
           <h6 className="text-center text-danger-500 absolute right-0 bg-gray-200 -mt-6 rounded-md p-2 mr-10">
-            Stock limit reached !
+            Out of stock
           </h6>
         )}
       </div>
@@ -103,7 +103,7 @@ const Add = ({
           disabled={disabled}
           className="w-36 ml-auto text-sm rounded-3xl ring-1 text-primary-500 py-2 px-4 hover:bg-primary-500 hover:text-white ring-primary-500 disabled:cursor-not-allowed disabled:bg-white disabled:text-gray-600 disabled:ring-gray-500"
         >
-          {stockNumber > 0 ? "Add to Cart" : "Out of stock"}
+          Add to Cart
         </button>
 
         {/* nu mai trimitem userId, il ia butonul singur din /api/auth/me */}
