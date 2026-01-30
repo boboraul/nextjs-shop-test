@@ -13,6 +13,10 @@
     background-image: linear-gradient(144deg, #536DFF 6.72%, #673299 136.95%);
 }
 
+.bg-gradient-primary-500-l {
+    background-image: linear-gradient(144deg, #673299 6.72%, #536DFF 136.95%);
+}
+
 body {
     font-size: 14px;
 }
