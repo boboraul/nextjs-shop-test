@@ -27,7 +27,7 @@ const Wishlist = () => {
           />
         </div>
         <div className="w-full lg:w-2/3 flex py-6 lg:py-0 flex-col items-center justify-center gap-4">
-          <h1 className="text-2xl lg:text-3xl text-white text-center lg:text-right font-semi-bold leading-[32px]">
+          <h1 className="text-2xl lg:text-3xl text-white text-center font-semi-bold leading-[32px]">
             Save it now. Come back
             <br /> when you’re ready!
           </h1>
