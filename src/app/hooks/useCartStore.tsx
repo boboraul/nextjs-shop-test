@@ -8,6 +8,7 @@ export type CartItem = {
   productName?: string;
   productImage?: string;
   price?: number;
+  discountedPrice?: number;
   currency?: string;
   selectedVariant?: Record<string, string>;
   productUrl?: string;
@@ -22,7 +23,7 @@ type CartState = {
   updateQuantity: (
     productId: string,
     quantity: number,
-    variantId?: string
+    variantId?: string,
   ) => void;
   clearCart: () => void;
 };
@@ -37,14 +38,14 @@ export const useCartStore = create<CartState>()(
         set((state) => {
           const existing = state.items.find(
             (i) =>
-              i.productId === item.productId && i.variantId === item.variantId
+              i.productId === item.productId && i.variantId === item.variantId,
           );
 
           const items = existing
             ? state.items.map((i) =>
                 i.productId === item.productId && i.variantId === item.variantId
                   ? { ...i, quantity: i.quantity + item.quantity }
-                  : i
+                  : i,
               )
             : [...state.items, item];
 
@@ -57,7 +58,7 @@ export const useCartStore = create<CartState>()(
       removeItem: (productId, variantId) =>
         set((state) => {
           const items = state.items.filter(
-            (i) => !(i.productId === productId && i.variantId === variantId)
+            (i) => !(i.productId === productId && i.variantId === variantId),
           );
 
           return {
@@ -71,7 +72,7 @@ export const useCartStore = create<CartState>()(
           const items = state.items.map((i) =>
             i.productId === productId && i.variantId === variantId
               ? { ...i, quantity }
-              : i
+              : i,
           );
 
           return {
@@ -87,6 +88,6 @@ export const useCartStore = create<CartState>()(
     }),
     {
       name: "cart-storage",
-    }
-  )
+    },
+  ),
 );

@@ -35,7 +35,6 @@ const Wishlist = () => {
             Buy now
           </button>
         </div>
-        
       </div>
 
       {/* Products */}
@@ -55,6 +54,7 @@ const Wishlist = () => {
                 slug={item.productUrl!}
                 name={item.productName!}
                 price={item.price!}
+                discountedPrice={item.discountedPrice!}
                 imageUrl={item.productImage!}
                 shortDescHtml={""}
                 currency={item.currency}

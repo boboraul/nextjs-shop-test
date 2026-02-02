@@ -32,6 +32,15 @@ const slides = [
     url: "/",
     bg: "bg-gradient-to-r from-blue-50 to-yellow-50",
   },
+  {
+    id: 4,
+    title: "Effortless elegance",
+    description: "Curated pieces for your everyday wardrobe.",
+    img: "/slider/slide4.jpg",
+    // img: "https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?auto=compress&cs=tinysrgb&w=800",
+    url: "/",
+    bg: "bg-gradient-to-r from-yellow-50 to-blue-50",
+  },
 ];
 
 const Slider = () => {
@@ -60,11 +69,11 @@ const Slider = () => {
               <h2 className="text-xl px-2 mt-12 xl:mt-0 lg:text-3xl 2xl:text-5xl">
                 {slide.description}
               </h2>
-              <h1 className="text-3xl lg:text-6xl 2xl:text-8xl font-semibold">
+              <h1 className="text-3xl lg:text-6xl 2xl:text-7xl font-semibold">
                 {slide.title}
               </h1>
               <Link href={slide.url}>
-                <button className="uppercase rounded-md text-white bg-black px-4 py-3">
+                <button className="uppercase rounded-md ring-1 ring-black text-black hover:bg-black hover:text-white px-4 py-3">
                   Shop Now
                 </button>
               </Link>

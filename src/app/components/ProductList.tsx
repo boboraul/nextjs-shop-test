@@ -36,7 +36,7 @@ const ProductList = async ({
         : 0,
     );
   // .find();
-  // console.log(" first PRODUCT!!!!! " + res.items);
+
   const res = await productQuery.find();
 
   const items = [...res.items];
@@ -63,7 +63,7 @@ const ProductList = async ({
     }
   }
 
-  console.log("items ", items[0]);
+  console.log("items listing", items[0]);
 
   return (
     <div className="flex mt-8 gap-x-8 gap-y-16 flex-wrap justify-between">
@@ -73,8 +73,10 @@ const ProductList = async ({
             id={product._id!}
             slug={product.slug!}
             name={product.name!}
-            price={product.price?.formatted?.price}
+            price={product.price?.price!}
+            discountedPrice={product.price?.discountedPrice!}
             imageUrl={product.media?.mainMedia?.image?.url || "/product.png"}
+            currency={product.price?.currency}
             secondaryImageUrl={
               product.media?.items
                 ? product.media?.items[1]?.image?.url

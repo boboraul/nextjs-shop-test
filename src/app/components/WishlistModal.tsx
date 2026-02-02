@@ -65,9 +65,22 @@ const WishlistModal = () => {
                       </Link>
                     </div>
                     <div className="price">
-                      <span>
-                        {item.price} {item.currency}
-                      </span>
+                      {item.discountedPrice! < item.price! ? (
+                        <span>
+                          {item.discountedPrice?.toLocaleString("ro-RO", {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
+                        </span>
+                      ) : (
+                        <span>
+                          {item.price?.toLocaleString("ro-RO", {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
+                        </span>
+                      )}{" "}
+                      {item.currency}
                     </div>
                     <div className="flex justify-end text-sm mt-1">
                       <svg

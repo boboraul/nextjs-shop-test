@@ -12,6 +12,7 @@ type WishlistItem = {
   createdAt?: string;
   productUrl?: string;
   price?: number;
+  discountedPrice?: number;
   currency?: string;
 };
 

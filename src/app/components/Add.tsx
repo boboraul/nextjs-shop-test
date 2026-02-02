@@ -13,6 +13,7 @@ const Add = ({
   productImage,
   createdAt,
   price,
+  discountedPrice,
   currency,
   productUrl,
 }: {
@@ -24,6 +25,7 @@ const Add = ({
   productImage: string;
   createdAt?: string;
   price?: number;
+  discountedPrice?: number;
   currency?: string;
   productUrl?: string;
 }) => {
@@ -96,6 +98,7 @@ const Add = ({
               productImage,
               selectedVariant,
               price,
+              discountedPrice,
               currency,
               productUrl,
             })
@@ -115,6 +118,7 @@ const Add = ({
           productUrl={productUrl}
           price={price}
           currency={currency}
+          discountedPrice={discountedPrice}
         />
       </div>
     </div>

@@ -29,8 +29,8 @@ const NavIcons = () => {
       const res = await fetch("/api/auth/me");
       const data = await res.json();
 
-      console.log('data', data);
-      
+      console.log("data", data);
+
       setLoggedIn(data.loggedIn);
 
       if (data.loggedIn) {
@@ -99,21 +99,9 @@ const NavIcons = () => {
 
   const wishCounter = useWishlistStore((s) => s.items.length);
 
-  // useEffect(() => {
-  //   getCart(wixClient);
-  // }, [wixClient, getCart]);
-
   return (
-    <div className="flex item-center gap-4 xl:gap-6 relative">
+    <div className="flex item-center gap-4 xl:gap-4 relative">
       <div className="wishlist relative cursor-pointer">
-        {/* <Image
-        src="/notification.png"
-        alt=""
-        width={22}
-        height={22}
-        className="cursor-pointer"
-      /> */}
-
         <svg
           onClick={handleWishlist}
           xmlns="http://www.w3.org/2000/svg"
@@ -181,8 +169,8 @@ const NavIcons = () => {
             Hello,
             <span className="text-primary-500 truncate max-w-[80px] inline-block mx-1">
               {name}
-            </span>!
-           
+            </span>
+            !
           </small>
         )}
       </div>

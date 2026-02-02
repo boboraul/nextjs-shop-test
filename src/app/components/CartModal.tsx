@@ -12,8 +12,6 @@ const CartModal = () => {
     return sum + item.price! * item.quantity;
   }, 0);
 
-  const subtotalFormatted = subtotal.toFixed(2);
-
   const item = items[0];
 
   console.log("cart items ", item);
@@ -57,7 +55,11 @@ const CartModal = () => {
                     <div className="price whitespace-nowrap">
                       {item.quantity} x
                       <span className="font-semibold ml-1">
-                        {item.price} {item.currency}
+                        {item.price?.toLocaleString("ro-RO", {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}{" "}
+                        {item.currency}
                       </span>
                     </div>
 
@@ -113,12 +115,15 @@ const CartModal = () => {
             ))}
           </div>
           {/* Bottom Cart */}
-          <div className="bottom-cart items-center font-semibold flex justify-between border-t mt-3 pt-2">
+          <div className="bottom-cart items-center font-semibold flex justify-between border-t mt-3 pt-3">
             <span>Subtotal:</span>
             <span>
-              {subtotalFormatted} {items[0].currency}
+              {subtotal.toLocaleString("ro-RO", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}{" "}
+              {items[0].currency!}
             </span>
-            {/* <span>{items?.subtotal?.formattedAmount}</span> */}
           </div>
 
           <div className="flex justify-center mt-3 pt-3 border-t">

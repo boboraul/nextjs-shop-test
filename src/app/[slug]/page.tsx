@@ -33,7 +33,7 @@ export default async function Page({
       ? product.price?.discountedPrice
       : product.price?.discountedPrice;
 
-  const currency =
+  const gCurrency =
     product.price?.currency == "RON" ? "Lei" : product.price?.currency;
 
   return (
@@ -48,15 +48,18 @@ export default async function Page({
         <div className="price-box">
           {product.price?.price === product.price?.discountedPrice ? (
             <h2 className="text-2xl text-primary-500 font-medium">
-              {product.price?.discountedPrice} {currency}
+              {product.price?.formatted?.discountedPrice?.replace("lei", " ")}
+              {gCurrency}
             </h2>
           ) : (
             <div className="flex items-center gap-4">
               <h3 className="text-xl text-gray-500 line-through">
-                {product.price?.price} {currency}
+                {product.price?.formatted?.price?.replace("lei", " ")}
+                {gCurrency}
               </h3>
               <h2 className="font-medium text-2xl text-primary-500">
-                {product.price?.discountedPrice} {currency}
+                {product.price?.formatted?.discountedPrice?.replace("lei", " ")}
+                {gCurrency}
               </h2>
             </div>
           )}
@@ -69,8 +72,9 @@ export default async function Page({
             productOptions={product.productOptions}
             productName={product.name!}
             productImage={product.media?.mainMedia?.image?.url!}
-            price={price}
-            currency={currency}
+            price={product.price?.price!}
+            discountedPrice={product.price?.discountedPrice!}
+            currency={gCurrency}
             productUrl={product.slug}
           />
         ) : (
@@ -80,8 +84,13 @@ export default async function Page({
             stockNumber={product.stock?.quantity || 0}
             productName={product.name!}
             productImage={product.media?.mainMedia?.image?.url!}
-            price={price}
-            currency={currency}
+            price={
+              product.price?.price! > product.price?.discountedPrice!
+                ? product.price?.discountedPrice!
+                : product.price?.price!
+            }
+            discountedPrice={product.price?.discountedPrice!}
+            currency={gCurrency}
             productUrl={product.slug}
           />
         )}

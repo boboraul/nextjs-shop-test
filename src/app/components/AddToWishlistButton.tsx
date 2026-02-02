@@ -11,6 +11,7 @@ type AddToWishlistButtonProps = {
   createdAt?: string;
   productUrl?: string;
   price?: number;
+  discountedPrice?: number;
   currency?: string;
   size?: "sm" | "md"; // wishlist heart icon size
 };
@@ -21,6 +22,7 @@ const AddToWishlistButton = ({
   productImage,
   productUrl,
   price,
+  discountedPrice,
   currency,
   size = "md", // default
 }: AddToWishlistButtonProps) => {
@@ -55,6 +57,7 @@ const AddToWishlistButton = ({
         createdAt: new Date().toISOString(),
         productUrl,
         price,
+        discountedPrice,
         currency,
       });
       console.log("✅ You have successfully added to Wishlist!");
