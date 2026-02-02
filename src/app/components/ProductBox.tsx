@@ -89,7 +89,7 @@ export default function ProductBox({
                 {discountedPrice} {gCurrency}
               </h5>
             ) : (
-              <div className="flex items-center gap-2">
+              <div className="gap-2">
                 <small className="text-gray-500 line-through">
                   {price} {gCurrency}
                 </small>
