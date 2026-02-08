@@ -41,9 +41,9 @@ const Wishlist = () => {
       <div className="flex mt-8 gap-x-8 gap-y-16 flex-wrap justify-between">
         {isLoading ? (
           "Loading..."
-        ) : items.length < 1 ? (
-          <div className="empty text-center pt-2">
-            <span>Wishlist is empty</span>
+        ) : items.length == 0 ? (
+          <div className="empty text-center mt-20 w-full">
+            <span className="text-xl font-semibold">Wishlist is empty</span>
           </div>
         ) : (
           <>
