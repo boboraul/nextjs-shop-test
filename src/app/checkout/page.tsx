@@ -184,15 +184,22 @@ const Checkout = () => {
                 ))}
               </div>
 
-              <div className="mt-8 h-px w-full bg-slate-200/70" />
+              <div className="mt-8 h-px w-full bg-slate-200/70 flex items-center" />
 
-              <button
-                type="button"
-                className="mt-8 flex w-full items-center justify-center ring-1 ring-primary-500 rounded-full py-2 text-sm text-primary-500"
-              >
-                Add Coupon Code
-                <span className="ml-2 text-base">→</span>
-              </button>
+              <div className="coupon-code flex items-center w-full justify-center mt-4">
+                <input
+                  type="text"
+                  placeholder="Your code"
+                  className="rounded-2xl w-1/2 rounded-r-none rounded-2xl border border-primary-500 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                />
+                <button
+                  type="button"
+                  className="flex items-center w-1/2 rounded-2xl text-xs py-2 h-[38px] hover:opacity-80 rounded-l-none justify-center text-white bg-primary-500 right-0 py-2 px-3"
+                >
+                  Add Coupon Code
+                  <span className="ml-2">→</span>
+                </button>
+              </div>
             </div>
 
             {/* RIGHT: Shopping Cart / Form */}
@@ -231,25 +238,75 @@ const Checkout = () => {
               {/* form */}
               <div className="mt-6 space-y-4">
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
+                  <div className="firstname">
+                    <label className="mb-2 block text-xs font-semibold text-slate-600">
+                      FIrst Name
+                    </label>
+                    <div className="relative">
+                      <input
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                        placeholder="FIrst Name"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="name">
+                    <label className="mb-2 block text-xs font-semibold text-slate-600">
+                      Name
+                    </label>
+                    <div className="relative">
+                      <input
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                        placeholder="Name"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="phone">
+                    <label className="mb-2 block text-xs font-semibold text-slate-600">
+                      Phone
+                    </label>
+                    <div className="relative">
+                      <input
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                        placeholder="Phone"
+                        type="number"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="email">
+                    <label className="mb-2 block text-xs font-semibold text-slate-600">
+                      Email
+                    </label>
+                    <div className="relative">
+                      <input
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                        placeholder="Email"
+                        type="email"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="city">
                     <label className="mb-2 block text-xs font-semibold text-slate-600">
                       City
                     </label>
                     <div className="relative">
                       <input
-                        className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
                         placeholder="Bucharest"
                       />
                     </div>
                   </div>
 
-                  <div>
+                  <div className="country">
                     <label className="mb-2 block text-xs font-semibold text-slate-600">
                       Country
                     </label>
                     <div className="relative">
                       <input
-                        className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
                         placeholder="Romania"
                       />
                     </div>
@@ -261,7 +318,7 @@ const Checkout = () => {
                     Address
                   </label>
                   <input
-                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
                     placeholder="Alpha Plus, Near Rajya Telephone exchange."
                   />
                 </div>
@@ -272,14 +329,14 @@ const Checkout = () => {
                   </h3>
 
                   <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
-                    <label className="flex cursor-pointer items-center gap-3 px-4 py-3 text-sm text-slate-700 hover:bg-slate-50">
+                    <label className="flex cursor-pointer items-center gap-3 px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">
                       <input type="radio" name="pay" className="h-4 w-4" />
                       Payment Delivery
                     </label>
 
                     <div className="h-px bg-slate-200/70" />
 
-                    <label className="flex cursor-pointer items-center gap-3 px-4 py-3 text-sm text-slate-700 hover:bg-slate-50">
+                    <label className="flex cursor-pointer items-center gap-3 px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">
                       <input
                         type="radio"
                         name="pay"
@@ -293,7 +350,7 @@ const Checkout = () => {
 
                     <button
                       type="button"
-                      className="flex w-full items-center gap-2 px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                      className="flex w-full items-center gap-3 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
                     >
                       <span className="text-base">＋</span> Add Credit Card
                     </button>
@@ -304,15 +361,15 @@ const Checkout = () => {
                   <label className="mb-2 block text-xs font-semibold text-slate-600">
                     Phone Number
                   </label>
-                  <div className="flex overflow-hidden rounded-xl border border-slate-200 bg-white">
-                    <div className="flex items-center gap-2 border-r border-slate-200 px-3 text-sm text-slate-600">
+                  <div className="flex overflow-hidden rounded-2xl border border-slate-200 bg-white">
+                    <div className="flex items-center gap-3 border-r border-slate-200 px-3 text-sm text-slate-600">
                       <span className="rounded-md bg-slate-100 px-2 py-1 text-xs font-semibold">
                         IN
                       </span>
                       <span className="text-slate-400">▾</span>
                     </div>
                     <input
-                      className="w-full px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                      className="w-full px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
                       placeholder="+91 000 000 0000"
                     />
                   </div>
@@ -325,7 +382,7 @@ const Checkout = () => {
                     </label>
                     <div className="relative">
                       <input
-                        className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
                         placeholder="Dec, 2025"
                       />
                       <span className="pointer-events-none absolute inset-y-0 right-3 grid place-items-center text-slate-400">
@@ -339,7 +396,7 @@ const Checkout = () => {
                       CVV
                     </label>
                     <input
-                      className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                      className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
                       placeholder="Rajkot"
                     />
                   </div>
@@ -349,7 +406,7 @@ const Checkout = () => {
                 <div className="mt-8 ">
                   <button
                     type="button"
-                    className="w-full rounded-full bg-primary-500 text-[18px] py-2 text-white"
+                    className="w-full hover:opacity-80 rounded-full bg-primary-500 text-[18px] py-2 text-white"
                   >
                     Place Order
                   </button>

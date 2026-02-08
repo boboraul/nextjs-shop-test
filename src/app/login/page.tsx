@@ -114,13 +114,13 @@ const LoginPage = () => {
           <button
             disabled={isLoading}
             onClick={handleLogOut}
-            className="bg-primary-500 mt-4 w-full text-white rounded-md p-1 disabled:bg-gray-300 disabled:cursor:not-allowed"
+            className="bg-primary-500 mt-2 w-full text-white rounded-2xl p-1 disabled:bg-gray-300 disabled:cursor:not-allowed"
           >
             Log out
           </button>
         </div>
       ) : (
-        <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
           <h1 className="font-bold text-primary-500 text-xl">
             {formTitle ? formTitle : "Form Title"}
           </h1>
@@ -135,7 +135,7 @@ const LoginPage = () => {
                 type="text"
                 name="namel"
                 placeholder="John Doe"
-                className="ring-2 ring-gray-300 rounded-md p-2"
+                className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
               />
             </div>
           )}
@@ -149,7 +149,7 @@ const LoginPage = () => {
               type="email"
               name="email"
               placeholder="billy@gmail.com"
-              className="ring-2 ring-gray-300 rounded-md p-2"
+              className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
             />
           </div>
 
@@ -162,13 +162,13 @@ const LoginPage = () => {
               type="password"
               name="password"
               placeholder="password"
-              className="ring-2 ring-gray-300 rounded-md p-2"
+              className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
             />
           </div>
 
           <button
             disabled={isLoading}
-            className="bg-primary-500 mt-4 text-white rounded-md p-1 disabled:bg-gray-300 disabled:cursor:not-allowed"
+            className="bg-primary-500 mt-2 text-white rounded-2xl p-2 disabled:bg-gray-300 disabled:cursor:not-allowed"
           >
             {btnTitle}
           </button>
