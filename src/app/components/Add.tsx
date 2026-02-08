@@ -101,6 +101,7 @@ const Add = ({
               discountedPrice,
               currency,
               productUrl,
+              stockNumber,
             })
           }
           disabled={disabled}

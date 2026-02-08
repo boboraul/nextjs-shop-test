@@ -2,7 +2,7 @@
 
 // import React, { Suspense } from "react";
 import Image from "next/image";
-import { media as wixMedia } from "@wix/sdk";
+// import { media as wixMedia } from "@wix/sdk";
 import { useWishlistStore } from "../hooks/useWishlistStore";
 // import Link from "next/link";
 // import { useWixClient } from "../hooks/useWixClient";
@@ -20,7 +20,7 @@ const Wishlist = () => {
       <div className="bg-gradient-primary-500-l pr-4 flex flex-col lg:flex-row justify-between h-96 lg:h-64">
         <div className="relative w-full h-64 lg:h-full lg:w-1/3">
           <Image
-            src="/wishlist-woman.png"
+            src="/wishlist-woman.svg"
             alt="wishlist"
             fill
             className="object-contain"

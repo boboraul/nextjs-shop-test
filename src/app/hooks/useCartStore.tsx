@@ -12,6 +12,7 @@ export type CartItem = {
   currency?: string;
   selectedVariant?: Record<string, string>;
   productUrl?: string;
+  stockNumber?: number;
 };
 
 type CartState = {

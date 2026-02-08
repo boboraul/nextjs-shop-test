@@ -4,20 +4,39 @@ import Image from "next/image";
 import { useCartStore } from "../hooks/useCartStore";
 import { media as wixMedia } from "@wix/sdk";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const CartModal = () => {
-  const { items, removeItem } = useCartStore();
+  const { items, removeItem, updateQuantity } = useCartStore();
+  const router = useRouter();
 
+  const handleCheckout = () => {
+    router.push("/checkout");
+  };
+
+  const handleQuantity = (
+    type: "i" | "d",
+    productId: string,
+    variantId: string | undefined,
+    stockNumber: number | undefined,
+    currentQty: number,
+  ) => {
+    const limit = typeof stockNumber === "number" ? stockNumber : Infinity;
+    const next =
+      type === "d"
+        ? Math.max(1, currentQty - 1)
+        : Math.min(limit, currentQty + 1);
+
+    if (next !== currentQty) updateQuantity(productId, next, variantId);
+  };
+
+  //Header cart total
   const subtotal = items.reduce((sum, item) => {
     return sum + item.price! * item.quantity;
   }, 0);
 
-  const item = items[0];
-
-  console.log("cart items ", item);
-
   return (
-    <div className="absolute bg-white min-w-[250px] border-t cursor-default rounded-md right-0 shadow-md p-3 top-6 text-sm z-20">
+    <div className="absolute bg-white min-w-[320px] border-t cursor-default rounded-md right-0 shadow-md p-3 top-6 text-sm z-20">
       <h4 className="text-sm pb-2 border-b">Shopping Cart</h4>
       {items.length == 0 ? (
         <div className="empty text-center pb-2 pt-3">
@@ -36,8 +55,8 @@ const CartModal = () => {
                   <Link href={`/${item.productUrl!}`}>
                     <Image
                       alt={item.productName ?? "Product image"}
-                      width={80}
-                      height={100}
+                      width={90}
+                      height={110}
                       src={wixMedia.getScaledToFillImageUrl(
                         item.productImage,
                         72,
@@ -52,7 +71,7 @@ const CartModal = () => {
                   {/* Top */}
                   <div className="top-cart">
                     {/* Price */}
-                    <div className="price whitespace-nowrap">
+                    <div className="price whitespace-nowrap text-[12px]">
                       {item.quantity} x
                       <span className="font-semibold ml-1">
                         {item.price?.toLocaleString("ro-RO", {
@@ -66,21 +85,21 @@ const CartModal = () => {
                     {/* Title */}
                     <div className="flex items-center justify-between gap-8">
                       <Link href={`/${item.productUrl!}`}>
-                        <h3 className="name font-semibold">
+                        <h3 className="name font-semibold text-[12px]">
                           {item.productName}
                         </h3>
                       </Link>
                     </div>
                   </div>
                   {/* Bottom */}
-                  <div className="flex justify-between text-sm">
-                    <div className="info flex">
+                  <div className="flex justify-between items-center">
+                    <div className="info flex items-center">
                       <span className="variant text-gray-500">
                         {item?.selectedVariant &&
                           Object.entries(item.selectedVariant).map(
                             ([key, value]) => (
                               <p
-                                className="leading-tight mb-0 text-[8px]"
+                                className="leading-tight mb-0 text-[10px]"
                                 key={key}
                               >
                                 {value}
@@ -89,9 +108,39 @@ const CartModal = () => {
                           )}
                       </span>
 
-                      <span className="gty text-gray-500 text-xs ml-2">
-                        Qty. {item.quantity}
-                      </span>
+                      <div className="bg-white ring-1 ring-gray-200 text-[12px] w-[85px] rounded-3xl flex items-center justify-between ml-4">
+                        <button
+                          className="cursor-pointer py-1 px-3 text-sm"
+                          onClick={() =>
+                            handleQuantity(
+                              "d",
+                              item.productId,
+                              item.variantId,
+                              item.stockNumber,
+                              item.quantity,
+                            )
+                          }
+                        >
+                          -
+                        </button>
+
+                        <span>{item.quantity}</span>
+
+                        <button
+                          className="cursor-pointer py-1 px-3 text-sm"
+                          onClick={() =>
+                            handleQuantity(
+                              "i",
+                              item.productId,
+                              item.variantId,
+                              item.stockNumber,
+                              item.quantity,
+                            )
+                          }
+                        >
+                          +
+                        </button>
+                      </div>
                     </div>
 
                     <svg
@@ -127,7 +176,10 @@ const CartModal = () => {
           </div>
 
           <div className="flex justify-center mt-3 pt-3 border-t">
-            <button className="rounded-2xl ring-1 ring-primary-500 text-primary-500 px-4 py-1 text-xs hover:bg-primary-500 hover:text-white easy duration-200">
+            <button
+              className="rounded-2xl ring-1 ring-primary-500 text-primary-500 px-4 py-1 text-xs hover:bg-primary-500 hover:text-white easy duration-200"
+              onClick={handleCheckout}
+            >
               To Checkout
             </button>
           </div>
