@@ -12,13 +12,17 @@ export default function SafeHtml({ html }: SafeHtmlProps) {
 
   useEffect(() => {
     if (html) {
-      setCleanHtml(DOMPurify.sanitize(html));
+      setCleanHtml(
+        DOMPurify.sanitize(html, {
+          FORBID_TAGS: ["p"],
+        }),
+      );
     }
   }, [html]);
 
   return (
     <div
-      className="text-sm h-4 text-gray-500 mt-2"
+      className="short-description inline-block text-sm h-6 text-gray-500 whitespace-nowrap w-[100%] overflow-hidden text-ellipsis"
       dangerouslySetInnerHTML={{ __html: cleanHtml }}
     />
   );

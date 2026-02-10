@@ -33,7 +33,7 @@ export default function ProductBox({
   const gCurrency = currency == "RON" ? "Lei" : currency;
 
   return (
-    <div className="product-box relative w-full flex-col gap-10 sm:w-[40%] lg:w-[22%]">
+    <div className="product-box relative w-full gap-10 sm:w-[40%] lg:w-[22%]">
       <div className="wishlist-btn absolute top-2 right-2 z-20">
         <AddToWishlistButton
           productId={id}
