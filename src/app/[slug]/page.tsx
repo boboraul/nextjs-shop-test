@@ -6,8 +6,6 @@ import CustomizeProducts from "../components/CustomizeProducts";
 import Add from "../components/Add";
 import { wixClientServer } from "../lib/wixClientServer";
 
-// export const dynamic = "force-dynamic";
-
 export default async function Page({
   params,
 }: {
@@ -28,17 +26,21 @@ export default async function Page({
 
   const product = products.items[0];
 
-  const price =
-    product.price?.price === product.price?.discountedPrice
-      ? product.price?.discountedPrice
-      : product.price?.discountedPrice;
-
+  const discountPercent =
+    product.discount?.type === "PERCENT" ? product.discount.value! : null;
   const gCurrency =
     product.price?.currency == "RON" ? "Lei" : product.price?.currency;
 
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] relative flex flex-col lg:flex-row gap-16 mt-12">
-      <div className="w-full lg:w-1/2 lg:sticky top-20 h-max">
+      <div className="w-full lg:w-1/2 top-20 h-max relative">
+        {discountPercent && (
+          <div className="promo-badge bg-danger-500 w-[70px] flex rotate-[9deg] items-center px-2 opacity-80 rounded-tr-3xl leading-[26px] justify-center rounded-bl-3xl left-0 text-white absolute text-[20px] z-[999]">
+            <span className="text-white absolute top-[-15px] left-px">.</span>
+            {discountPercent}%
+          </div>
+        )}
+
         <ProductImages items={product.media?.items} />
       </div>
 
@@ -76,6 +78,7 @@ export default async function Page({
             discountedPrice={product.price?.discountedPrice!}
             currency={gCurrency}
             productUrl={product.slug}
+            discountPercent={discountPercent}
           />
         ) : (
           <Add
@@ -92,6 +95,7 @@ export default async function Page({
             discountedPrice={product.price?.discountedPrice!}
             currency={gCurrency}
             productUrl={product.slug}
+            discountPercent={discountPercent}
           />
         )}
       </div>

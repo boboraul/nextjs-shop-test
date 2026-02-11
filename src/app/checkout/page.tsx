@@ -26,6 +26,10 @@ const Checkout = () => {
     if (next !== currentQty) updateQuantity(productId, next, variantId);
   };
 
+  const subtotal = items.reduce((sum, item) => {
+    return sum + item.price! * item.quantity;
+  }, 0);
+
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] relative mt-4">
       {/* Checkout Banner */}
@@ -74,7 +78,7 @@ const Checkout = () => {
                 {items.map((item) => (
                   <div
                     key={`${item.productId}-${item.variantId ?? "default"}`}
-                    className="flex gap-4 odd:bg-gray-100 even:bg-white p-4"
+                    className="flex gap-4 odd:bg-gray-100 py-5 px-4"
                   >
                     <div className="h-20 w-20 shrink-0 overflow-hidden rounded-2xl">
                       {item.productImage && (
@@ -96,10 +100,10 @@ const Checkout = () => {
                     </div>
 
                     <div className="flex flex-1 items-center justify-between gap-4">
-                      <div className="min-w-0">
+                      <div className="w-[250px]">
                         <div className="gap-3">
-                          <p className="truncate text-sm font-semibold text-slate-900">
-                            {item.productName}:
+                          <p className="text-wrap text-sm font-semibold text-slate-900">
+                            {item.productName}
                           </p>
                           <p className="text-sm font-semibold text-primary-500">
                             {item.price?.toLocaleString("ro-RO", {
@@ -128,7 +132,7 @@ const Checkout = () => {
                       </div>
 
                       {/* qty */}
-                      <div className="bg-white ring-1 ring-gray-200 text-[12px] w-[85px] rounded-3xl flex items-center justify-between ml-4">
+                      <div className="bg-white ring-1 relative ring-gray-200 text-[12px] w-[85px] rounded-3xl flex items-center justify-between ml-4">
                         <button
                           className="cursor-pointer py-1 px-3 text-sm"
                           onClick={() =>
@@ -160,6 +164,12 @@ const Checkout = () => {
                         >
                           +
                         </button>
+
+                        {item.quantity == item.stockNumber && (
+                          <div className="stockinfo absolute w-full top-[-40px] text-center text-danger-500 text-[11px]">
+                            You can order max {item.stockNumber} items
+                          </div>
+                        )}
                       </div>
 
                       <svg
@@ -205,8 +215,22 @@ const Checkout = () => {
             {/* RIGHT: Shopping Cart / Form */}
             <div className="right-column">
               <div className="flex items-baseline justify-between">
-                <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
-                  Shopping Cart
+                <h2 className="text-2xl font-semibold flex items-center gap-2 text-slate-900">
+                  Checkout{" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    className="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"
+                    />
+                  </svg>
                 </h2>
               </div>
 
@@ -223,14 +247,12 @@ const Checkout = () => {
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-slate-500">Delivery:</span>
-                    <span className="font-semibold text-slate-900">$0</span>
+                    <span className="font-semibold">$0</span>
                   </div>
                   <div className="my-3 h-px bg-slate-200/70" />
                   <div className="flex items-center justify-between">
                     <span className="text-slate-500">Total:</span>
-                    <span className="text-base font-semibold text-slate-900">
-                      $360.00
-                    </span>
+                    <span className="text-base font-bold">$360.00</span>
                   </div>
                 </div>
               </div>

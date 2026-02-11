@@ -83,6 +83,11 @@ const ProductList = async ({
                 : "/product.png"
             }
             shortDescHtml={product.additionalInfoSections}
+            discountPercent={
+              product.discount?.type === "PERCENT"
+                ? product.discount.value
+                : null
+            }
           />
         </React.Fragment>
       ))}

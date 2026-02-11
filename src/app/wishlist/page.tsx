@@ -12,7 +12,7 @@ import ProductBox from "../components/ProductBox";
 const Wishlist = () => {
   const { isLoading, items } = useWishlistStore();
 
-  console.log("wish items ", items);
+  console.log("wishlist items ", items);
 
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] relative mt-4">
@@ -58,6 +58,7 @@ const Wishlist = () => {
                 imageUrl={item.productImage!}
                 shortDescHtml={""}
                 currency={item.currency}
+                discountPercent={item.discountPercent}
               />
             ))}
           </>

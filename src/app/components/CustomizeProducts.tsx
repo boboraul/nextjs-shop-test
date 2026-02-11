@@ -14,6 +14,7 @@ const CustomizeProducts = ({
   currency,
   productUrl,
   discountedPrice,
+  discountPercent,
 }: {
   productId: string;
   productName: string;
@@ -24,6 +25,7 @@ const CustomizeProducts = ({
   currency?: string;
   productUrl?: string;
   discountedPrice?: number;
+  discountPercent?: number | null;
 }) => {
   const [selectedOptions, setSelectedOptions] = useState<{
     [key: string]: string;
@@ -135,6 +137,7 @@ const CustomizeProducts = ({
         currency={currency}
         productUrl={productUrl}
         discountedPrice={discountedPrice}
+        discountPercent={discountPercent}
       />
     </div>
   );

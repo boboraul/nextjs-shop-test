@@ -14,6 +14,7 @@ type WishlistItem = {
   price?: number;
   discountedPrice?: number;
   currency?: string;
+  discountPercent?: number | null;
 };
 
 const wishlistId = "jdo2u3dohad8yt12dghqasdau";

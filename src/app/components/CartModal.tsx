@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const CartModal = () => {
-  const { items, removeItem, updateQuantity } = useCartStore();
+  const { items, removeItem, updateQuantity, counter } = useCartStore();
   const router = useRouter();
 
   const handleCheckout = () => {
@@ -37,7 +37,12 @@ const CartModal = () => {
 
   return (
     <div className="absolute bg-white min-w-[320px] border-t cursor-default rounded-md right-0 shadow-md p-3 top-6 text-sm z-20">
-      <h4 className="text-sm pb-2 border-b">Shopping Cart</h4>
+      <div className="cart-header flex border-b pb-2 justify-between items-center">
+        <h4 className="text-sm">Shopping Cart</h4>
+        <span className="text-primary-500 text-xs">
+          {counter} {counter > 1 ? "items" : "item"}
+        </span>
+      </div>
       {items.length == 0 ? (
         <div className="empty text-center pb-2 pt-3">
           <span>Cart is empty</span>

@@ -16,6 +16,7 @@ const Add = ({
   discountedPrice,
   currency,
   productUrl,
+  discountPercent,
 }: {
   productId: string;
   variantId: string;
@@ -28,6 +29,7 @@ const Add = ({
   discountedPrice?: number;
   currency?: string;
   productUrl?: string;
+  discountPercent?: number | null;
 }) => {
   const [quantity, setQuantity] = useState(1);
 

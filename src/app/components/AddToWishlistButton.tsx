@@ -14,6 +14,7 @@ type AddToWishlistButtonProps = {
   discountedPrice?: number;
   currency?: string;
   size?: "sm" | "md"; // wishlist heart icon size
+  discountPercent?: number | null;
 };
 
 const AddToWishlistButton = ({
@@ -25,6 +26,7 @@ const AddToWishlistButton = ({
   discountedPrice,
   currency,
   size = "md", // default
+  discountPercent,
 }: AddToWishlistButtonProps) => {
   const wixClient = useWixClient();
   const { addItem, removeItem, items } = useWishlistStore();
@@ -59,6 +61,7 @@ const AddToWishlistButton = ({
         price,
         discountedPrice,
         currency,
+        discountPercent,
       });
       console.log("✅ You have successfully added to Wishlist!");
     } catch (error) {
