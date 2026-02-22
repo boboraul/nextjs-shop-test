@@ -17,7 +17,7 @@ type WishlistItem = {
   discountPercent?: number | null;
 };
 
-const wishlistId = "jdo2u3dohad8yt12dghqasdau";
+const wishlistId = process.env.WIX_WISHLIST_COLLECTION_ID!;
 
 type WishlistStore = {
   items: WishlistItem[];

@@ -9,7 +9,7 @@ const Filter = () => {
   const { replace } = useRouter();
 
   const handleFilterChange = (
-    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
+    e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>,
   ) => {
     const { name, value } = e.target;
     const params = new URLSearchParams(searchParams);
@@ -38,7 +38,7 @@ const Filter = () => {
           <button
             type="button"
             onClick={clearFilters}
-            className="rounded-2xl ring-1 ring-primary-500 bg-primary-500 text-white px-4 py-2 text-xs hover:bg-white hover:text-primary-500 easy duration-200"
+            className="py-2 px-4 rounded-2xl border border-slate-200 bg-gray-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
           >
             Clear Filters
           </button>
@@ -48,7 +48,7 @@ const Filter = () => {
       <div className="flex justify-between flex-wrap gap-2 mt-4">
         <div className="flex gap-2 flex-wrap">
           <select
-            className="py-2 px-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-500 rounded-2xl text-xs font-medium bg-gray-200"
+            className="rounded-2xl border border-slate-200 bg-gray-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
             name="type"
             id=""
             onChange={handleFilterChange}
@@ -61,7 +61,7 @@ const Filter = () => {
             type="number"
             name="min"
             placeholder="min price"
-            className="text-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-500 rounded-2xl px-2 w-24 ring-1 ring-gray-300"
+            className="text-xs rounded-2xl w-24 border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
             onChange={handleFilterChange}
           />
 
@@ -69,7 +69,7 @@ const Filter = () => {
             type="number"
             name="max"
             placeholder="max price"
-            className="text-xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-500 rounded-2xl px-2 w-24 ring-1 ring-gray-300"
+            className="text-xs rounded-2xl w-24 border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
             onChange={handleFilterChange}
           />
           {/* <select
@@ -97,7 +97,7 @@ const Filter = () => {
           </select> */}
 
           <select
-            className="py-2 px-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-500 rounded-2xl text-xs font-medium bg-gray-200"
+            className="rounded-2xl border border-slate-200 bg-gray-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
             name="cat"
             id=""
             onChange={handleFilterChange}
@@ -119,7 +119,7 @@ const Filter = () => {
         </div>
 
         <select
-          className="py-2 px-4 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-500 rounded-2xl text-xs font-medium bg-gray-200"
+          className="py-2 px-4 rounded-2xl border border-slate-200 bg-gray-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
           name="sort"
           id=""
           onChange={handleFilterChange}

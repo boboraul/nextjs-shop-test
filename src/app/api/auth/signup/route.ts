@@ -4,8 +4,6 @@ import bcrypt from "bcryptjs";
 import { wixContactsClient } from "../../../lib/wixContactsClient";
 import { wixDataClient } from "../../../lib/wixDataClient";
 
-export const runtime = "nodejs";
-
 export async function POST(req: Request) {
   const { name, email, password } = await req.json();
 
@@ -14,6 +12,8 @@ export async function POST(req: Request) {
   }
 
   const required = ["WIX_API_KEY", "WIX_SITE_ID", "WIX_USERS_COLLECTION_ID"];
+  const usersCollectionId = process.env.WIX_USERS_COLLECTION_ID!;
+
   const missing = required.filter((k) => !process.env[k]);
 
   if (missing.length) {
@@ -22,8 +22,6 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-
-  const usersCollectionId = process.env.WIX_USERS_COLLECTION_ID!;
 
   // verifica daca exista deja user cu email
   const existing = await wixDataClient.data.items

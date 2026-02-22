@@ -13,6 +13,15 @@ export const metadata: Metadata = {
   title: "e-Shop Dev E-Commerce Next.js Application",
   description:
     "A complete e-commerce application with Next.js, Tailwind and Wix Headless",
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+    },
+  },
 };
 
 export default function RootLayout({

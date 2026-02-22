@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 enum MODE {
   LOGIN = "LOGIN",
   REGISTER = "REGISTER",
-  RESET_PASSWORD = "RESET_PASSWORD",
-  EMAIL_VERIFICATION = "EMAIL_VERIFICATION",
+  // RESET_PASSWORD = "RESET_PASSWORD",
+  // EMAIL_VERIFICATION = "EMAIL_VERIFICATION",
 }
 
 const LoginPage = () => {
@@ -80,7 +80,6 @@ const LoginPage = () => {
       router.replace("/");
       router.refresh();
     } catch (err) {
-      console.log(err);
       setError("Something went wrong");
     } finally {
       setIsLoading(false);

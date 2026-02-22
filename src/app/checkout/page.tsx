@@ -9,6 +9,7 @@ import Link from "next/link";
 
 const Checkout = () => {
   const { items, removeItem, updateQuantity, counter } = useCartStore();
+  const deliveryCost = 25;
 
   const handleQuantity = (
     type: "i" | "d",
@@ -60,7 +61,7 @@ const Checkout = () => {
         </div>
       ) : (
         <>
-          <div className="grid gap-8 lg:grid-cols-2 py-10">
+          <form className="grid gap-8 lg:grid-cols-2 py-10">
             {/* LEFT: Order Summary */}
             <div className="left-column">
               <div className="flex items-baseline justify-between">
@@ -78,8 +79,13 @@ const Checkout = () => {
                 {items.map((item) => (
                   <div
                     key={`${item.productId}-${item.variantId ?? "default"}`}
-                    className="flex gap-4 odd:bg-gray-100 py-5 px-4"
+                    className="flex gap-4 odd:bg-gray-100 py-5 px-4 relative"
                   >
+                    {item.quantity == item.stockNumber && (
+                      <div className="stockinfo absolute top-2 right-2 text-center text-danger-500 text-[11px]">
+                        You can order max {item.stockNumber} items
+                      </div>
+                    )}
                     <div className="h-20 w-20 shrink-0 overflow-hidden rounded-2xl">
                       {item.productImage && (
                         <Link href={`/${item.productUrl!}`}>
@@ -100,7 +106,7 @@ const Checkout = () => {
                     </div>
 
                     <div className="flex flex-1 items-center justify-between gap-4">
-                      <div className="w-[250px]">
+                      <div className="w-full">
                         <div className="gap-3">
                           <p className="text-wrap text-sm font-semibold text-slate-900">
                             {item.productName}
@@ -114,7 +120,7 @@ const Checkout = () => {
                           </p>
                         </div>
 
-                        <div className="mt-2 space-y-1 text-sm text-slate-500">
+                        <div className="space-y-1 text-sm text-slate-500">
                           <span className="variant text-gray-500">
                             {item?.selectedVariant &&
                               Object.entries(item.selectedVariant).map(
@@ -132,8 +138,9 @@ const Checkout = () => {
                       </div>
 
                       {/* qty */}
-                      <div className="bg-white ring-1 relative ring-gray-200 text-[12px] w-[85px] rounded-3xl flex items-center justify-between ml-4">
+                      <div className="bg-white ring-1 ring-gray-200 text-[12px] w-[125px] rounded-3xl flex items-center justify-between ml-4">
                         <button
+                          type="button"
                           className="cursor-pointer py-1 px-3 text-sm"
                           onClick={() =>
                             handleQuantity(
@@ -151,6 +158,7 @@ const Checkout = () => {
                         <span>{item.quantity}</span>
 
                         <button
+                          type="button"
                           className="cursor-pointer py-1 px-3 text-sm"
                           onClick={() =>
                             handleQuantity(
@@ -164,12 +172,6 @@ const Checkout = () => {
                         >
                           +
                         </button>
-
-                        {item.quantity == item.stockNumber && (
-                          <div className="stockinfo absolute w-full top-[-40px] text-center text-danger-500 text-[11px]">
-                            You can order max {item.stockNumber} items
-                          </div>
-                        )}
                       </div>
 
                       <svg
@@ -178,7 +180,7 @@ const Checkout = () => {
                         viewBox="0 0 24 24"
                         strokeWidth="1.5"
                         stroke="currentColor"
-                        className="w-4 h-4 text-red-400 cursor-pointer"
+                        className="w-6 h-6 text-red-400 cursor-pointer"
                         onClick={() =>
                           removeItem(item.productId, item.variantId)
                         }
@@ -221,13 +223,13 @@ const Checkout = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke-width="1.5"
+                    strokeWidth="1.5"
                     stroke="currentColor"
                     className="size-6"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"
                     />
                   </svg>
@@ -242,17 +244,33 @@ const Checkout = () => {
                   <div className="flex items-center justify-between">
                     <span className="text-slate-500">Subtotal:</span>
                     <span className="font-semibold text-slate-900">
-                      $360.00
+                      {subtotal.toLocaleString("ro-RO", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}{" "}
+                      {items[0].currency!}
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-slate-500">Delivery:</span>
-                    <span className="font-semibold">$0</span>
+                    <span className="font-semibold">
+                      {deliveryCost.toLocaleString("ro-RO", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}{" "}
+                      {items[0].currency!}
+                    </span>
                   </div>
                   <div className="my-3 h-px bg-slate-200/70" />
                   <div className="flex items-center justify-between">
                     <span className="text-slate-500">Total:</span>
-                    <span className="text-base font-bold">$360.00</span>
+                    <span className="text-base font-bold">
+                      {(subtotal + deliveryCost).toLocaleString("ro-RO", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}{" "}
+                      {items[0].currency!}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -272,7 +290,7 @@ const Checkout = () => {
                     </div>
                   </div>
 
-                  <div className="name">
+                  <div className="lastname">
                     <label className="mb-2 block text-xs font-semibold text-slate-600">
                       Name
                     </label>
@@ -333,6 +351,16 @@ const Checkout = () => {
                       />
                     </div>
                   </div>
+
+                  <div className="zip">
+                    <label className="mb-2 block text-xs font-semibold text-slate-600">
+                      Zip Code
+                    </label>
+                    <input
+                      className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                      placeholder="008462"
+                    />
+                  </div>
                 </div>
 
                 <div>
@@ -341,7 +369,7 @@ const Checkout = () => {
                   </label>
                   <input
                     className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
-                    placeholder="Alpha Plus, Near Rajya Telephone exchange."
+                    placeholder="Unirii 4"
                   />
                 </div>
 
@@ -435,7 +463,7 @@ const Checkout = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </form>
         </>
       )}
     </div>
