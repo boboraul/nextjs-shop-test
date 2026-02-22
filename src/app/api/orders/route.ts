@@ -51,8 +51,6 @@ export async function POST(req: Request) {
 
   const userId = token ? getUserIdFromSessionToken(token) : null;
 
-  if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
   try {
     const body = await req.json();
     const parsed = OrderSchema.safeParse(body);
@@ -68,6 +66,9 @@ export async function POST(req: Request) {
 
     const orderToInsert = {
     ...parsed.data,
+    ...(userId ? { userId } : {}),
+    userType: userId ? 'member' : 'guest',
+    status: 'pending',
     date: now, // field key din colectie
     time: now, // field key din colectie
     };

@@ -32,8 +32,8 @@ export default async function Page({
     product.price?.currency == "RON" ? "Lei" : product.price?.currency;
 
   return (
-    <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] relative flex flex-col lg:flex-row gap-16 mt-12">
-      <div className="w-full lg:w-1/2 top-20 h-max relative">
+    <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] relative flex flex-col lg:flex-row lg:items-start gap-8 mt-8 lg:mt-12">
+      <div className="w-full lg:w-1/2 h-max relative">
         {discountPercent && (
           <div className="promo-badge bg-danger-500 w-[70px] flex rotate-[9deg] items-center px-2 opacity-80 rounded-tr-3xl leading-[26px] justify-center rounded-bl-3xl left-0 text-white absolute text-[20px] z-[999]">
             <span className="text-white absolute top-[-15px] left-px">.</span>
