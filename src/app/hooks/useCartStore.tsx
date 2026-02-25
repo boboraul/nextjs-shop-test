@@ -82,10 +82,7 @@ export const useCartStore = create<CartState>()(
           };
         }),
 
-      clearCart: () => ({
-        items: [],
-        counter: 0,
-      }),
+      clearCart: () => set({ items: [], counter: 0 }),
     }),
     {
       name: "cart-storage",

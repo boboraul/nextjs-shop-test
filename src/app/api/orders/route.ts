@@ -69,6 +69,7 @@ export async function POST(req: Request) {
     ...(userId ? { userId } : {}),
     userType: userId ? 'member' : 'guest',
     status: 'pending',
+    
     date: now, // field key din colectie
     time: now, // field key din colectie
     };
@@ -77,6 +78,13 @@ export async function POST(req: Request) {
       ordersCollectionId,
       orderToInsert
     );
+
+    const item = inserted.item ?? inserted;
+    const orderId = item._id;
+
+    await wixDataClient.data.items.update(ordersCollectionId, {
+      ...item, orderId
+    })
 
     return NextResponse.json({ orderId: inserted.item?._id ?? inserted._id });
   } catch (err) {
