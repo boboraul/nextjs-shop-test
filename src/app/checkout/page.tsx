@@ -43,7 +43,7 @@ const Checkout = () => {
         productName: i.productName,
         qty: Number(i.quantity),
       })),
-  
+      shipping,
       paymentMethod,
       shippingMethod,
     };
