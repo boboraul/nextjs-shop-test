@@ -155,7 +155,7 @@ const Checkout = () => {
                   Order Summary
                 </h2>
                 <span className="text-sm font-semibold text-primary-500">
-                  {counter} {counter > 1 ? "Items" : "Item"}
+                  {counter} {counter > 1 ? "Items" : "1 Item"}
                 </span>
               </div>
 
