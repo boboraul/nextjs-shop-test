@@ -168,7 +168,7 @@ const Checkout = () => {
                   Order Summary
                 </h2>
                 <span className="text-sm font-semibold text-primary-500">
-                  {counter} {counter > 1 ? "Items" : "1 Item"}
+                  {counter} {counter > 1 ? "Items" : "Item"}
                 </span>
               </div>
 
@@ -182,7 +182,7 @@ const Checkout = () => {
                   >
                     {item.quantity == item.stockNumber && (
                       <div className="stockinfo absolute top-2 right-2 text-center text-danger-500 text-[11px]">
-                        You can order max {item.stockNumber == 1 ? 'item' : 'items'} 
+                        You can order max {item.stockNumber == 1 ? '1 item' : 'items'} 
                       </div>
                     )}
                     <div className="h-20 w-20 shrink-0 overflow-hidden rounded-2xl">
