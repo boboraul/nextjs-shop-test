@@ -43,7 +43,7 @@ const Checkout = () => {
         productName: i.productName,
         qty: Number(i.quantity),
       })),
-      shipping,
+  
       paymentMethod,
       shippingMethod,
     };
@@ -353,7 +353,7 @@ const Checkout = () => {
                 </div>
               </div>
 
-              <div className="shippingtMethod">
+              <div className="shippingtMethod mt-4">
                 <h3 className="mb-3 text-sm font-semibold text-slate-900">
                   Shipping method
                 </h3>
