@@ -6,13 +6,14 @@ import { media as wixMedia } from "@wix/sdk";
 import { useMemo, useState } from "react";
 import { useCartStore } from "../hooks/useCartStore";
 import Link from "next/link";
+import { Spinner } from "../components/Spinner";
 
 const Checkout = () => {
   const { items, removeItem, updateQuantity, counter, clearCart } =
     useCartStore();
 
   const [orderSent, setOrderSent] = useState(false);
-  const [loader, setloader] = useState(false);
+  const [loading, setloading] = useState(false);
 
   const [shipping, setShipping] = useState({
     firstName: "",
@@ -34,7 +35,7 @@ const Checkout = () => {
   const deliveryCost = 25;
 
   const handlePlaceOrder = async () => {
-    setloader(true);
+    setloading(true);
 
     const payload = {
       items: items.map((i) => ({
@@ -55,6 +56,7 @@ const Checkout = () => {
     });
 
     const data = await res.json();
+    console.log(data);
 
     if (!res.ok) {
       console.error("Place order error: ", data);
@@ -65,7 +67,7 @@ const Checkout = () => {
     console.log("AFTER CLEAR", useCartStore.getState().items);
 
     console.log("Order ID:", data.orderId);
-    setloader(false);
+    setloading(false);
     setOrderSent(true);
 
     // optional:
@@ -116,9 +118,12 @@ const Checkout = () => {
         </div>
       </div>
 
-      {loader && (
-        <div className="loader p-4 text-center">
-          <p>Is Loading...</p>
+      {loading && (
+        <div className="p-4 mt-8 text-cente0 flex justify-center items-center">
+          <p className="text-[24px] mr-2 font-semibold text-primary-500">
+            Loading
+          </p>
+          <Spinner className="h-6 w-6 font-semibold text-primary-500" />
         </div>
       )}
 
@@ -153,7 +158,7 @@ const Checkout = () => {
       ) : (
         <>
           <form
-            className="grid gap-8 lg:grid-cols-2 py-10"
+            className={`grid gap-8 lg:grid-cols-2 py-10${loading ? " opacity-75" : ""}`}
             onSubmit={(e) => {
               e.preventDefault();
               handlePlaceOrder();

@@ -6,6 +6,9 @@ import jwt from "jsonwebtoken";
 
 const ordersCollectionId = process.env.WIX_ORDERS_COLLECTION_ID!;
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 const OrderSchema = z.object({
   items: z
     .array(
@@ -88,6 +91,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ orderId: inserted.item?._id ?? inserted._id });
   } catch (err) {
+    console.error("ORDER API ERROR:", err);
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
 
