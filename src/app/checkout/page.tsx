@@ -12,7 +12,8 @@ const Checkout = () => {
     useCartStore();
 
   const [orderSent, setOrderSent] = useState(false);
-
+  const [loader, setloader] = useState(false);
+  
   const [shipping, setShipping] = useState({
     firstName: "",
     lastName: "",
@@ -33,6 +34,8 @@ const Checkout = () => {
   const deliveryCost = 25;
 
   const handlePlaceOrder = async () => {
+    setloader(true);
+    
     const payload = {
       items: items.map((i) => ({
         productId: i.productId,
@@ -52,16 +55,17 @@ const Checkout = () => {
     });
 
     const data = await res.json();
-
+    
     if (!res.ok) {
       console.error("Place order error: ", data);
       return;
     }
-
+    
     clearCart();
     console.log("AFTER CLEAR", useCartStore.getState().items);
 
     console.log("Order ID:", data.orderId);
+    setloader(false);
     setOrderSent(true);
 
     // optional:
@@ -111,6 +115,15 @@ const Checkout = () => {
           </div>
         </div>
       </div>
+      
+      {loader && (
+        <div className="loader p-4 text-center">
+          <p>
+            Is Loading...
+          </p>
+        </div>
+      )}
+    
       {orderSent == true ? (
         <div className="thank-you text-center mt-20">
           <svg
@@ -169,7 +182,7 @@ const Checkout = () => {
                   >
                     {item.quantity == item.stockNumber && (
                       <div className="stockinfo absolute top-2 right-2 text-center text-danger-500 text-[11px]">
-                        You can order max {item.stockNumber} items
+                        You can order max {item.stockNumber == 1 ? '1 item' : 'items'} 
                       </div>
                     )}
                     <div className="h-20 w-20 shrink-0 overflow-hidden rounded-2xl">
@@ -340,7 +353,7 @@ const Checkout = () => {
                 </div>
               </div>
 
-              <div className="shippingtMethod">
+              <div className="shippingtMethod mt-4">
                 <h3 className="mb-3 text-sm font-semibold text-slate-900">
                   Shipping method
                 </h3>
@@ -630,7 +643,18 @@ const Checkout = () => {
                     />
                   </div>
                 </div> */}
-
+                
+                <p className="policy-consent">
+                  By placing the order, you agree to the{" "}
+                  <Link href="/terms" className="text-primary-500">
+                    Terms and Conditions
+                  </Link>{" "}
+                  and the{" "}
+                  <Link href="/privacy" className="text-primary-500">
+                    Privacy Policy
+                  </Link>.
+                </p>
+                
                 {/* actions */}
                 <div className="mt-8 ">
                   <button
