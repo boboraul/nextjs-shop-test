@@ -36,12 +36,16 @@ const Checkout = () => {
 
   const handlePlaceOrder = async () => {
     e.preventDefault();
+    setloading(true);
+    
     const form = e.currentTarget as HTMLFormElement;
     if (!form.checkValidity()) {
       setShowErrors(true);
+      setloading(false);
+      form.reportValidity()
+      return;
     }
-    setloading(true);
-
+    
     const payload = {
       items: items.map((i) => ({
         productId: i.productId,
