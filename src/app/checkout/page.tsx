@@ -166,9 +166,7 @@ const Checkout = () => {
         <>
           <form
             className={`grid gap-8 lg:grid-cols-2 py-10${loading ? " opacity-75" : ""}`}
-            onSubmit={(e) => {
-              handlePlaceOrder();
-            }}
+            onSubmit={handlePlaceOrder}
             noValidate
           >
             {showErrors && (
