@@ -11,7 +11,7 @@ import { Spinner } from "../components/Spinner";
 const Checkout = () => {
   const { items, removeItem, updateQuantity, counter, clearCart } =
     useCartStore();
-
+  const [showErrors, setShowErrors] = useState(false);
   const [orderSent, setOrderSent] = useState(false);
   const [loading, setloading] = useState(false);
 
@@ -35,6 +35,11 @@ const Checkout = () => {
   const deliveryCost = 25;
 
   const handlePlaceOrder = async () => {
+    e.preventDefault();
+    const form = e.currentTarget as HTMLFormElement;
+    if (!form.checkValidity()) {
+      setShowErrors(true);
+    }
     setloading(true);
 
     const payload = {
@@ -48,7 +53,7 @@ const Checkout = () => {
       paymentMethod,
       shippingMethod,
     };
-
+    
     const res = await fetch("/api/orders", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -70,8 +75,6 @@ const Checkout = () => {
     setloading(false);
     setOrderSent(true);
 
-    // optional:
-    // router.push(`/order-success?orderId=${data.orderId}`);
   };
 
   const handleQuantity = (
@@ -160,10 +163,15 @@ const Checkout = () => {
           <form
             className={`grid gap-8 lg:grid-cols-2 py-10${loading ? " opacity-75" : ""}`}
             onSubmit={(e) => {
-              e.preventDefault();
               handlePlaceOrder();
             }}
+            noValidate
           >
+            {showErrors && (
+              <div className="error text-center">
+                <span className="my-4 text-danger-500">Please fill all required fields!</span>
+              </div>
+            )}
             {/* LEFT: Order Summary */}
             <div className="left-column">
               <div className="flex items-baseline justify-between">
@@ -478,6 +486,7 @@ const Checkout = () => {
                           firstName: e.target.value,
                         }))
                       }
+                      required
                     />
                   </div>
 
@@ -493,6 +502,7 @@ const Checkout = () => {
                       onChange={(e) =>
                         setShipping((p) => ({ ...p, lastName: e.target.value }))
                       }
+                      required
                     />
                   </div>
 
@@ -512,6 +522,7 @@ const Checkout = () => {
                             phone: e.target.value,
                           }))
                         }
+                        required
                       />
                     </div>
                   </div>
@@ -532,6 +543,7 @@ const Checkout = () => {
                             email: e.target.value,
                           }))
                         }
+                        required
                       />
                     </div>
                   </div>
@@ -548,6 +560,7 @@ const Checkout = () => {
                         onChange={(e) =>
                           setShipping((p) => ({ ...p, city: e.target.value }))
                         }
+                        required
                       />
                     </div>
                   </div>
@@ -567,6 +580,7 @@ const Checkout = () => {
                             country: e.target.value,
                           }))
                         }
+                        required
                       />
                     </div>
                   </div>
@@ -585,6 +599,7 @@ const Checkout = () => {
                           postalCode: e.target.value,
                         }))
                       }
+                      required
                     />
                   </div>
                 </div>
@@ -600,6 +615,7 @@ const Checkout = () => {
                     onChange={(e) =>
                       setShipping((p) => ({ ...p, address: e.target.value }))
                     }
+                    required
                   />
                 </div>
 
