@@ -34,7 +34,7 @@ const Checkout = () => {
 
   const deliveryCost = 25;
 
-  const handlePlaceOrder = async ((e: React.FormEvent)) => {
+  const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     setloading(true);
     
