@@ -35,6 +35,10 @@ const Checkout = () => {
 
   const deliveryCost = 25;
 
+  const subtotal = items.reduce((sum, item) => {
+    return sum + item.price! * item.quantity;
+  }, 0);
+
   const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     setloading(true);
@@ -59,7 +63,9 @@ const Checkout = () => {
         qty: Number(i.quantity),
         price: i.price,
         currency: i.currency
+        
       })),
+      totalPrice: subtotal + deliveryCost,
       shipping,
       paymentMethod,
       shippingMethod,
@@ -105,10 +111,6 @@ const Checkout = () => {
 
     if (next !== currentQty) updateQuantity(productId, next, variantId);
   };
-
-  const subtotal = items.reduce((sum, item) => {
-    return sum + item.price! * item.quantity;
-  }, 0);
 
   return (
     <div className="checkout px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] relative mt-4">
