@@ -65,7 +65,7 @@ const Checkout = () => {
         currency: i.currency
         
       })),
-      totalPrice: subtotal + deliveryCost,
+      totalPrice: number(subtotal) + number(deliveryCost),
       shipping,
       paymentMethod,
       shippingMethod,
