@@ -17,7 +17,7 @@ const OrderSchema = z.object({
         variantId: z.string().optional(),
         qty: z.number().int().positive().max(50),
         productName: z.string().min(1),
-        price: z.number().int().positive(),
+        price: z.number().positive(),
         currency: z.string().min(1)  
       })
     )
