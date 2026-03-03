@@ -9,7 +9,7 @@ const ordersCollectionId = process.env.WIX_ORDERS_COLLECTION_ID!;
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-export const OrderSchema = z.object({
+const OrderSchema = z.object({
   items: z.array(
     z.object({
       productId: z.string().min(1),
