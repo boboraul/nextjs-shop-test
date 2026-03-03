@@ -66,6 +66,7 @@ const Checkout = () => {
 
     const data = await res.json();
     console.log(data);
+    setShowErrors(false);
 
     if (!res.ok) {
       console.error("Place order error: ", data);
@@ -124,8 +125,9 @@ const Checkout = () => {
           </div>
         </div>
       </div>
+      
       {showErrors && (
-        <div className="error text-center my-2 p-5 border w-full">
+        <div className="error bg-alert-500 text-center my-2 p-5 border w-full">
           <span className="text-[20px] text-danger-500">Please fill all required fields!</span>
         </div>
       )}
