@@ -68,6 +68,7 @@ const Checkout = () => {
         
       })),
       totalPrice: totalOrder,
+      currency: "RON",
       shipping,
       paymentMethod,
       shippingMethod,
