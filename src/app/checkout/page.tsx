@@ -485,7 +485,7 @@ const Checkout = () => {
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="firstname">
                     <label className="mb-2 block text-xs font-semibold text-slate-600">
-                      FIrst Name<span className="text-danger-500">*</span>
+                      FIrst Name<span className="text-danger-500 opacity-75">*</span>
                     </label>
 
                     <input
@@ -504,7 +504,7 @@ const Checkout = () => {
 
                   <div className="lastname">
                     <label className="mb-2 block text-xs font-semibold text-slate-600">
-                      Last Name<span className="text-danger-500">*</span>
+                      Last Name<span className="text-danger-500 opacity-75">*</span>
                     </label>
 
                     <input
@@ -520,7 +520,7 @@ const Checkout = () => {
 
                   <div className="phone">
                     <label className="mb-2 block text-xs font-semibold text-slate-600">
-                      Phone<span className="text-danger-500">*</span>
+                      Phone<span className="text-danger-500 opacity-75">*</span>
                     </label>
                     <div className="relative">
                       <input
@@ -541,7 +541,7 @@ const Checkout = () => {
 
                   <div className="email">
                     <label className="mb-2 block text-xs font-semibold text-slate-600">
-                      Email<span className="text-danger-500">*</span>
+                      Email<span className="text-danger-500 opacity-75">*</span>
                     </label>
                     <div className="relative">
                       <input
@@ -562,7 +562,7 @@ const Checkout = () => {
 
                   <div className="city">
                     <label className="mb-2 block text-xs font-semibold text-slate-600">
-                      City<span className="text-danger-500">*</span>
+                      City<span className="text-danger-500 opacity-75">*</span>
                     </label>
                     <div className="relative">
                       <input
@@ -579,7 +579,7 @@ const Checkout = () => {
 
                   <div className="country">
                     <label className="mb-2 block text-xs font-semibold text-slate-600">
-                      Country<span className="text-danger-500">*</span>
+                      Country<span className="text-danger-500 opacity-75">*</span>
                     </label>
                     <div className="relative">
                       <input
@@ -599,7 +599,7 @@ const Checkout = () => {
 
                   <div className="zip">
                     <label className="mb-2 block text-xs font-semibold text-slate-600">
-                      Zip Code<span className="text-danger-500">*</span>
+                      Zip Code<span className="text-danger-500 opacity-75">*</span>
                     </label>
                     <input
                       className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
@@ -618,7 +618,7 @@ const Checkout = () => {
 
                 <div>
                   <label className="mb-2 block text-xs font-semibold text-slate-600">
-                    Address<span className="text-danger-500">*</span>
+                    Address<span className="text-danger-500 opacity-75">*</span>
                   </label>
                   <input
                     className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
