@@ -33,6 +33,7 @@ const OrderSchema = z.object({
   }),
 
   totalPrice: z.coerce.number().positive(),
+  currency: z.string().min(1),
   paymentMethod: z.enum(["card", "cash_on_delivery"]),
   shippingMethod: z.enum(["courier", "personalPickup"]),
 });

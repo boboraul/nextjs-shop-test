@@ -39,6 +39,8 @@ const Checkout = () => {
     return sum + item.price! * item.quantity;
   }, 0);
 
+  const totalOrder = subtotal + deliveryCost;
+
   const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     setloading(true);
@@ -65,7 +67,7 @@ const Checkout = () => {
         currency: i.currency
         
       })),
-      totalPrice: subtotal + deliveryCost,
+      totalPrice: totalOrder,
       shipping,
       paymentMethod,
       shippingMethod,
