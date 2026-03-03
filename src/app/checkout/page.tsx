@@ -487,7 +487,7 @@ const Checkout = () => {
                   <div className="flex items-center justify-between">
                     <span className="text-slate-500">Total:</span>
                     <span className="text-base font-bold">
-                      {(subtotal + deliveryCost).toLocaleString("ro-RO", {
+                      {totalOrder.toLocaleString("ro-RO", {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
                       })}{" "}
@@ -506,8 +506,8 @@ const Checkout = () => {
                     </label>
 
                     <input
-                      className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
-                      placeholder="FIrst Name"
+                      className="w-full rounded-2xl border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                      placeholder="First Name"
                       value={shipping.firstName}
                       onChange={(e) =>
                         setShipping((p) => ({
@@ -525,7 +525,7 @@ const Checkout = () => {
                     </label>
 
                     <input
-                      className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                      className="w-full rounded-2xl border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
                       placeholder="Last Name"
                       value={shipping.lastName}
                       onChange={(e) =>
@@ -541,7 +541,7 @@ const Checkout = () => {
                     </label>
                     <div className="relative">
                       <input
-                        className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                        className="w-full rounded-2xl border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
                         placeholder="Phone"
                         type="number"
                         value={shipping.phone}
