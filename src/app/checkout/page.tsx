@@ -11,7 +11,7 @@ import { Spinner } from "../components/Spinner";
 const Checkout = () => {
   const { items, removeItem, updateQuantity, counter, clearCart } =
     useCartStore();
-  const [showErrors, setShowErrors] = useState(false);
+  const [showValidErrors, setShowValidErrors] = useState(false);
   const [orderSent, setOrderSent] = useState(false);
   const [loading, setloading] = useState(false);
 
@@ -40,14 +40,14 @@ const Checkout = () => {
     
     const form = e.currentTarget as HTMLFormElement;
     if (!form.checkValidity()) {
-      setShowErrors(true);
+      setShowValidErrors(true);
       setloading(false);
       form.reportValidity()
       form.classList.add("error")
       return;
     } 
     form.classList.remove("error");
-    setShowErrors(false);
+    setShowValidErrors(false);
     
     const payload = {
       items: items.map((i) => ({
@@ -74,6 +74,7 @@ const Checkout = () => {
 
     if (!res.ok) {
       console.error("Place order error: ", data);
+      setloading(false);
       return;
     }
 
@@ -130,7 +131,7 @@ const Checkout = () => {
         </div>
       </div>
       
-      {showErrors && (
+      {showValidErrors && (
         <div className="error bg-alert-500 text-center my-2 p-5 border w-full">
           <span className="text-[20px] text-danger-500">Please fill all required fields!</span>
         </div>
