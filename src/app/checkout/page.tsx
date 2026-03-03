@@ -44,6 +44,9 @@ const Checkout = () => {
       setloading(false);
       form.reportValidity()
       return;
+    } 
+    else {
+      setShowErrors(false);
     }
     
     const payload = {
@@ -66,7 +69,6 @@ const Checkout = () => {
 
     const data = await res.json();
     console.log(data);
-    setShowErrors(false);
 
     if (!res.ok) {
       console.error("Place order error: ", data);
@@ -164,6 +166,12 @@ const Checkout = () => {
           <p>
             You’ll receive a confirmation email shortly with the order details.
           </p>
+          <p>
+            Continue
+            <Link href="/" className="text-primary-500 ml-1">
+               Shopping
+            </Link>
+           </p>
         </div>
       ) : items.length == 0 ? (
         <div className="empty text-center mt-20">
