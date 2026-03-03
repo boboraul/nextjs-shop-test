@@ -99,7 +99,7 @@ export default function ProductBox({
             {price === discountedPrice ? (
               <h5 className="text-primary-500 font-medium">
                 
-                {discountedPrice.toLocaleString("ro-RO", {
+                {discountedPrice?.toLocaleString("ro-RO", {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
                 })}{" "} {gCurrency}
@@ -107,13 +107,13 @@ export default function ProductBox({
             ) : (
               <div className="gap-2">
                 <small className="text-gray-500 line-through">
-                {price.toLocaleString("ro-RO", {
+                {price?.toLocaleString("ro-RO", {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
                 })}{" "} {gCurrency}
                 </small>
                 <h5 className="font-medium text-primary-500">
-                  {discountedPrice.toLocaleString("ro-RO", {
+                  {discountedPrice?.toLocaleString("ro-RO", {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
                 })}{" "} {gCurrency}
