@@ -43,11 +43,11 @@ const Checkout = () => {
       setShowErrors(true);
       setloading(false);
       form.reportValidity()
+      form.classList.add("error")
       return;
     } 
-    else {
-      setShowErrors(false);
-    }
+    form.classList.remove("error");
+    setShowErrors(false);
     
     const payload = {
       items: items.map((i) => ({
@@ -105,7 +105,7 @@ const Checkout = () => {
   }, 0);
 
   return (
-    <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] relative mt-4">
+    <div className="checkout px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] relative mt-4">
       {/* Checkout Banner */}
       <div className="bg-gradient-primary-500-l px-12 flex flex-col-reverse lg:flex-row justify-center lg:h-64">
         <div className="relative h-64 lg:h-full lg:w-1/4">
@@ -180,7 +180,7 @@ const Checkout = () => {
       ) : (
         <>
           <form
-            className={`grid gap-8 lg:grid-cols-2 py-10${loading ? " opacity-75" : ""}`}
+            className={`checkout-form grid gap-8 lg:grid-cols-2 py-10${loading ? " opacity-75" : ""}`}
             onSubmit={handlePlaceOrder}
             noValidate
           >
