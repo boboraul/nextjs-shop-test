@@ -9,30 +9,32 @@ const ordersCollectionId = process.env.WIX_ORDERS_COLLECTION_ID!;
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const OrderSchema = z.object({
-  items: z.object({
+export const OrderSchema = z.object({
+  items: z.array(
+    z.object({
       productId: z.string().min(1),
       variantId: z.string().optional(),
-      qty: z.number().int().positive().max(50),
+      qty: z.coerce.number().int().positive().max(50),
       productName: z.string().min(1),
-      price: z.string().min(1),
-      currency: z.string().min(1)  
-  }),
-   
+      price: z.coerce.number().positive(),
+      currency: z.string().min(1),
+    })
+  ).min(1),
+
   shipping: z.object({
     firstName: z.string().min(1),
     lastName: z.string().min(1),
     email: z.string().email(),
-    phone: z.number().int().min(3),
+    phone: z.string().min(7).max(20),
     country: z.string().min(1),
     city: z.string().min(1),
     address: z.string().min(1),
-    postalCode: z.number().min(3)
+    postalCode: z.string().min(3).max(12),
   }),
-  totalPrice: z.number().positive(),
+
+  totalPrice: z.coerce.number().positive(),
   paymentMethod: z.enum(["card", "cash_on_delivery"]),
   shippingMethod: z.enum(["courier", "personalPickup"]),
-  
 });
 
 function getUserIdFromSessionToken(token: string): string | null {
