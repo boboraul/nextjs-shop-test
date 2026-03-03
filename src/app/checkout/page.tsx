@@ -46,7 +46,8 @@ const Checkout = () => {
       form.reportValidity()
       form.classList.add("error")
       return;
-    } 
+    }
+    
     form.classList.remove("error");
     setShowValidErrors(false);
     
@@ -135,7 +136,7 @@ const Checkout = () => {
       
       {serverError && (
         <div className="error bg-alert-500 text-center my-2 p-5 border w-full">
-          <span className="text-[20px] text-danger-500">The order couldn't be completed. Contact the Administrator.</span>
+          <span className="text-[20px] text-danger-500">{"The order couldn't be completed. Contact the Administrator"}.</span>
         </div>
       )}
       
