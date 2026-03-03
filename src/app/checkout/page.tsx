@@ -124,6 +124,11 @@ const Checkout = () => {
           </div>
         </div>
       </div>
+      {showErrors && (
+        <div className="error text-center my-2 p-5 border w-full">
+          <span className="text-[20px] text-danger-500">Please fill all required fields!</span>
+        </div>
+      )}
 
       {loading && (
         <div className="p-4 mt-8 text-cente0 flex justify-center items-center">
@@ -169,11 +174,6 @@ const Checkout = () => {
             onSubmit={handlePlaceOrder}
             noValidate
           >
-            {showErrors && (
-              <div className="error text-center">
-                <span className="my-4 text-danger-500">Please fill all required fields!</span>
-              </div>
-            )}
             {/* LEFT: Order Summary */}
             <div className="left-column">
               <div className="flex items-baseline justify-between">
