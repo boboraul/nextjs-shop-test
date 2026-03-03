@@ -14,7 +14,7 @@ const Checkout = () => {
   const [showValidErrors, setShowValidErrors] = useState(false);
   const [orderSent, setOrderSent] = useState(false);
   const [loading, setloading] = useState(false);
-  const [serverError, setServerError] = state(false);
+  const [serverError, setServerError] = useState(false);
 
   const [shipping, setShipping] = useState({
     firstName: "",
