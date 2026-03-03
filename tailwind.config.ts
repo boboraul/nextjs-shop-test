@@ -30,7 +30,7 @@ const config: Config = {
           // 900: '#0e1c57',
         },
         danger: {
-          500: '#ff2e2e'
+          500: '#ef4444'
         },
         success: {
           500: '#0ecb3aff'
