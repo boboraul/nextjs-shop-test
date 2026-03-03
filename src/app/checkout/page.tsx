@@ -14,6 +14,7 @@ const Checkout = () => {
   const [showValidErrors, setShowValidErrors] = useState(false);
   const [orderSent, setOrderSent] = useState(false);
   const [loading, setloading] = useState(false);
+  const [serverError, setServerError] = state(false);
 
   const [shipping, setShipping] = useState({
     firstName: "",
@@ -75,6 +76,7 @@ const Checkout = () => {
     if (!res.ok) {
       console.error("Place order error: ", data);
       setloading(false);
+      setServerError(true);
       return;
     }
 
@@ -130,6 +132,12 @@ const Checkout = () => {
           </div>
         </div>
       </div>
+      
+      {serverError && (
+        <div className="error bg-alert-500 text-center my-2 p-5 border w-full">
+          <span className="text-[20px] text-danger-500">The order couldn't be completed. Contact the Administrator.</span>
+        </div>
+      )}
       
       {showValidErrors && (
         <div className="error bg-alert-500 text-center my-2 p-5 border w-full">
