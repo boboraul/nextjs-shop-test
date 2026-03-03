@@ -419,7 +419,7 @@ const Checkout = () => {
               </div>
             </div>
 
-            {/* RIGHT: Shopping Cart / Form */}
+            {/* RIGHT: Checkout Form */}
             <div className="right-column">
               <div className="flex items-baseline justify-between">
                 <h2 className="text-2xl font-semibold flex items-center gap-2 text-slate-900">
@@ -485,7 +485,7 @@ const Checkout = () => {
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="firstname">
                     <label className="mb-2 block text-xs font-semibold text-slate-600">
-                      FIrst Name
+                      FIrst Name<span className="text-danger-500">*</span>
                     </label>
 
                     <input
@@ -504,7 +504,7 @@ const Checkout = () => {
 
                   <div className="lastname">
                     <label className="mb-2 block text-xs font-semibold text-slate-600">
-                      Last Name
+                      Last Name<span className="text-danger-500">*</span>
                     </label>
 
                     <input
@@ -520,7 +520,7 @@ const Checkout = () => {
 
                   <div className="phone">
                     <label className="mb-2 block text-xs font-semibold text-slate-600">
-                      Phone
+                      Phone<span className="text-danger-500">*</span>
                     </label>
                     <div className="relative">
                       <input
@@ -541,7 +541,7 @@ const Checkout = () => {
 
                   <div className="email">
                     <label className="mb-2 block text-xs font-semibold text-slate-600">
-                      Email
+                      Email<span className="text-danger-500">*</span>
                     </label>
                     <div className="relative">
                       <input
@@ -562,7 +562,7 @@ const Checkout = () => {
 
                   <div className="city">
                     <label className="mb-2 block text-xs font-semibold text-slate-600">
-                      City
+                      City<span className="text-danger-500">*</span>
                     </label>
                     <div className="relative">
                       <input
@@ -579,7 +579,7 @@ const Checkout = () => {
 
                   <div className="country">
                     <label className="mb-2 block text-xs font-semibold text-slate-600">
-                      Country
+                      Country<span className="text-danger-500">*</span>
                     </label>
                     <div className="relative">
                       <input
@@ -599,7 +599,7 @@ const Checkout = () => {
 
                   <div className="zip">
                     <label className="mb-2 block text-xs font-semibold text-slate-600">
-                      Zip Code
+                      Zip Code<span className="text-danger-500">*</span>
                     </label>
                     <input
                       className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
@@ -618,7 +618,7 @@ const Checkout = () => {
 
                 <div>
                   <label className="mb-2 block text-xs font-semibold text-slate-600">
-                    Address
+                    Address<span className="text-danger-500">*</span>
                   </label>
                   <input
                     className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
