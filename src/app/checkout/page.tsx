@@ -562,7 +562,7 @@ const Checkout = () => {
                     </label>
                     <div className="relative">
                       <input
-                        className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                        className="w-full rounded-2xl border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
                         placeholder="Email"
                         type="email"
                         value={shipping.email}
@@ -583,7 +583,7 @@ const Checkout = () => {
                     </label>
                     <div className="relative">
                       <input
-                        className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                        className="w-full rounded-2xl border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
                         placeholder="Bucharest"
                         value={shipping.city}
                         onChange={(e) =>
@@ -600,7 +600,7 @@ const Checkout = () => {
                     </label>
                     <div className="relative">
                       <input
-                        className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                        className="w-full rounded-2xl border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
                         placeholder="Romania"
                         value={shipping.country}
                         onChange={(e) =>
@@ -619,7 +619,7 @@ const Checkout = () => {
                       Zip Code<span className="text-danger-500 opacity-75 ml-1">*</span>
                     </label>
                     <input
-                      className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                      className="w-full rounded-2xl border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
                       placeholder="008462"
                       value={shipping.postalCode}
                       onChange={(e) =>
@@ -638,7 +638,7 @@ const Checkout = () => {
                     Address<span className="text-danger-500 opacity-75 ml-1">*</span>
                   </label>
                   <input
-                    className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+                    className="w-full rounded-2xl border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
                     placeholder="Unirii 4"
                     value={shipping.address}
                     onChange={(e) =>
