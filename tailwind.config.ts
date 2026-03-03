@@ -34,6 +34,9 @@ const config: Config = {
         },
         success: {
           500: '#0ecb3aff'
+        },
+        alert: {
+          500: '#fcd34d'
         }
       },
       rotate: {
