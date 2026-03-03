@@ -10,18 +10,16 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const OrderSchema = z.object({
-  items: z
-    .array(
-      z.object({
-        productId: z.string().min(1),
-        variantId: z.string().optional(),
-        qty: z.number().int().positive().max(50),
-        productName: z.string().min(1),
-        price: z.number().positive(),
-        currency: z.string().min(1)  
-      })
-    )
-    .min(1),
+  items: z   
+    z.object({
+      productId: z.string().min(1),
+      variantId: z.string().optional(),
+      qty: z.number().int().positive().max(50),
+      productName: z.string().min(1),
+      price: z.string().min(1),
+      currency: z.string().min(1)  
+    }),
+   
   shipping: z.object({
     firstName: z.string().min(1),
     lastName: z.string().min(1),
