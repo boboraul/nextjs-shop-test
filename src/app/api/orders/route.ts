@@ -10,15 +10,14 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const OrderSchema = z.object({
-  items: z   
-    z.object({
+  items: z.object({
       productId: z.string().min(1),
       variantId: z.string().optional(),
       qty: z.number().int().positive().max(50),
       productName: z.string().min(1),
       price: z.string().min(1),
       currency: z.string().min(1)  
-    }),
+  }),
    
   shipping: z.object({
     firstName: z.string().min(1),
@@ -30,6 +29,7 @@ const OrderSchema = z.object({
     address: z.string().min(1),
     postalCode: z.string().min(1)
   }),
+  totalPrice: z.number().positive(),
   paymentMethod: z.enum(["card", "cash_on_delivery"]),
   shippingMethod: z.enum(["courier", "personalPickup"]),
   
