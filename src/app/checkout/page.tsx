@@ -91,7 +91,7 @@ const Checkout = () => {
     }
 
     clearCart();
-    console.log("AFTER CLEAR", useCartStore.getState().items);
+    console.log("AFTER ALL CLEAR", useCartStore.getState().items);
 
     console.log("Order ID:", data.orderId);
     setloading(false);
@@ -178,7 +178,7 @@ const Checkout = () => {
           </svg>
 
           <span className="text-xl font-semibold text-primary-500">
-            Your order has been placed successfully.
+            Your order has been placed successfully!
           </span>
           <p>
             You’ll receive a confirmation email shortly with the order details.
