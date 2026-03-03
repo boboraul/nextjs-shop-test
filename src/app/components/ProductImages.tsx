@@ -39,7 +39,7 @@ const ProductImages = ({ items }: { items: any }) => {
           sizes="50vw"
         />
       </div>
-      <div className="flex gap-4 mt-8">
+      <div className="flex overflow-x-auto gap-4 mt-8">
         {items.map((item: any, i: number) => (
           <div
             key={item._id}
