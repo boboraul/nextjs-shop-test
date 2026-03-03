@@ -55,6 +55,7 @@ const Checkout = () => {
         variantId: i.variantId,
         productName: i.productName,
         qty: Number(i.quantity),
+        price: i.price,
       })),
       shipping,
       paymentMethod,
