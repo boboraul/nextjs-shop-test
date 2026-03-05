@@ -17,7 +17,7 @@ type WishlistItem = {
   discountPercent?: number | null;
 };
 
-const wishlistId = process.env.WIX_WISHLIST_COLLECTION_ID!;
+const wishlistId = process.env.NEXT_PUBLIC_WIX_WISHLIST_COLLECTION_ID!;
 
 type WishlistStore = {
   items: WishlistItem[];
@@ -34,20 +34,20 @@ type WishlistStore = {
 export const useWishlistStore = create<WishlistStore>((set, get) => ({
   items: [],
   isLoading: false,
-  userId: null, // NEW
+  userId: null,
   setUserId: (id) =>
     set((state) => {
       if (state.userId === id) return { userId: id };
       return {
         userId: id,
         userIdLoaded: null, // reset guard
-        items: [], // optional: goleste lista pana vine noul fetch
+        items: [], // goleste lista pana vine noul fetch
       };
-    }), // NEW
-  userIdLoaded: null, // NEW
+    }),
+  userIdLoaded: null,
 
   fetchWishlist: async (client, userId) => {
-    if (get().userIdLoaded === userId) return; // NEW: nu mai refacem fetch-ul si nu mai clipeste UI-ul
+    if (get().userIdLoaded === userId) return; // nu mai refacem fetch-ul si nu mai clipeste UI-ul
 
     set({ isLoading: true });
 
@@ -58,7 +58,7 @@ export const useWishlistStore = create<WishlistStore>((set, get) => ({
         .find();
       set({
         items: (result.items as WishlistItem[]) ?? [],
-        userIdLoaded: userId, // NEW: marcam ca am incarcat pt user-ul asta
+        userIdLoaded: userId, // am incarcat pt user-ul asta
       });
     } catch (error) {
       console.error("Eroare la fetch wishlist:", error);
