@@ -5,6 +5,7 @@ import ProductImages from "../components/ProductImages";
 import CustomizeProducts from "../components/CustomizeProducts";
 import Add from "../components/Add";
 import { wixClientServer } from "../lib/wixClientServer";
+import SafeProdDescription from "../components/SafeProdDescription";
 
 export default async function Page({
   params,
@@ -46,7 +47,10 @@ export default async function Page({
 
       <div className="w-full lg:w-1/2 flex flex-col gap-6">
         <h1 className="text-4xl font-medium">{product.name}</h1>
-        <p className="description text-gray-500">{product.description}</p>
+        <div className="description text-gray-500">
+          <SafeProdDescription html={product.description!} />
+        </div>
+
         <div className="price-box">
           {product.price?.price === product.price?.discountedPrice ? (
             <h2 className="text-2xl text-primary-500 font-medium">

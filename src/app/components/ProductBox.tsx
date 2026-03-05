@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { useState } from "react";
+
 import SafeHtml from "./SafeHtml";
 import Link from "next/link";
 import AddToWishlistButton from "./AddToWishlistButton";
@@ -94,29 +94,31 @@ export default function ProductBox({
           <button className="rounded-2xl mt-4 ring-1 ring-primary-500 bg-primary-500 text-white px-4 py-2 text-xs hover:bg-white hover:text-primary-500 easy duration-200">
             Add to Cart
           </button>
-         
+
           <span className="price-box">
             {price === discountedPrice ? (
               <h5 className="text-primary-500 font-medium">
-                
                 {discountedPrice?.toLocaleString("ro-RO", {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
-                })}{" "} {gCurrency}
+                })}{" "}
+                {gCurrency}
               </h5>
             ) : (
               <div className="gap-2">
                 <small className="text-gray-500 line-through">
-                {price?.toLocaleString("ro-RO", {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}{" "} {gCurrency}
+                  {price?.toLocaleString("ro-RO", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}{" "}
+                  {gCurrency}
                 </small>
                 <h5 className="font-medium text-primary-500">
                   {discountedPrice?.toLocaleString("ro-RO", {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}{" "} {gCurrency}
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}{" "}
+                  {gCurrency}
                 </h5>
               </div>
             )}
