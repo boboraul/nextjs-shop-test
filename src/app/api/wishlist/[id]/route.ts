@@ -20,8 +20,9 @@ async function getUser() {
 }
 
 //Delete item from Wishlist
-export async function DELETE(_req: Request,{ params }: { params: { id: string } }) {
+export async function DELETE(_req: Request, { params }: { params: Promise<{ id: string }> }) {
     const user = await getUser();
+    const { id: itemId } = await params;
 
     if (!user) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -33,8 +34,6 @@ export async function DELETE(_req: Request,{ params }: { params: { id: string } 
             { status: 500 }
         );
     }
-
-    const itemId = params.id;
 
     const item = await wixDataClient.data.items.get(wishlistCollectionId, itemId);
     const ownerUserId = (item as any)?.userId;

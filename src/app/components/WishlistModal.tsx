@@ -3,12 +3,11 @@
 import Image from "next/image";
 import { useWishlistStore } from "../hooks/useWishlistStore";
 import { media as wixMedia } from "@wix/sdk";
-import { useWixClient } from "../hooks/useWixClient";
+
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const WishlistModal = () => {
-  const wixClient = useWixClient();
   const { isLoading, removeItem, items } = useWishlistStore();
   const router = useRouter();
 
@@ -17,7 +16,7 @@ const WishlistModal = () => {
   };
 
   const handleRemove = (id: string) => {
-    removeItem(wixClient, id);
+    removeItem(id);
   };
 
   console.log("wishmodal items ", items);
