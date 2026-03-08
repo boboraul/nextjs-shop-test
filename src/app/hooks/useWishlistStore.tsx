@@ -1,7 +1,6 @@
 "use client";
 
 import { create } from "zustand";
-import type { MyWixClient } from "../Context/wixContext";
 
 type WishlistItem = {
   _id?: string;
@@ -17,18 +16,16 @@ type WishlistItem = {
   discountPercent?: number | null;
 };
 
-const wishlistId = process.env.NEXT_PUBLIC_WIX_WISHLIST_COLLECTION_ID!;
-
 type WishlistStore = {
   items: WishlistItem[];
   isLoading: boolean;
-  userId: string | null; // NEW: tinem userId global in store
-  setUserId: (id: string | null) => void; // NEW: setter pt userId
-  userIdLoaded: string | null; // NEW: guard anti-refetch (pt acelasi user)
+  userId: string | null; // keep userId global in store
+  setUserId: (id: string | null) => void; // setter for userId
+  userIdLoaded: string | null; //  anti-refetch guard
 
-  fetchWishlist: (client: MyWixClient, userId: string) => Promise<void>;
-  addItem: (client: MyWixClient, item: WishlistItem) => Promise<void>;
-  removeItem: (client: MyWixClient, itemId: string) => Promise<void>;
+  fetchWishlist: () => Promise<void>;
+  addItem: (item: WishlistItem) => Promise<void>;
+  removeItem: (itemId: string) => Promise<void>;
 };
 
 export const useWishlistStore = create<WishlistStore>((set, get) => ({
@@ -41,49 +38,68 @@ export const useWishlistStore = create<WishlistStore>((set, get) => ({
       return {
         userId: id,
         userIdLoaded: null, // reset guard
-        items: [], // goleste lista pana vine noul fetch
+        items: [], // empty list until next refetch
       };
     }),
   userIdLoaded: null,
 
-  fetchWishlist: async (client, userId) => {
-    if (get().userIdLoaded === userId) return; // nu mai refacem fetch-ul si nu mai clipeste UI-ul
-
+  fetchWishlist: async () => {
     set({ isLoading: true });
 
     try {
-      const result = await (client as any).data.items
-        .query(wishlistId)
-        .eq("userId", userId)
-        .find();
+      const res = await fetch("/api/wishlist", { method: "GET" });
+      if (!res.ok) throw new Error("Failed to fetch wishlist");
+
+      const data = await res.json();
+
+      if (get().userIdLoaded === data.userId) return; // cancel refetch and UI stops flickering
+
       set({
-        items: (result.items as WishlistItem[]) ?? [],
-        userIdLoaded: userId, // am incarcat pt user-ul asta
+        items: (data.items as WishlistItem[]) ?? [],
+        userIdLoaded: data.userId ?? null, // load for this user
       });
     } catch (error) {
-      console.error("Eroare la fetch wishlist:", error);
+      console.error("Error fetching wishlist:", error);
     } finally {
       set({ isLoading: false });
     }
   },
 
-  addItem: async (client, item) => {
+  addItem: async (item) => {
     try {
-      const result = await (client as any).data.items.insert(wishlistId, item);
-      set((state) => ({ items: [...state.items, result as WishlistItem] }));
+      const res = await fetch("/api/wishlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(item),
+      });
+
+      if (!res.ok) throw new Error("Failed to add wishlist item");
+      const data = await res.json();
+
+      set((state) => ({
+        items: [
+          ...state.items,
+          (data.item?.item ?? data.item ?? data) as WishlistItem,
+        ],
+      }));
     } catch (error) {
-      console.error("Eroare la adăugare în wishlist:", error);
+      console.error("Error adding to wishlist:", error);
     }
   },
 
-  removeItem: async (client, itemId) => {
+  removeItem: async (itemId) => {
     try {
-      await (client as any).data.items.remove(wishlistId, itemId);
+      const res = await fetch(`/api/wishlist/${itemId}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) throw new Error("Failed to remove wishlist item");
+
       set((state) => ({
         items: state.items.filter((item) => item._id !== itemId),
       }));
     } catch (error) {
-      console.error("Eroare la ștergere din wishlist:", error);
+      console.error("Error at deleting item from wishlist", error);
     }
   },
 }));

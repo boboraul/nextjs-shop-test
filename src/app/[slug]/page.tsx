@@ -48,7 +48,7 @@ export default async function Page({
       <div className="w-full lg:w-1/2 flex flex-col gap-6">
         <h1 className="text-4xl font-medium">{product.name}</h1>
         <div className="description text-gray-500">
-          <SafeProdDescription html={product.description!} />
+          {/* <SafeProdDescription html={product.description!} /> */}
         </div>
 
         <div className="price-box">

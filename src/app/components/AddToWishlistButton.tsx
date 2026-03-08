@@ -32,7 +32,7 @@ const AddToWishlistButton = ({
   const { addItem, removeItem, items } = useWishlistStore();
   const [loading, setLoading] = useState(false);
 
-  const userId = useWishlistStore((s) => s.userId); // NEW: userId vine din store (setat de WishlistInitializer)
+  // const userId = useWishlistStore((s) => s.userId); // NEW: userId vine din store (setat de WishlistInitializer)
   const svgClass =
     size === "sm" ? "w-5 h-5 text-primary-500" : "w-8 h-8 text-primary-500";
 
@@ -43,26 +43,19 @@ const AddToWishlistButton = ({
   }, [added]);
 
   const handleAdd = async () => {
-    if (!userId) {
-      console.warn("User not logged in, cannot add to wishlist");
-      return;
-    }
-
     setLoading(true);
 
     try {
-      await addItem(wixClient, {
-        userId, // NEW: userId vine din store
+      await addItem({
         productId,
         productName,
         productImage,
-        createdAt: new Date().toISOString(),
         productUrl,
         price,
         discountedPrice,
         currency,
         discountPercent,
-      });
+      } as any);
       console.log("✅ You have successfully added to Wishlist!");
     } catch (error) {
       console.error("❌ Failed to add to Wishlist:", error);
@@ -72,7 +65,7 @@ const AddToWishlistButton = ({
   };
 
   const handleRemove = (id: string) => {
-    removeItem(wixClient, id);
+    removeItem(id);
   };
 
   const wishlistItem = items.find((item) => item.productId === productId);
