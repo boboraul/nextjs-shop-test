@@ -18,31 +18,28 @@ const ProductList = async ({
 }: {
   categoryId: string;
   limit?: number;
-  searchParams?: any;
+  searchParams?: Promise<any>;
 }) => {
   const wixClient = await wixClientServer();
+  const sp = (await searchParams) ?? {};
 
   const productQuery = wixClient.products
     .queryProducts()
-    .startsWith("name", searchParams?.name || "")
+    .startsWith("name", sp?.name || "")
     .eq("collectionIds", categoryId)
-    .hasSome("productType", [searchParams?.type || "physical", "digital"])
-    .gt("priceData.price", searchParams?.min || 0)
-    .lt("priceData.price", searchParams?.max || 999999)
+    .hasSome("productType", [sp?.type || "physical", "digital"])
+    .gt("priceData.price", sp?.min || 0)
+    .lt("priceData.price", sp?.max || 999999)
     .limit(limit || PRODUCT_PER_PAGE)
-    .skip(
-      searchParams?.page
-        ? parseInt(searchParams.page) * (limit || PRODUCT_PER_PAGE)
-        : 0,
-    );
+    .skip(sp?.page ? parseInt(sp.page) * (limit || PRODUCT_PER_PAGE) : 0);
   // .find();
 
   const res = await productQuery.find();
 
   const items = [...res.items];
 
-  if (searchParams?.sort) {
-    const [sortType, sortKey] = searchParams.sort.split(" ");
+  if (sp?.sort) {
+    const [sortType, sortKey] = sp.sort.split(" ");
 
     if (sortKey === "price") {
       items.sort((a: any, b: any) =>
