@@ -62,7 +62,7 @@ const WishlistInitializer = () => {
   useEffect(() => {
     if (!user?.id) return;
 
-    fetchWishlist(wixClient, user.id);
+    fetchWishlist();
   }, [user?.id, wixClient, fetchWishlist]);
 
   return null;
