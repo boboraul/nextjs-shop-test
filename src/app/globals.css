@@ -21,6 +21,9 @@
   form.error input:invalid:not(:focus) {
     @apply border-danger-500;
   }
+  form.error textarea:invalid:not(:focus) {
+    @apply border-danger-500;
+  }
 }
 
 body {
