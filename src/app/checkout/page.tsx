@@ -353,114 +353,7 @@ const Checkout = () => {
                 </button>
               </div> */}
 
-              <div className="paymentMethod mt-4">
-                <h3 className="mb-3 text-sm font-semibold text-slate-900">
-                  Payment
-                </h3>
-
-                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
-                  <label className="flex cursor-pointer items-center gap-3 px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">
-                    <input
-                      type="radio"
-                      name="paymentMethod"
-                      className="h-4 w-4"
-                      checked={paymentMethod === "cash_on_delivery"}
-                      onChange={() => setPaymentMethod("cash_on_delivery")}
-                    />
-                    Payment on Delivery
-                  </label>
-
-                  <div className="h-px bg-slate-200/70" />
-
-                  <label className="flex cursor-pointer items-center gap-3 px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">
-                    <input
-                      type="radio"
-                      name="pay"
-                      className="h-4 w-4 accent-primary-500"
-                      checked={paymentMethod === "card"}
-                      onChange={() => setPaymentMethod("card")}
-                    />
-                    Card Payment
-                  </label>
-
-                  <div className="h-px bg-slate-200/70" />
-
-                  <button
-                    type="button"
-                    className="flex w-full items-center gap-3 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
-                  >
-                    <span className="text-base">＋</span> Add Credit Card
-                  </button>
-                </div>
-              </div>
-
-              <div className="shippingtMethod mt-4">
-                <h3 className="mb-3 text-sm font-semibold text-slate-900">
-                  Shipping method
-                </h3>
-
-                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
-                  <label className="flex cursor-pointer items-center gap-3 px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">
-                    <input
-                      type="radio"
-                      name="shippingMethod"
-                      className="h-4 w-4"
-                      checked={shippingMethod === "courier"}
-                      onChange={() => setShippingMethod("courier")}
-                    />
-                    Courier Delivery
-                  </label>
-
-                  <div className="h-px bg-slate-200/70" />
-
-                  <label className="flex cursor-pointer items-center gap-3 px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">
-                    <input
-                      type="radio"
-                      name="shippingMethod"
-                      className="h-4 w-4 accent-primary-500"
-                      checked={shippingMethod === "personalPickup"}
-                      onChange={() => setShippingMethod("personalPickup")}
-                    />
-                    Personal Pickup
-                  </label>
-
-                  <div className="h-px bg-slate-200/70" />
-
-                  <button
-                    type="button"
-                    className="flex w-full items-center gap-3 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
-                  >
-                    <span className="text-base">＋</span> Add Credit Card
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* RIGHT: Checkout Form */}
-            <div className="right-column">
-              <div className="flex items-baseline justify-between">
-                <h2 className="text-2xl font-semibold flex items-center gap-2 text-slate-900">
-                  Checkout{" "}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="size-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"
-                    />
-                  </svg>
-                </h2>
-              </div>
-
-              <div className="mt-5 h-px w-full bg-slate-200/70" />
-
-              {/* totals card */}
+               {/*Summary totals*/}
               <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5">
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center justify-between">
@@ -496,6 +389,32 @@ const Checkout = () => {
                   </div>
                 </div>
               </div>
+
+            </div>
+
+            {/* RIGHT: Checkout Form */}
+            <div className="right-column">
+              <div className="flex items-baseline justify-between">
+                <h2 className="text-2xl font-semibold flex items-center gap-2 text-slate-900">
+                  Checkout{" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="size-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"
+                    />
+                  </svg>
+                </h2>
+              </div>
+
+              <div className="mt-5 h-px w-full bg-slate-200/70" />
 
               {/* form */}
               <div className="mt-6 space-y-4">
@@ -637,7 +556,7 @@ const Checkout = () => {
                   <label className="mb-2 block text-xs font-semibold text-slate-600">
                     Address<span className="text-danger-500 opacity-75 ml-1">*</span>
                   </label>
-                  <input
+                  <textarea
                     className="w-full rounded-2xl border border-slate-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
                     placeholder="Unirii 4"
                     value={shipping.address}
@@ -646,6 +565,88 @@ const Checkout = () => {
                     }
                     required
                   />
+                </div>
+
+                <div className="paymentMethod mt-4">
+                  <h3 className="mb-3 text-sm font-semibold text-slate-900">
+                    Payment
+                  </h3>
+
+                  <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+                    <label className="flex cursor-pointer items-center gap-3 px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">
+                      <input
+                        type="radio"
+                        name="paymentMethod"
+                        className="h-4 w-4"
+                        checked={paymentMethod === "cash_on_delivery"}
+                        onChange={() => setPaymentMethod("cash_on_delivery")}
+                      />
+                      Payment on Delivery
+                    </label>
+
+                    <div className="h-px bg-slate-200/70" />
+
+                    <label className="flex cursor-pointer items-center gap-3 px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">
+                      <input
+                        type="radio"
+                        name="pay"
+                        className="h-4 w-4 accent-primary-500"
+                        checked={paymentMethod === "card"}
+                        onChange={() => setPaymentMethod("card")}
+                      />
+                      Card Payment
+                    </label>
+
+                    <div className="h-px bg-slate-200/70" />
+
+                    <button
+                      type="button"
+                      className="flex w-full items-center gap-3 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                    >
+                      <span className="text-base">＋</span> Add Credit Card
+                    </button>
+                  </div>
+                </div>
+
+                <div className="shippingtMethod mt-4">
+                  <h3 className="mb-3 text-sm font-semibold text-slate-900">
+                    Shipping method
+                  </h3>
+
+                  <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+                    <label className="flex cursor-pointer items-center gap-3 px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">
+                      <input
+                        type="radio"
+                        name="shippingMethod"
+                        className="h-4 w-4"
+                        checked={shippingMethod === "courier"}
+                        onChange={() => setShippingMethod("courier")}
+                      />
+                      Courier Delivery
+                    </label>
+
+                    <div className="h-px bg-slate-200/70" />
+
+                    <label className="flex cursor-pointer items-center gap-3 px-3 py-2 text-sm text-slate-700 hover:bg-slate-50">
+                      <input
+                        type="radio"
+                        name="shippingMethod"
+                        className="h-4 w-4 accent-primary-500"
+                        checked={shippingMethod === "personalPickup"}
+                        onChange={() => setShippingMethod("personalPickup")}
+                      />
+                      Personal Pickup
+                    </label>
+
+                    <div className="h-px bg-slate-200/70" />
+
+                    <button
+                      type="button"
+                      className="flex w-full items-center gap-3 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                    >
+                      <span className="text-base">＋</span> Add Credit Card
+                    </button>
+                  </div>
                 </div>
 
                 {/* <div>
