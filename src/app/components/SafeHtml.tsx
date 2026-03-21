@@ -5,10 +5,12 @@ import DOMPurify from "dompurify";
 
 interface SafeHtmlProps {
   html?: string;
+  classes?: string;
 }
 
-export default function SafeHtml({ html }: SafeHtmlProps) {
+export default function SafeHtml({ html, classes }: SafeHtmlProps) {
   const [cleanHtml, setCleanHtml] = useState("");
+  console.log(html);
 
   useEffect(() => {
     if (html) {
@@ -21,9 +23,6 @@ export default function SafeHtml({ html }: SafeHtmlProps) {
   }, [html]);
 
   return (
-    <div
-      className="short-description inline-block text-sm h-6 text-gray-500 whitespace-nowrap w-[100%] overflow-hidden text-ellipsis"
-      dangerouslySetInnerHTML={{ __html: cleanHtml }}
-    />
+    <p className={classes} dangerouslySetInnerHTML={{ __html: cleanHtml }} />
   );
 }

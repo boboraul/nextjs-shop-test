@@ -78,8 +78,9 @@ export default function ProductBox({
           )}
         </div>
         <div className="flex justify-between mt-2">
-          <p className="font-medium line-clamp-2 mb-0">{name}</p>
+          <h3 className="font-medium line-clamp-2 mb-0">{name}</h3>
         </div>
+
         {shortDescHtml && (
           <SafeHtml
             html={
@@ -87,6 +88,7 @@ export default function ProductBox({
                 (section: any) => section.title === "shortDesc",
               )?.description
             }
+            classes="short-description inline-block text-sm h-6 text-gray-500 whitespace-nowrap w-[100%] overflow-hidden text-ellipsis"
           />
         )}
 
