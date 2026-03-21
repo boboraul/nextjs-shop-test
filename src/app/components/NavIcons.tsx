@@ -31,8 +31,6 @@ const NavIcons = () => {
       const res = await fetch("/api/auth/me");
       const data = await res.json();
 
-      // console.log("data", data);
-
       setLoggedIn(data.loggedIn);
 
       if (data.loggedIn) {

@@ -60,8 +60,6 @@ const ProductList = async ({
     }
   }
 
-  // console.log("items listing", items[0]);
-
   return (
     <div className="flex mt-8 gap-x-8 gap-y-16 flex-wrap justify-between">
       {items.map((product: products.Product) => (

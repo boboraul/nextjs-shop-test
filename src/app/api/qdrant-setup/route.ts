@@ -1,7 +1,7 @@
 import { QdrantClient } from "@qdrant/js-client-rest";
 
-const COLLECTION = "products";
-const VECTOR_SIZE = 1536;
+const COLLECTION = "products_768";
+const VECTOR_SIZE = 768;
 
 export async function POST() {
   const client = new QdrantClient({

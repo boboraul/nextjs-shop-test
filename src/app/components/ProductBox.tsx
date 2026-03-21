@@ -33,7 +33,6 @@ export default function ProductBox({
   discountPercent,
 }: ProductBoxProps) {
   const gCurrency = currency == "RON" ? "Lei" : currency;
-  // console.log("discount percent", discountPercent);
   return (
     <div className="product-box relative w-full gap-10 sm:w-[40%] lg:w-[22%]">
       <div className="wishlist-btn absolute top-2 right-2 z-20">
@@ -88,7 +87,7 @@ export default function ProductBox({
                 (section: any) => section.title === "shortDesc",
               )?.description
             }
-            classes="short-description inline-block text-sm h-6 text-gray-500 whitespace-nowrap w-[100%] overflow-hidden text-ellipsis"
+            classes="short-description text-sm text-gray-500 line-clamp-2"
           />
         )}
 

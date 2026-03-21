@@ -19,11 +19,12 @@ export async function POST() {
         vector: zeroVec,
         payload: {
           title: "iPhone 15",
-          brand: "Apple",
           category: "telefoane",
           price: 4999,
           inStock: true,
           url: "/produse/iphone-15",
+          image: "https://.../iphone15.jpg",
+          
         },
       },
       {
@@ -31,11 +32,11 @@ export async function POST() {
         vector: zeroVec,
         payload: {
           title: "Galaxy S24",
-          brand: "Samsung",
           category: "telefoane",
           price: 4599,
           inStock: true,
           url: "/produse/galaxy-s24",
+          image: "https://.../galaxy-s24.jpg",
         },
       },
     ],

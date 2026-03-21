@@ -10,7 +10,6 @@ interface SafeHtmlProps {
 
 export default function SafeHtml({ html, classes }: SafeHtmlProps) {
   const [cleanHtml, setCleanHtml] = useState("");
-  console.log(html);
 
   useEffect(() => {
     if (html) {

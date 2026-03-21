@@ -26,7 +26,7 @@ export default async function Page({
   }
 
   const product = products.items[0];
-
+  console.log(product.additionalInfoSections);
   const discountPercent =
     product.discount?.type === "PERCENT" ? product.discount.value! : null;
   const gCurrency =
