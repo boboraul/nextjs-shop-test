@@ -60,6 +60,8 @@ const ProductList = async ({
     }
   }
 
+  const currentPage = res.currentPage + 1;
+
   return (
     <div className="flex mt-8 gap-x-8 gap-y-16 flex-wrap justify-between">
       {items.map((product: products.Product) => (
@@ -88,7 +90,7 @@ const ProductList = async ({
       ))}
       {searchParams && (
         <Pagination
-          currentPage={res.currentPage+1 || 0}
+          currentPage={currentPage || 0}
           hasPrev={res.hasPrev()}
           hasNext={res.hasNext()}
         />
