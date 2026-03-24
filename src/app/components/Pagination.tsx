@@ -37,7 +37,7 @@ export const Pagination = ({
       
         <button
          
-          className="bg-primary-500 mx-auto text-white py-1 text-sm w-24 cursor-pointer"
+          className="bg-primary-500 mx-auto text-white py-1 text-sm w-8 cursor-pointer"
         >
           {currentPage}
         </button>
