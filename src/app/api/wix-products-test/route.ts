@@ -1,7 +1,7 @@
-import { wixDataClient } from "../../lib/wixDataClient";
+import { wixReindexClient } from "../../lib/wixReindexClient";
 
 export async function GET() {
-  const res = await wixDataClient.products.queryProducts().limit(5).find();
+  const res = await wixReindexClient.products.queryProducts().limit(5).find();
 
   const items = (res.items ?? []).map((p: any) => ({
     id: p._id,
@@ -13,6 +13,6 @@ export async function GET() {
       p.media?.items?.[0]?.image?.url ||
       null,
   }));
-   return Response.json({ ok: true });
+   return Response.json({ count: items.length, items });
 
 }
