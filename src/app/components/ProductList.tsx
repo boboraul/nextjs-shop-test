@@ -60,7 +60,7 @@ const ProductList = async ({
     }
   }
 
-  const currentPage = res.currentPage + 1;
+  const currentPage = res.currentPage ? res.currentPage + 1 : 0;
 
   return (
     <div className="flex mt-8 gap-x-8 gap-y-16 flex-wrap justify-between">
@@ -90,7 +90,7 @@ const ProductList = async ({
       ))}
       {searchParams && (
         <Pagination
-          currentPage={currentPage || 0}
+          currentPage={currentPage}
           hasPrev={res.hasPrev()}
           hasNext={res.hasNext()}
         />
