@@ -23,17 +23,26 @@ export const Pagination = ({
     replace(`${pathname}?${params}`);
   };
 
+  console.log(currentPage);
+
   return (
-    <div className="pagination mt-2 flex justify-between w-full">
+    <div className="pagination mt-2 flex w-full">
       {hasPrev && (
         <button
           onClick={() => createPageUrl(currentPage - 1)}
           // disabled={!hasPrev}
-          className="bg-primary-500 text-white py-1 text-sm w-24 cursor-pointer"
+          className="bg-primary-500 text-white py-1 mr-auto text-sm w-24 cursor-pointer"
         >
           &lsaquo; Previous
         </button>
       )}
+
+      {currentPage && (
+        <button className="bg-primary-500 mx-auto text-white py-1 text-sm w-8 cursor-pointer">
+          {currentPage}
+        </button>
+      )}
+      
       {hasNext && (
         <button
           onClick={() => createPageUrl(currentPage + 1)}
