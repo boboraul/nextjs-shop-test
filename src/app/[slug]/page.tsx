@@ -26,7 +26,7 @@ export default async function Page({
   }
 
   const product = products.items[0];
-  console.log(product.additionalInfoSections);
+
   const discountPercent =
     product.discount?.type === "PERCENT" ? product.discount.value! : null;
   const gCurrency =
@@ -45,12 +45,21 @@ export default async function Page({
         <ProductImages items={product.media?.items} />
       </div>
 
-      <div className="w-full lg:w-1/2 flex flex-col gap-6">
+      <div className="w-full lg:w-1/2 flex flex-col gap-2 mt-2">
         <h1 className="text-4xl font-medium">{product.name}</h1>
+
+        <SafeHtml
+          html={
+            product.additionalInfoSections?.find(
+              (section: any) => section.title === "shortDesc",
+            )?.description
+          }
+          classes="text-gray-500"
+        />
 
         <SafeHtml html={product.description!} classes="text-gray-500" />
 
-        <div className="price-box">
+        <div className="price-box my-2">
           {product.price?.price === product.price?.discountedPrice ? (
             <h2 className="text-2xl text-primary-500 font-medium">
               {product.price?.formatted?.discountedPrice?.replace("lei", " ")}
@@ -69,7 +78,6 @@ export default async function Page({
             </div>
           )}
         </div>
-
         {product.variants && product.productOptions ? (
           <CustomizeProducts
             productId={product._id!}
