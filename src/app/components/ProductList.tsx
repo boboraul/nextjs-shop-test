@@ -88,7 +88,7 @@ const ProductList = async ({
       ))}
       {searchParams && (
         <Pagination
-          currentPage={res.currentPage || 1}
+          currentPage={res.currentPage || 0}
           hasPrev={res.hasPrev()}
           hasNext={res.hasNext()}
         />
