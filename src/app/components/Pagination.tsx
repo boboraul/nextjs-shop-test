@@ -34,6 +34,14 @@ export const Pagination = ({
           &lsaquo; Previous
         </button>
       )}
+      
+        <button
+         
+          className="bg-primary-500 ml-auto text-white py-1 text-sm w-24 cursor-pointer"
+        >
+          {currentPage}
+        </button>
+      
       {hasNext && (
         <button
           onClick={() => createPageUrl(currentPage + 1)}
