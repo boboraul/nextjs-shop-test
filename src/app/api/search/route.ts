@@ -22,6 +22,13 @@ export async function GET(req: Request) {
   });
 
   return Response.json({
-    results: hits.map((h) => ({ score: h.score, payload: h.payload })),
+    results: hits.map((h) => ({
+      score: h.score,
+      id: h.payload?.id ?? "",
+      name: h.payload?.name ?? "",
+      // slug: h.payload?.slug ?? "",
+      // image: h.payload?.image ?? "",
+      // url: h.payload?.url ?? "",
+    })),
   });
 }

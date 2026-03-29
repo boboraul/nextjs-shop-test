@@ -1,0 +1,1 @@
+import { wixClientServer } from "../../../lib/wixClientServer";

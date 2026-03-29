@@ -11,6 +11,15 @@ export async function POST() {
     apiKey: process.env.QDRANT_API_KEY!,
   });
 
+  await client.deleteCollection(COLLECTION)
+
+  await client.createCollection(COLLECTION, {
+    vectors: {
+      size: 768,
+      distance: "Cosine",
+    },
+  })
+
   const res = await wixReindexClient.products.queryProducts().find()
 
   const products = res.items ?? [];
@@ -37,10 +46,11 @@ export async function POST() {
     id: String(p._id),
     vector: vectors[i],
     payload: {
+      id: p._id ?? "",
       name: p.name ?? "",
       slug: p.slug ?? "",
       image: p.media?.mainMedia?.image?.url ?? "",
-      url: p.slug ? `/product-page/${p.slug}` : "",
+      url: p.slug ? `/${p.slug}` : "",
     },
   }))
 
@@ -52,6 +62,6 @@ export async function POST() {
   return Response.json({
     ok: true,
     count: points.length,
-    sample: points[0]?.payload ?? null,
+    sample: points.slice(0, 4).map((p) =>p.payload),
   })
 }
