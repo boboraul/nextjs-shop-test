@@ -13,10 +13,15 @@ type SearchHit = {
 
 type Product = {
   id: string;
-  name: string;
   slug: string;
-  image: string;
-  url: string;
+  name: string;
+  price: number | null;
+  discountedPrice: number | null;
+  imageurl: string;
+  secondaryImageUrl: string;
+  shortDescHtml: unknown;
+  currency: string | null;
+  discountPercent: number | null;
 };
 
 const SearchPage = () => {

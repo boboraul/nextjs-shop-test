@@ -21,7 +21,7 @@ export async function POST(req: Request) {
             slug: p.slug ?? "",
             name: p.name ?? "",
             price: p.price?.price ?? null ?? null
-            discountedPrice: p.price?.discountedPrice!,
+            discountedPrice: p.price?.discountedPrice || null,
             imageUrl: p.media?.mainMedia?.image?.url || "/product.png",
             secondaryImageUrl: p.media?.items?.[1]?.image?.url || "/product.png",
             shortDesc: p.additionalInfoSections ?? null,
