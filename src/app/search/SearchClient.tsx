@@ -82,13 +82,16 @@ const SearchPage = () => {
       <div className="relative w-full h-64">
         <Image src="/city.png" alt="search" fill className="object-contain" />
       </div>
-
-      <h1>Search results for: {q}</h1>
-
+      
       {loading && <p>Loading...</p>}
 
       {/* Products */}
       <div className="flex mt-8 gap-x-8 gap-y-16 flex-wrap justify-between">
+        
+        <div className="col-12 text-center">
+          <h1 className="py-10">Search resuls for {q}</h1>
+        </div>
+
         {!loading && (
           items.length == 0 ? (
             <div className="empty text-center mt-20 w-full">
