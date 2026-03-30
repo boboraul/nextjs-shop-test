@@ -3,6 +3,7 @@ import Image from "next/image";
 import ProductList from "../components/ProductList";
 import Filter from "../components/Filter";
 import { wixClientServer } from "../lib/wixClientServer";
+import { Spinner } from "../components/Spinner";
 
 const ListPage = async ({ searchParams }: { searchParams: Promise<any> }) => {
   const wixClient = await wixClientServer();
