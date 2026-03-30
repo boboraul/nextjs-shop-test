@@ -93,7 +93,7 @@ const SearchPage = () => {
         </div>
 
       {/* Products */}
-      <div className="flex mt-8 gap-x-8 gap-y-16 flex-wrap justify-between">
+      <div className="flex mt-8 gap-x-8 gap-y-12 flex-wrap justify-between">
 
         {!loading && (
           items.length == 0 ? (
