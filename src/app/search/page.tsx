@@ -83,15 +83,20 @@ const SearchPage = () => {
         <Image src="/city.png" alt="search" fill className="object-contain" />
       </div>
 
+      <h1>Search results for: {q}</h1>
+
+      {loading && <p>Loading...</p>}
+
       {/* Products */}
       <div className="flex mt-8 gap-x-8 gap-y-16 flex-wrap justify-between">
+
         {items.length == 0 ? (
           <div className="empty text-center mt-20 w-full">
             <span className="text-xl font-semibold">No results</span>
           </div>
         ) : (
           <>
-            {products.map((item: any) => (
+            {items.map((item: any) => (
               <ProductBox
                 key={item._id}
                 id={item.Id}
