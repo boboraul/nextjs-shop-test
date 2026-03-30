@@ -45,7 +45,7 @@ const SearchPage = () => {
         const searchRes = await fetch("/api/search?q=${encodeURIComponent(q)}");
         const searchData = await searchRes.json();
 
-        const ids = (searchData.products || []).map((item: SearchHit) => items._id);
+        const ids = (searchData.products || []).map((item: SearchHit) => item.id);
 
         if (!ids.length) {
           setItems([]);
@@ -89,29 +89,29 @@ const SearchPage = () => {
 
       {/* Products */}
       <div className="flex mt-8 gap-x-8 gap-y-16 flex-wrap justify-between">
-
-        {items.length == 0 ? (
-          <div className="empty text-center mt-20 w-full">
-            <span className="text-xl font-semibold">No results</span>
-          </div>
-        ) : (
-          <>
-            {items.map((item: any) => (
-              <ProductBox
-                key={item._id}
-                id={item.Id}
-                slug={item.slug!}
-                name={item.name!}
-                price={item.price!}
-                discountedPrice={item.discountedPrice!}
-                imageUrl={item.imageUrl!}
-                shortDescHtml={""}
-                currency={item.currency}
-                discountPercent={item.discountPercent}
-              />
-            ))}
-          </>
-        )}
+        {!loading && (
+          items.length == 0 ? (
+            <div className="empty text-center mt-20 w-full">
+              <span className="text-xl font-semibold">No results</span>
+            </div>
+          ) : (
+            <>
+              {items.map((item: any) => (
+                <ProductBox
+                  key={item._id}
+                  id={item.Id}
+                  slug={item.slug!}
+                  name={item.name!}
+                  price={item.price!}
+                  discountedPrice={item.discountedPrice!}
+                  imageUrl={item.imageUrl!}
+                  shortDescHtml={""}
+                  currency={item.currency}
+                  discountPercent={item.discountPercent}
+                />
+              ))}
+            </>
+          ))}
       </div>
     </div>
   );
