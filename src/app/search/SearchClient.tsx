@@ -4,6 +4,7 @@ import Image from "next/image";
 import ProductBox from "../components/ProductBox";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { Spinner } from "../components/Spinner";
 
 type SearchHit = {
   id: string;
@@ -83,19 +84,21 @@ const SearchPage = () => {
         <Image src="/city.png" alt="search" fill className="object-contain" />
       </div>
       
-      {loading && <p>Loading...</p>}
+      {loading && (
+        <Spinner className="h-6 w-6 font-semibold text-primary-500" />
+      )}
 
       {/* Products */}
       <div className="flex mt-8 gap-x-8 gap-y-16 flex-wrap justify-between">
-        
+
         <div className="col-12 text-center">
-          <h1 className="py-10">Search resuls for {q}</h1>
+          <span className="py-10 text-xl font-bold">Search resuls for {q}</h1>
         </div>
 
         {!loading && (
           items.length == 0 ? (
             <div className="empty text-center mt-20 w-full">
-              <span className="text-xl font-semibold">No results</span>
+              <span className="text-xl font-semibold">No results...</span>
             </div>
           ) : (
             <>
