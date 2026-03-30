@@ -39,8 +39,9 @@ const SearchPage = () => {
     }
 
     const run = async () => {
+      setLoading(true);
+      
       try {
-        setLoading(true);
 
         const searchRes = await fetch("/api/search?q=${encodeURIComponent(q)}");
         const searchData = await searchRes.json();
