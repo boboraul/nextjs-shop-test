@@ -88,12 +88,12 @@ const SearchPage = () => {
         <Spinner className="h-6 w-6 font-semibold text-primary-500" />
       )}
 
+       <div className="text-center results-text">
+          <h1 className="py-10 text-xl">Search resuls for: <span className="font-bold">{q}</span></h1>
+        </div>
+
       {/* Products */}
       <div className="flex mt-8 gap-x-8 gap-y-16 flex-wrap justify-between">
-
-        <div className="col-12 text-center">
-          <span className="py-10 text-xl font-bold">Search resuls for {q}</span>
-        </div>
 
         {!loading && (
           items.length == 0 ? (
