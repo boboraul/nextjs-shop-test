@@ -27,14 +27,13 @@ type Product = {
 const SearchPage = () => {
   const searchParams = useSearchParams();
   const q = searchParams.get("q")?.trim() || "";
-  const items = [] as any;
 
-  const [products, setProducts] = useState<Product[]>([]);
+  const [items, setItems] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!q) {
-      setProducts([]);
+      setItems([]);
       return;
     }
 
@@ -49,7 +48,7 @@ const SearchPage = () => {
         const ids = (searchData.products || []).map((item: SearchHit) => items.id);
 
         if (!ids.length) {
-          setProducts([]);
+          setItems([]);
           return;
         }
 
@@ -61,12 +60,12 @@ const SearchPage = () => {
           }
         });
 
-        const productsData = await productRes.json();
-        setProducts(productsData.products || []);
+        const productsData = await productsRes.json();
+        setItems(productsData.products || []);
 
       } catch (err) {
         console.log(err)
-        setProducts([]);
+        setItems([]);
         
       } finally {
         setLoading(false)
@@ -92,15 +91,15 @@ const SearchPage = () => {
           </div>
         ) : (
           <>
-            {items.map((item: any) => (
+            {products.map((item: any) => (
               <ProductBox
                 key={item._id}
-                id={item.productId}
-                slug={item.productUrl!}
-                name={item.productName!}
+                id={item.Id}
+                slug={item.slug!}
+                name={item.name!}
                 price={item.price!}
                 discountedPrice={item.discountedPrice!}
-                imageUrl={item.productImage!}
+                imageUrl={item.imageUrl!}
                 shortDescHtml={""}
                 currency={item.currency}
                 discountPercent={item.discountPercent}
