@@ -26,9 +26,9 @@ export async function GET(req: Request) {
       score: h.score,
       id: h.payload?.id ?? "",
       name: h.payload?.name ?? "",
-      // slug: h.payload?.slug ?? "",
-      // image: h.payload?.image ?? "",
-      // url: h.payload?.url ?? "",
+      slug: h.payload?.slug ?? "",
+      image: h.payload?.image ?? "",
+      url: h.payload?.url ?? "",
     })),
   });
 }

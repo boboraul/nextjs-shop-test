@@ -42,11 +42,13 @@ const SearchPage = () => {
       setLoading(true);
 
       try {
-
         const searchRes = await fetch("/api/search?q=${encodeURIComponent(q)}");
         const searchData = await searchRes.json();
-
-        const ids = (searchData.products || []).map((item: SearchHit) => item.id);
+        console.log(searchData);
+        const ids = (searchData.results || []).map(
+          (item: SearchHit) => item.id,
+        );
+        console.log("ids: ", ids);
 
         if (!ids.length) {
           setItems([]);
@@ -57,24 +59,21 @@ const SearchPage = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            body: JSON.stringify({ ids })
-          }
+          },
+          body: JSON.stringify({ ids }),
         });
 
         const productsData = await productsRes.json();
         setItems(productsData.products || []);
-
       } catch (err) {
-        console.log(err)
+        console.log(err);
         setItems([]);
-        
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
     run();
-
   }, [q]);
 
   return (
@@ -83,20 +82,21 @@ const SearchPage = () => {
       <div className="relative w-full h-64">
         <Image src="/city.png" alt="search" fill className="object-contain" />
       </div>
-      
+
       {loading && (
         <Spinner className="h-6 w-6 font-semibold text-primary-500" />
       )}
 
-       <div className="text-center results-text">
-          <h1 className="py-10 text-xl">Search results for: <span className="font-bold">{q}</span></h1>
-        </div>
+      <div className="text-center results-text">
+        <h1 className="py-10 text-xl">
+          Search results for: <span className="font-bold">{q}</span>
+        </h1>
+      </div>
 
       {/* Products */}
       <div className="flex mt-8 gap-x-8 gap-y-12 flex-wrap justify-between">
-
-        {!loading && (
-          items.length == 0 ? (
+        {!loading &&
+          (items.length == 0 ? (
             <div className="empty text-center mt-10 w-full">
               <span className="text-xl font-semibold">No results...</span>
             </div>
@@ -104,7 +104,7 @@ const SearchPage = () => {
             <>
               {items.map((item: any) => (
                 <ProductBox
-                  key={item._id}
+                  key={item.id}
                   id={item.Id}
                   slug={item.slug!}
                   name={item.name!}
