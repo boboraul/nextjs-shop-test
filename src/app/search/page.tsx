@@ -33,22 +33,40 @@ const SearchPage = () => {
       return;
     }
 
-    const fetchResults = async () => {
-      setLoading(true);
-
+    const run = async () => {
       try {
-        const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
-        const data = await res.json();
-        setProducts(data.results || []);
-      } catch (error) {
-        console.error(error);
-        setProducts([]);
-      } finally {
-        setLoading(false);
-      }
-    };
+        setLoading(true);
 
-    fetchResults();
+        const searchRes = await fetch("/api/search?q=${encodeURIComponent(q)}");
+        const searchData = await searchRes.json();
+
+        const ids = (searchData.products || []).map((item: SearchHit) => items.id);
+
+        if (!ids.length) {
+          setProducts([]);
+          return;
+        }
+
+        const productsRes = await fetch("/api/products/by-ids", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            body: JSON.stringify({ ids })
+          }
+        });
+
+        const productsData = await productRes.json();
+        setProducts(productsData.products || []);
+
+      } catch (err) {
+        console.log(err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    run();
+
   }, [q]);
 
   return (
