@@ -97,7 +97,7 @@ const SearchPage = () => {
 
         {!loading && (
           items.length == 0 ? (
-            <div className="empty text-center mt-20 w-full">
+            <div className="empty text-center mt-10 w-full">
               <span className="text-xl font-semibold">No results...</span>
             </div>
           ) : (
