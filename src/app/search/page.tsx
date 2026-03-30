@@ -19,7 +19,7 @@ type Product = {
   discountedPrice: number | null;
   imageurl: string;
   secondaryImageUrl: string;
-  shortDescHtml: unknown;
+  shortDescHtml: any;
   currency: string | null;
   discountPercent: number | null;
 };
@@ -40,7 +40,7 @@ const SearchPage = () => {
 
     const run = async () => {
       setLoading(true);
-      
+
       try {
 
         const searchRes = await fetch("/api/search?q=${encodeURIComponent(q)}");
@@ -66,6 +66,8 @@ const SearchPage = () => {
 
       } catch (err) {
         console.log(err)
+        setProducts([]);
+        
       } finally {
         setLoading(false)
       }

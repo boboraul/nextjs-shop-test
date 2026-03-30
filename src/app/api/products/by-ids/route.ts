@@ -24,12 +24,12 @@ export async function POST(req: Request) {
             discountedPrice: p.price?.discountedPrice ?? null,
             imageUrl: p.media?.mainMedia?.image?.url || "/product.png",
             secondaryImageUrl: p.media?.items?.[1]?.image?.url || "/product.png",
-            shortDesc: p.additionalInfoSections ?? null,
+            shortDescHtml: p.additionalInfoSections ?? null,
             currency: p.price?.currency ?? null,
             discountPercent: p.discount?.type === "PERCENT"
                 ? p.discount.value
                 : null,
-        })
+        }))
     });
 
 }
