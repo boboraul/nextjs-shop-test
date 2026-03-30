@@ -89,7 +89,7 @@ const SearchPage = () => {
       )}
 
        <div className="text-center results-text">
-          <h1 className="py-10 text-xl">Search resuls for: <span className="font-bold">{q}</span></h1>
+          <h1 className="py-10 text-xl">Search results for: <span className="font-bold">{q}</span></h1>
         </div>
 
       {/* Products */}
