@@ -92,7 +92,7 @@ const SearchPage = () => {
       <div className="flex mt-8 gap-x-8 gap-y-16 flex-wrap justify-between">
 
         <div className="col-12 text-center">
-          <span className="py-10 text-xl font-bold">Search resuls for {q}</h1>
+          <span className="py-10 text-xl font-bold">Search resuls for {q}</span>
         </div>
 
         {!loading && (
