@@ -42,7 +42,7 @@ const SearchPage = () => {
       setLoading(true);
 
       try {
-        const searchRes = await fetch("/api/search?q=${encodeURIComponent(q)}");
+        const searchRes = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
 
         const searchData = await searchRes.json();
         console.log("searchData: ", searchData.results);
