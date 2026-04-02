@@ -12,23 +12,23 @@ export async function POST(req: Request) {
     const res = await wixReindexClient.products.queryProducts().find();
     const products = res.items ?? [];
 
-    const matchedProducts = products.filter((p) =>
+    const matchedProducts = products.filter((p: any) =>
       ids.includes(String(p._id))
     );
 
     return NextResponse.json({
-      products: matchedProducts.map((p) => ({
-        id: String(p._id),
-        slug: p.slug ?? "",
-        name: p.name ?? "",
-        price: p.price?.price ?? null,
-        discountedPrice: p.price?.discountedPrice ?? null,
-        image: p.media?.mainMedia?.image?.url || "/product.png",
-        secondaryImageUrl: p.media?.items?.[1]?.image?.url || "/product.png",
-        shortDescHtml: p.additionalInfoSections ?? null,
-        currency: p.price?.currency ?? null,
+      products: matchedProducts.map((mp: any) => ({
+        id: String(mp._id),
+        slug: mp.slug ?? "",
+        name: mp.name ?? "",
+        price: mp.price?.price ?? null,
+        discountedPrice: mp.price?.discountedPrice ?? null,
+        image: mp.media?.mainMedia?.image?.url || "/product.png",
+        secondaryImageUrl: mp.media?.items?.[1]?.image?.url || "/product.png",
+        shortDescHtml: mp.additionalInfoSections ?? null,
+        currency: mp.price?.currency ?? null,
         discountPercent:
-          p.discount?.type === "PERCENT" ? p.discount.value : null,
+          mp.discount?.type === "PERCENT" ? mp.discount.value : null,
       })),
     });
   } catch (error) {

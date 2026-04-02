@@ -43,11 +43,15 @@ const SearchPage = () => {
 
       try {
         const searchRes = await fetch("/api/search?q=${encodeURIComponent(q)}");
+        console.log("searchRes " + searchRes);
+
         const searchData = await searchRes.json();
-        console.log(searchData);
+        console.log("searchData: " + searchData);
+
         const ids = (searchData.results || []).map(
           (item: SearchHit) => item.id,
         );
+
         console.log("ids: ", ids);
 
         if (!ids.length) {
