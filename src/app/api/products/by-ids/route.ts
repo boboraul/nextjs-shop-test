@@ -12,9 +12,12 @@ export async function POST(req: Request) {
     const res = await wixReindexClient.products.queryProducts().find();
     const products = res.items ?? [];
 
-    const matchedProducts = products.filter((p: any) =>
-      ids.includes(String(p._id))
+
+    const productMap = new Map(
+      products.map((p: any) => [String(p._id), p])
     );
+
+    const matchedProducts = ids.map((id: string) => productMap.get(id)).filter(Boolean);
 
     return NextResponse.json({
       products: matchedProducts.map((mp: any) => ({
