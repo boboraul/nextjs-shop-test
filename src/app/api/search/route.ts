@@ -22,8 +22,9 @@ export async function GET(req: Request) {
   });
 
   return Response.json({
-    q,
+    
     results: hits.map((h) => ({
+      q: q,
       score: h.score,
       id: h.payload?.id ?? "",
       name: h.payload?.name ?? "",
