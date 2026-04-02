@@ -12,26 +12,32 @@ export async function POST(req: Request) {
     const res = await wixReindexClient.products.queryProducts().find();
     const products = res.items ?? [];
 
+    const productMap = new Map<string, any>();
 
-    const productMap = new Map(
-    products.map((p) => [String(p._id), p])
-  );
+    products.forEach((product: any) => {
+      productMap.set(String(product._id), product);
+    });
 
-    const matchedProducts = ids.map((id: string) => productMap.get(id)).filter(Boolean);
+    const matchedProducts: any[] = ids
+      .map((id: string) => productMap.get(id))
+      .filter((item: any) => !!item);
 
     return NextResponse.json({
-      products: matchedProducts.map((mp: any) => ({
-        id: String(mp._id),
-        slug: mp.slug ?? "",
-        name: mp.name ?? "",
-        price: mp.price?.price ?? null,
-        discountedPrice: mp.price?.discountedPrice ?? null,
-        image: mp.media?.mainMedia?.image?.url || "/product.png",
-        secondaryImageUrl: mp.media?.items?.[1]?.image?.url || "/product.png",
-        shortDescHtml: mp.additionalInfoSections ?? null,
-        currency: mp.price?.currency ?? null,
+      products: matchedProducts.map((product: any) => ({
+        id: String(product._id),
+        slug: product.slug ?? "",
+        name: product.name ?? "",
+        price: product.price?.price ?? null,
+        discountedPrice: product.price?.discountedPrice ?? null,
+        image: product.media?.mainMedia?.image?.url || "/product.png",
+        secondaryImageUrl:
+          product.media?.items?.[1]?.image?.url || "/product.png",
+        shortDescHtml: product.additionalInfoSections ?? null,
+        currency: product.price?.currency ?? null,
         discountPercent:
-          mp.discount?.type === "PERCENT" ? mp.discount.value : null,
+          product.discount?.type === "PERCENT"
+            ? product.discount.value
+            : null,
       })),
     });
   } catch (error) {
