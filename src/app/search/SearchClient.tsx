@@ -43,7 +43,6 @@ const SearchPage = () => {
 
       try {
         const searchRes = await fetch("/api/search?q=${encodeURIComponent(q)}");
-        console.log("searchRes " + searchRes);
 
         const searchData = await searchRes.json();
         console.log("searchData: " + searchData);
@@ -52,7 +51,7 @@ const SearchPage = () => {
           (item: SearchHit) => item.id,
         );
 
-        console.log("ids: ", ids);
+        // console.log("ids: ", ids);
 
         if (!ids.length) {
           setItems([]);

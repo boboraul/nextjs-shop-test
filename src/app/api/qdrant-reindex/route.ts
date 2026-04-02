@@ -35,6 +35,7 @@ export async function POST() {
     [
       p.name,
       p.slug,
+      p.description,
     ]
       .filter(Boolean)
       .join(" ")
@@ -49,6 +50,7 @@ export async function POST() {
       id: p._id ?? "",
       name: p.name ?? "",
       slug: p.slug ?? "",
+      description: p.description ?? "",
       image: p.media?.mainMedia?.image?.url ?? "",
       url: p.slug ? `/${p.slug}` : "",
     },
