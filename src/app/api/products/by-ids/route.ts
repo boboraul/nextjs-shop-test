@@ -14,8 +14,8 @@ export async function POST(req: Request) {
 
 
     const productMap = new Map(
-      products.map((p: any) => [String(p._id), p])
-    );
+    products.map((p) => [String(p._id), p])
+  );
 
     const matchedProducts = ids.map((id: string) => productMap.get(id)).filter(Boolean);
 
