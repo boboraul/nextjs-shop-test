@@ -45,7 +45,7 @@ const SearchPage = () => {
         const searchRes = await fetch("/api/search?q=${encodeURIComponent(q)}");
 
         const searchData = await searchRes.json();
-        console.log("searchData: " + searchData);
+        console.log("searchData: " + searchData.results);
 
         const ids = (searchData.results || []).map(
           (item: SearchHit) => item.id,
