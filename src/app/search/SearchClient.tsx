@@ -4,7 +4,6 @@ import Image from "next/image";
 import ProductBox from "../components/ProductBox";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { Spinner } from "../components/Spinner";
 
 type SearchHit = {
   id: string;
@@ -42,13 +41,16 @@ const SearchPage = () => {
       setLoading(true);
 
       try {
-        const searchRes = await fetch("/api/search?q=${encodeURIComponent(q)}");
+        const searchRes = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
+
         const searchData = await searchRes.json();
-        console.log(searchData);
+        console.log("searchData: ", searchData.results);
+
         const ids = (searchData.results || []).map(
           (item: SearchHit) => item.id,
         );
-        console.log("ids: ", ids);
+
+        // console.log("ids: ", ids);
 
         if (!ids.length) {
           setItems([]);
@@ -82,10 +84,6 @@ const SearchPage = () => {
       <div className="relative w-full h-64">
         <Image src="/city.png" alt="search" fill className="object-contain" />
       </div>
-
-      {loading && (
-        <Spinner className="h-6 w-6 font-semibold text-primary-500" />
-      )}
 
       <div className="text-center results-text">
         <h1 className="py-10 text-xl">

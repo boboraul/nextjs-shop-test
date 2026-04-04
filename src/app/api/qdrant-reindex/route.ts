@@ -35,6 +35,7 @@ export async function POST() {
     [
       p.name,
       p.slug,
+      (p.description ?? "").replace(/<[^>]*>/g, " "),
     ]
       .filter(Boolean)
       .join(" ")
