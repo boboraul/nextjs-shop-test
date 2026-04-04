@@ -56,6 +56,7 @@ const Checkout = () => {
     
     form.classList.remove("error");
     setShowValidErrors(false);
+    console.log('windows')
     
     const payload = {
       items: items.map((i) => ({
