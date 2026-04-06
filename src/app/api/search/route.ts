@@ -21,7 +21,7 @@ export async function GET(req: Request) {
     with_payload: true,
   });
 
-  const relatedHits = hits.filter((h) => h.score > 0.6);
+  const relatedHits = hits.filter((h) => h.score > 0.55);
 
   return Response.json({
     
