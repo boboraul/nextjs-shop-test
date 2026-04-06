@@ -20,7 +20,7 @@ export async function POST() {
     },
   })
 
-  const res = await wixReindexClient.products.queryProducts().find()
+  const res = await wixReindexClient.products.queryProducts().find();
 
   const products = res.items ?? [];
   

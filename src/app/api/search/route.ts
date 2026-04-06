@@ -21,6 +21,8 @@ export async function GET(req: Request) {
     with_payload: true,
   });
 
+  console.log("hits: ", hits);
+
   return Response.json({
     
     results: hits.map((h) => ({
