@@ -21,11 +21,11 @@ export async function GET(req: Request) {
     with_payload: true,
   });
 
-  console.log("hits:", JSON.stringify(hits, null, 2));
+  const relatedHits = hits.filter((h) => h.score > 0.6);
 
   return Response.json({
     
-    results: hits.map((h) => ({
+    results: relatedHits.map((h) => ({
       q: q,
       score: h.score,
       id: h.payload?.id ?? "",
