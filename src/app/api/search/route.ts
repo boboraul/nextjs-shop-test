@@ -21,7 +21,7 @@ export async function GET(req: Request) {
     with_payload: true,
   });
 
-  console.log("hits: ", hits);
+  console.log("hits:", JSON.stringify(hits, null, 2));
 
   return Response.json({
     
