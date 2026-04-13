@@ -28,11 +28,13 @@ import { useState } from "react";
 
 const ProductImages = ({ items }: { items: any }) => {
   const [index, setIndex] = useState(0);
+  const imageUrl = items[index]?.image?.url || "/product.png";
+
   return (
     <div className="">
       <div className="h-[500px] relative">
         <Image
-          src={items[index].image?.url}
+          src={imageUrl}
           alt=""
           fill
           className="object-cover rounded-md"

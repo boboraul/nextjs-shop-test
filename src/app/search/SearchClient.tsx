@@ -108,7 +108,8 @@ const SearchPage = () => {
                   name={item.name!}
                   price={item.price!}
                   discountedPrice={item.discountedPrice!}
-                  imageUrl={item.imageUrl!}
+                  imageUrl={item.image!}
+                  secondaryImageUrl={item.secondaryImageUrl!}
                   shortDescHtml={""}
                   currency={item.currency}
                   discountPercent={item.discountPercent}
