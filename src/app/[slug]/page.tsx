@@ -46,19 +46,32 @@ export default async function Page({
       </div>
 
       <div className="w-full lg:w-1/2 flex flex-col gap-2 mt-2">
-        <h1 className="text-4xl font-medium">{product.name}</h1>
+        <h1 className="text-2xl font-medium mb-2">{product.name}</h1>
 
         <SafeHtml
           html={
             product.additionalInfoSections?.find(
-              (section: any) => section.title === "shortDesc",
+              (section: any) => section.title === "shortDesc"
             )?.description
           }
-          classes="text-gray-500"
+          classes="short-description text-gray-500"
         />
 
-        <SafeHtml html={product.description!} classes="text-gray-500" />
-
+        {product.description && (
+         
+          <SafeHtml classes="description text-gray-500 my-2"
+            html={product.description!}
+          />
+          )
+        }
+        
+        <SafeHtml
+          html={
+            product.additionalInfoSections?.find((section: any) => section.title === "Characteristics")?.description
+          }
+          classes="characteristics pl-5 text-gray-500"
+        />
+        
         <div className="price-box my-2">
           {product.price?.price === product.price?.discountedPrice ? (
             <h2 className="text-2xl text-primary-500 font-medium">
