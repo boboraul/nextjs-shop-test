@@ -51,7 +51,7 @@ export default function ProductBox({
       <Link href={"/" + slug}>
         <div className="w-full h-80 relative">
           {discountPercent && (
-            <div className="promo-badge bg-danger-500 w-[45px] top-1 flex items-center px-2 opacity-80 rounded-bl-3xl left-0 leading-[20px] justify-center rounded-tr-3xl rotate-[9deg] text-white absolute text-[14px] z-[999]">
+            <div className="promo-badge bg-danger-500 w-[45px] top-1 flex items-center px-2 opacity-80 rounded-bl-3xl left-0 leading-[20px] justify-center rounded-tr-3xl rotate-[9deg] text-white absolute text-[12px] z-[999]">
               <span className="text-white absolute top-[-11px] left-[1px]">
                 .
               </span>
