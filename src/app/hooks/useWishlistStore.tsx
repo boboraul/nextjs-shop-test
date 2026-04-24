@@ -73,8 +73,8 @@ export const useWishlistStore = create<WishlistStore>((set, get) => ({
         body: JSON.stringify(item),
       });
 
-      // if (!res.ok) throw new Error("Failed to add wishlist item");
       const data = await res.json();
+      if (!res.ok) throw new Error(data.error || `Request failed with status ${res.status}`);
 
       set((state) => ({
         items: [
