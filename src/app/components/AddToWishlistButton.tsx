@@ -56,9 +56,9 @@ const AddToWishlistButton = ({
         currency,
         discountPercent,
       } as any);
-      console.log("✅ You have successfully added to Wishlist!");
+     
     } catch (error) {
-      console.error("❌ Failed to add to Wishlist:", error);
+     
     } finally {
       setLoading(false);
     }

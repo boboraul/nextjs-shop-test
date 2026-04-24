@@ -82,6 +82,9 @@ export const useWishlistStore = create<WishlistStore>((set, get) => ({
           (data.item?.item ?? data.item ?? data) as WishlistItem,
         ],
       }));
+      
+      console.log("✅ You have successfully added to Wishlist!");
+
     } catch (error) {
       console.error("Error adding to wishlist:", error);
     }
