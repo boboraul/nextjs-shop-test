@@ -96,7 +96,7 @@ export default function ProductBox({
             Add to Cart
           </button>
 
-          <span className="price-box">
+          <span className="price-box leading-[1.2]">
             {price === discountedPrice ? (
               <h5 className="text-primary-500 font-medium">
                 {discountedPrice?.toLocaleString("ro-RO", {
