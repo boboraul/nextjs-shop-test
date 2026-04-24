@@ -40,7 +40,7 @@ const CartModal = () => {
       <div className="cart-header flex border-b pb-2 justify-between items-center">
         <h4 className="text-sm">Shopping Cart</h4>
         <span className="text-primary-500 text-xs">
-          {counter} {counter > 1 ? "items" : "item"}
+          {counter} {counter > 1 || counter == 0 ? "items" : "item"}
         </span>
       </div>
       {items.length == 0 ? (
