@@ -50,7 +50,7 @@ export async function POST(req: Request) {
     const user = await getUser();
 
     if (!user) {
-        return NextResponse.json({ error: "Unauthorized, you must have an account to add product to wishlist" }, { status: 401 });
+        return NextResponse.json({ error: "Unauthorized, you must have an account to add product to wishlist!" }, { status: 401 });
     }
 
     if (!wishlistCollectionId) {
