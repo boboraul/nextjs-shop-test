@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-
 import SafeHtml from "./SafeHtml";
 import Link from "next/link";
 import AddToWishlistButton from "./AddToWishlistButton";

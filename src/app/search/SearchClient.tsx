@@ -7,8 +7,6 @@ import { useSearchParams } from "next/navigation";
 
 type SearchHit = {
   id: string;
-  score: number;
-  name: string;
 };
 
 type Product = {
@@ -67,6 +65,7 @@ const SearchPage = () => {
 
         const productsData = await productsRes.json();
         setItems(productsData.products || []);
+
       } catch (err) {
         console.log(err);
         setItems([]);
@@ -87,7 +86,7 @@ const SearchPage = () => {
 
       <div className="text-center results-text">
         <h1 className="py-10 text-xl">
-          Search results for: <span className="font-bold">{q}</span>
+          Semantic search results for: <span className="font-bold">{q}</span>
         </h1>
       </div>
 

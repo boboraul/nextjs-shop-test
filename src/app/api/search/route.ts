@@ -6,6 +6,8 @@ const COLLECTION = "products_768";
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const q = (searchParams.get("q") || "").trim();
+  const slimit = Number(searchParams.get("suggestLimit") || 12);
+  
   if (!q) return Response.json({ results: [] });
 
   const client = new QdrantClient({
@@ -17,11 +19,11 @@ export async function GET(req: Request) {
 
   const hits = await client.search(COLLECTION, {
     vector,
-    limit: 10,
+    limit: slimit,
     with_payload: true,
   });
 
-  const relatedHits = hits.filter((h) => h.score > 0.52);
+  const relatedHits = hits.filter((h) => h.score > 0.5);
 
   return Response.json({
     
