@@ -19,7 +19,7 @@ const Menu = () => {
         onClick={() => setOpen((prev) => !prev)}
       />
       {open && (
-        <div className="absolute bg-black py-6 text-white left-0 top-20 w-full flex flex-col items-center justify-center gap-8 z-10 text-xl">
+        <div className="absolute bg-black py-6 text-white left-0 top-4 w-full flex flex-col items-center justify-center gap-8 z-10 text-xl">
           <Link href="/">Homepage</Link>
           <Link href="/">Shop</Link>
           <Link href="/">Deals</Link>

@@ -96,10 +96,10 @@ const Navbar = () => {
               className="inline-block rotate-10"
               src="/logo-new.svg"
               alt=""
-              width={28}
-              height={28}
+              width={24}
+              height={24}
             />
-            <div className="text-2xl tracking-wide whitespace-nowrap">e-Shop</div>
+            <div className="text-xl tracking-wide whitespace-nowrap">e-Shop</div>
           </Link>
           <Menu />
         </div>
