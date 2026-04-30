@@ -91,7 +91,7 @@ export default function ProductBox({
         )}
 
         <div className="flex justify-between items-center mt-4">
-          <button className="rounded-2xl ring-1 ring-primary-500 bg-primary-500 text-white px-4 py-2 text-xs hover:bg-white hover:text-primary-500 easy duration-200">
+          <button className="add-2cart-btn rounded-2xl ring-1 ring-primary-500 bg-primary-500 text-white px-4 py-2 text-xs hover:bg-white hover:text-primary-500 easy duration-200">
             Add to Cart
           </button>
 

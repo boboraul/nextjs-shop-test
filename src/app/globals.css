@@ -36,3 +36,9 @@ body {
         
     }
 }
+
+.search-suggestion-container {
+    .add-2cart-btn {
+        display: none;
+    }
+}
