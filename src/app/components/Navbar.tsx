@@ -8,7 +8,6 @@ import SearchBar from "./SearchBar";
 import NavIcons from "./NavIcons";
 import SearchSuggestions, { SearchSuggestionsItem } from "./SearchSuggestions";
 import { useState, useEffect } from "react";
-import { set } from "zod";
 
 type SearchHit = {
   id: string;
