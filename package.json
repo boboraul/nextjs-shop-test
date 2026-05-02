@@ -19,6 +19,7 @@
     "@wix/stores": "^1.0.452",
     "bcryptjs": "^3.0.3",
     "dompurify": "^3.3.0",
+    "embla-carousel-react": "^8.6.0",
     "headers": "^0.9.6",
     "iron-session": "^8.0.4",
     "js-cookie": "^3.0.5",

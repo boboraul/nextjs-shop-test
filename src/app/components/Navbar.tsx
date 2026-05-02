@@ -1,13 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { use } from "react";
 import Link from "next/link";
 import Menu from "./Menu";
 import Image from "next/image";
 import SearchBar from "./SearchBar";
 import NavIcons from "./NavIcons";
 import SearchSuggestions, { SearchSuggestionsItem } from "./SearchSuggestions";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 type SearchHit = {
   id: string;
@@ -18,6 +18,7 @@ const Navbar = () => {
   const [query, setQuery] = useState("");
   const [items, setItems] = useState<SearchSuggestionsItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const searchBoxRef = useRef<HTMLDivElement>(null);
 
   const debounce = (callback: Function, delay: number) => {
     let timeoutId: NodeJS.Timeout;
@@ -72,7 +73,7 @@ const Navbar = () => {
         const productsData = await productsRes.json();
 
         setItems(productsData.products || []);
-        console.log(productsData.products)
+        
         setIsOpen(true);
 
       } catch (error) {
@@ -84,15 +85,30 @@ const Navbar = () => {
      run();
 
   }, [query]);
+  
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (searchBoxRef.current && !searchBoxRef.current.contains(e.target as Node)) {
+          setIsOpen(false);
+        }
+    }
+
+    window.addEventListener("click", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+
+  }, []);
 
   return (
     <div className="sticky-navbar sticky top-0 z-[1020] bg-white shadow-[0px_10px_8px_-15px_#000000]">
       <div className="h-15 py-3 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px]">
         {/* Mobile */}
-        <div className="h-full flex items-center justify-between md:hidden">
+        <div className="h-full flex items-center md:hidden">
           <Link href="/" className="flex items-center gap-1">
             <Image
-              className="inline-block rotate-10"
+              className="rotate-10"
               src="/logo-new.svg"
               alt=""
               width={24}
@@ -100,7 +116,16 @@ const Navbar = () => {
             />
             <div className="text-xl tracking-wide whitespace-nowrap">e-Shop</div>
           </Link>
+          
           <Menu />
+
+          <div className="ml-auto">
+            <NavIcons />
+          </div>
+        </div>
+
+        <div className="w-full md:hidden mt-2">
+            <SearchBar debouncedGetSuggestions={debouncedGetSuggestions}/>
         </div>
 
         {/* Bigger screens */}
@@ -119,7 +144,7 @@ const Navbar = () => {
                 e-Shop
               </div>
             </Link>
-            <div className="hidden xl:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-4">
               <Link href="/">Homepage</Link>
               <Link href="/">Shop</Link>
               <Link href="/">Deals</Link>
@@ -136,8 +161,8 @@ const Navbar = () => {
       </div>
 
       {isOpen && (
-       <div className="searchBox relative">
-              <SearchSuggestions items={items} />
+       <div className="searchBox relative" ref={searchBoxRef}>
+              <SearchSuggestions items={items} isOpen={isOpen} />
         </div>
       )}
     </div>

@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 type SearchBarProps = {
   debouncedGetSuggestions: (value: string) => void;
@@ -9,6 +10,7 @@ type SearchBarProps = {
 
 const SearchBar = ({ debouncedGetSuggestions }: SearchBarProps) => {
   const router = useRouter();
+  const [isFocused, setIsFocused] = useState(false);
   
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,7 +25,7 @@ const SearchBar = ({ debouncedGetSuggestions }: SearchBarProps) => {
   return (
 
     <form
-      className="flex relative justify-content-between gap-4 bg-gray-100 p-2 rounded-md flex-1"
+      className="flex relative h-[40px] justify-content-between gap-4 bg-gray-100 p-2 rounded-md flex-1"
       action=""
       onSubmit={handleSearch}
     >
@@ -33,24 +35,27 @@ const SearchBar = ({ debouncedGetSuggestions }: SearchBarProps) => {
         name="name"
         className="flex-1 outline-none bg-gray-100"
         onInput={(e) => debouncedGetSuggestions(e.currentTarget.value)}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
       />
       <button type="submit" className="cursor-pointer">
         {/* <Image src="/search.png" alt="" width={16} height={16} /> */}
-
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          className="w-6 h-6 text-gray-400"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-          />
-        </svg>
+        {!isFocused && (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-6 h-6 text-gray-400"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+            />
+          </svg>
+        )}
       </button>
  
     </form>

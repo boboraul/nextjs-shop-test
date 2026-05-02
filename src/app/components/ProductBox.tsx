@@ -17,6 +17,7 @@ export type ProductBoxProps = {
   shortDescHtml?: any | "";
   currency?: string;
   discountPercent?: number | null;
+  isOpen?: boolean;
 };
 
 export default function ProductBox({
@@ -30,10 +31,11 @@ export default function ProductBox({
   shortDescHtml,
   currency,
   discountPercent,
+  isOpen,
 }: ProductBoxProps) {
   const gCurrency = currency == "RON" ? "Lei" : currency;
   return (
-    <div className="product-box relative w-full sm:w-[40%] lg:w-[22%]">
+    <div className={'product-box relative w-full sm:w-[40%] ' + (isOpen ? 'lg:w-[12%]' : 'lg:w-[22%]')}>
       <div className="wishlist-btn absolute top-2 right-2 z-20">
         <AddToWishlistButton
           productId={id}
@@ -48,7 +50,7 @@ export default function ProductBox({
         />
       </div>
       <Link href={"/" + slug}>
-        <div className="w-full h-80 relative">
+        <div className={'w-full relative ' + (isOpen ? 'h-40' : 'h-80')}>
           {discountPercent && (
             <div className="promo-badge bg-danger-500 w-[45px] top-1 flex items-center px-2 opacity-80 rounded-bl-3xl left-0 leading-[20px] justify-center rounded-tr-3xl rotate-[9deg] text-white absolute text-[12px] z-[999]">
               <span className="text-white absolute top-[-11px] left-[1px]">

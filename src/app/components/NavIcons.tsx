@@ -165,7 +165,7 @@ const NavIcons = () => {
           </div>
         )}
         {loggedIn && (
-          <small className="flex items-center">
+          <small className="hidden sm:flex sm:items-center">
             Hello,
             <span className="text-primary-500 truncate max-w-[80px] inline-block mx-1">
               {name}
