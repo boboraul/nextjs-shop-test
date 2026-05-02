@@ -17,7 +17,6 @@ const NavIcons = () => {
   const [isWishListOpen, setIsWishListOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const router = useRouter();
-  const wixClient = useWixClient();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const pathname = usePathname();

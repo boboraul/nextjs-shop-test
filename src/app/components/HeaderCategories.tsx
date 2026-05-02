@@ -7,10 +7,10 @@ export default async function HeaderCategories() {
   const cats = await wixClient.collections.queryCollections().find();
 
   return (
-    <div>
+    <div className="flex flex-col gap-2 justify-center">
       {cats.items.map((cat) => (
         <div key={cat._id}>
-            <Link className="py-2 md:py-1 font-semibold" href={`/list/?cat=${cat.slug}`}>{cat.name}</Link>
+            <Link className="py-1 font-semibold" href={`/list/?cat=${cat.slug}`}>{cat.name}</Link>
         </div>
       ))}
     </div>

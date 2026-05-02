@@ -118,7 +118,9 @@ const Navbar = ({ children }: {children: React.ReactNode }) => {
             <div className="text-xl tracking-wide whitespace-nowrap">e-Shop</div>
           </Link>
           
-          <Menu />
+          <Menu>
+            {children}
+          </Menu>
 
           <div className="ml-auto">
             <NavIcons />
@@ -156,7 +158,7 @@ const Navbar = ({ children }: {children: React.ReactNode }) => {
               </button>
                 
                 {categIsOpen && (
-                  <div className="header-categories-dropdown absolute top-10 left-0 bg-white shadow-md min-w-[200px] p-4 z-10">
+                  <div className="header-categories-dropdown absolute top-10 left-[-25px] bg-white shadow-md min-w-[200px] p-4 z-10">
                     {children}
                   </div>
                 )}
