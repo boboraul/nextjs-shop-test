@@ -13,11 +13,12 @@ type SearchHit = {
   id: string;
 };
 
-const Navbar = () => {
+const Navbar = ({ children }: {children: React.ReactNode }) => {
 
   const [query, setQuery] = useState("");
   const [items, setItems] = useState<SearchSuggestionsItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [categIsOpen, setCategIsOpen] = useState(false);
   const searchBoxRef = useRef<HTMLDivElement>(null);
 
   const debounce = (callback: Function, delay: number) => {
@@ -131,7 +132,7 @@ const Navbar = () => {
         {/* Bigger screens */}
         <div className="hidden md:flex items-center h-full jusitfy-between gap-8">
           {/* Left */}
-          <div className="w-1/7 xl:w-1/2 flex items-center flex-nowrap gap-12">
+          <div className="w-1/7 xl:w-1/2 flex items-center flex-nowrap gap-10">
             <Link href="/" className="flex items-center gap-1">
               <Image
                 className="inline-block rotate-10"
@@ -140,24 +141,38 @@ const Navbar = () => {
                 width={28}
                 height={28}
               />
-              <div className="text-xl inline-block whitespace-nowrap pr-5">
+              <div className="text-xl inline-block whitespace-nowrap">
                 e-Shop
               </div>
             </Link>
-            <div className="hidden lg:flex items-center gap-4">
-              <Link href="/">Homepage</Link>
-              <Link href="/">Shop</Link>
+            
+            <div className="hidden relative lg:flex items-center gap-4">
+              
+              <button className="font-semibold text-primary-500 flex items-center" onClick={() => setCategIsOpen((prev) => !prev)}>
+                Products
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-4">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+              </button>
+                
+                {categIsOpen && (
+                  <div className="header-categories-dropdown absolute top-10 left-0 bg-white shadow-md min-w-[200px] p-4 z-10">
+                    {children}
+                  </div>
+                )}
               <Link href="/">Deals</Link>
               <Link href="/">About</Link>
               <Link href="/">Contact</Link>
             </div>
           </div>
+
           {/* Right */}
           <div className="w-full xl:w-1/2 flex items-center justify-between gap-8">
             <SearchBar debouncedGetSuggestions={debouncedGetSuggestions}/>
             <NavIcons />
           </div>
         </div>
+        
       </div>
 
       {isOpen && (

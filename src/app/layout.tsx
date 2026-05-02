@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import { WixClientContextProvider } from "./Context/wixContext";
 import WishlistInitializer from "./components/WishlistInitializer";
 import { ConfigProvider } from "./Context/ConfigProvider";
+import HeaderCategories from "./components/HeaderCategories";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,14 +33,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Fortam refresh la favicon prin query param */}
         <link rel="icon" href="/favicon.ico?v=3" />
       </head>
+
       <body className={inter.className}>
         <ConfigProvider>
           <WixClientContextProvider>
             <WishlistInitializer />
-            <Navbar />
+             <Navbar>
+              <HeaderCategories />
+            </Navbar>
             {children}
             <Footer />
           </WixClientContextProvider>
