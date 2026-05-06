@@ -5,9 +5,15 @@ import Carousel from "./components/Carousel";
 import Slider from "./components/Slider";
 import ProductList from "./components/ProductList";
 import CategoryList from "./components/CategoryList";
+import { wixClientServer } from "./lib/wixClientServer";
 import { products } from "@wix/stores";
 
 const HomePage = async () => {
+  const wixClient = await wixClientServer();
+  const productQuery = wixClient.products.queryProducts();
+  const res = await productQuery.find();
+  const items = [...res.items];
+
   return (
     <div className="">
       {/* <h1>HomePage</h1> */}
@@ -19,7 +25,11 @@ const HomePage = async () => {
             categoryId={process.env.FEATURED_PRODUCTS_CATEGORY_ID!}
             limit={4}
           />
-          <Carousel carouselTitle={'Noutati'} />
+
+          <div className="my-5">
+            <Carousel carouselTitle={'Noutati'} products={items} />
+          </div>
+
         </Suspense>
       </div>
 

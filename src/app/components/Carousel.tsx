@@ -3,25 +3,13 @@
 import useEmblaCarousel from "embla-carousel-react";
 import ProductBox from "../components/ProductBox";
 
-type Product = {
-  id: string;
-  slug: string;
-  name: string;
-  price: number | null;
-  discountedPrice: number | null;
-  imageurl: string;
-  secondaryImageUrl: string;
-  shortDescHtml: any;
-  currency: string | null;
-  discountPercent: number | null;
-};
 
 type CarouselProps = {
-  // products: Product[];
+  products?: any;
   carouselTitle?: string;
 };
 
-export default function Carousel({ carouselTitle } : CarouselProps) {
+export default function Carousel({ carouselTitle, products } : CarouselProps) {
    const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "start",
@@ -65,13 +53,33 @@ export default function Carousel({ carouselTitle } : CarouselProps) {
       <div className="overflow-hidden" ref={emblaRef}>
         {/* Container / Track */}
         <div className="flex">
-          <div className="flex-[0_0_33.333%]">Slide 1</div>
-          <div className="flex-[0_0_33.333%]">Slide 2</div>
-          <div className="flex-[0_0_33.333%]">Slide 3</div>
-
-          <div className="flex-[0_0_33.333%]">Slide 1</div>
-          <div className="flex-[0_0_33.333%]">Slide 2</div>
-          <div className="flex-[0_0_33.333%]">Slide 3</div>
+         {products.map((product: products.Product) => (
+            /* Slide */
+            <div
+              key={product._id}
+              className="min-w-0 flex-[0_0_33.333%] px-2">
+               <ProductBox
+                  id={product._id!}
+                  slug={product.slug!}
+                  name={product.name!}
+                  price={product.price?.price!}
+                  discountedPrice={product.price?.discountedPrice!}
+                  imageUrl={product.media?.mainMedia?.image?.url || "/product.png"}
+                  currency={product.price?.currency}
+                  secondaryImageUrl={
+                    product.media?.items
+                      ? product.media?.items[1]?.image?.url
+                      : "/product.png"
+                  }
+                  shortDescHtml={product.additionalInfoSections}
+                  discountPercent={
+                    product.discount?.type === "PERCENT"
+                      ? product.discount.value
+                      : null
+                  }
+                />
+            </div>
+          ))}
         </div>
       </div>
     </section>
