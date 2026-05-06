@@ -14,7 +14,6 @@ const HomePage = async () => {
   const res = await productQuery.find();
   const items = [...res.items];
   
-
   return (
     <div className="">
       {/* <h1>HomePage</h1> */}
@@ -28,7 +27,7 @@ const HomePage = async () => {
           />
 
           <div className="my-5">
-            <Carousel carouselTitle={'Noutati'} products={items} productsLimit={TOTAL_CAROUSEL_PRODUCTS}/>
+            <Carousel carouselTitle={'Noutati'} products={items} />
           </div>
 
         </Suspense>
