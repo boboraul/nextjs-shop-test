@@ -2,7 +2,7 @@
 
 import useEmblaCarousel from "embla-carousel-react";
 import ProductBox from "../components/ProductBox";
-
+import { products } from "@wix/stores";
 
 type CarouselProps = {
   products?: any;

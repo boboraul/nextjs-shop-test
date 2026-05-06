@@ -6,7 +6,6 @@ import Slider from "./components/Slider";
 import ProductList from "./components/ProductList";
 import CategoryList from "./components/CategoryList";
 import { wixClientServer } from "./lib/wixClientServer";
-import { products } from "@wix/stores";
 
 const HomePage = async () => {
   const wixClient = await wixClientServer();
