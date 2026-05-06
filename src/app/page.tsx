@@ -5,6 +5,7 @@ import Carousel from "./components/Carousel";
 import Slider from "./components/Slider";
 import ProductList from "./components/ProductList";
 import CategoryList from "./components/CategoryList";
+import { products } from "@wix/stores";
 
 const HomePage = async () => {
   return (
@@ -18,6 +19,7 @@ const HomePage = async () => {
             categoryId={process.env.FEATURED_PRODUCTS_CATEGORY_ID!}
             limit={4}
           />
+          <Carousel carouselTitle={'Noutati'} />
         </Suspense>
       </div>
 

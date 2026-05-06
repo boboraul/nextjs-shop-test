@@ -1,34 +1,79 @@
 "use client";
 
 import useEmblaCarousel from "embla-carousel-react";
+import ProductBox from "./components/ProductBox";
 
-export default function RecommendedCarousel() {
-  const [emblaRef] = useEmblaCarousel();
+type Product = {
+  id: string;
+  slug: string;
+  name: string;
+  price: number | null;
+  discountedPrice: number | null;
+  imageurl: string;
+  secondaryImageUrl: string;
+  shortDescHtml: any;
+  currency: string | null;
+  discountPercent: number | null;
+};
+
+type CarouselProps = {
+  // products: Product[];
+  carouselTitle?: string;
+};
+
+export default function Carousel({ carouselTitle } : CarouselProps) {
+   const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: false,
+    align: "start",
+  });
+
+  const scrollPrev = () => {
+    emblaApi?.scrollPrev();
+  };
+
+  const scrollNext = () => {
+    emblaApi?.scrollNext();
+  };
 
   return (
     <section className="w-full">
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-xl font-semibold">Recommended for you</h2>
+        <h3 className="text-xl font-semibold">{carouselTitle}</h3>
 
         <div className="flex gap-2">
-          <button type="button">‹</button>
-          <button type="button">›</button>
+           <button
+            type="button"
+            onClick={scrollPrev}
+            className="h-9 w-9 rounded-full border"
+            aria-label="Previous products"
+          >
+            ‹
+          </button>
+
+          <button
+            type="button"
+            onClick={scrollNext}
+            className="h-9 w-9 rounded-full border"
+            aria-label="Next products"
+          >
+            ›
+          </button>
         </div>
       </div>
 
+      {/* Viewport Embla */}
       <div className="overflow-hidden" ref={emblaRef}>
+        {/* Container / Track */}
         <div className="flex">
-          <div className="min-w-0 flex-[0_0_33.333%] px-2">
-            <div className="border p-4">Product 1</div>
-          </div>
-
-          <div className="min-w-0 flex-[0_0_33.333%] px-2">
-            <div className="border p-4">Product 2</div>
-          </div>
-
-          <div className="min-w-0 flex-[0_0_33.333%] px-2">
-            <div className="border p-4">Product 3</div>
-          </div>
+          {products.map((product) => (
+            /* Slide */
+            <div
+              key={product._id}
+              className="min-w-0 flex-[0_0_33.333%] px-2"
+            >
+              <ProductBox product={product} />
+            </div>
+          ))}
         </div>
       </div>
     </section>
