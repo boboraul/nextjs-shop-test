@@ -23,7 +23,7 @@ type CarouselProps = {
 
 export default function Carousel({ carouselTitle } : CarouselProps) {
    const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: false,
+    loop: true,
     align: "start",
   });
 
