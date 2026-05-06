@@ -57,7 +57,7 @@ export default function Carousel({ carouselTitle, products } : CarouselProps) {
             /* Slide */
             <div
               key={product._id}
-              className="min-w-0 flex-[0_0_33.333%] px-2">
+              className="min-w-0 px-2">
                <ProductBox
                   id={product._id!}
                   slug={product.slug!}
