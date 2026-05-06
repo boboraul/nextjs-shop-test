@@ -1,7 +1,7 @@
 "use client";
 
 import useEmblaCarousel from "embla-carousel-react";
-import ProductBox from "./components/ProductBox";
+import ProductBox from "../components/ProductBox";
 
 type Product = {
   id: string;
@@ -65,15 +65,13 @@ export default function Carousel({ carouselTitle } : CarouselProps) {
       <div className="overflow-hidden" ref={emblaRef}>
         {/* Container / Track */}
         <div className="flex">
-          {products.map((product) => (
-            /* Slide */
-            <div
-              key={product._id}
-              className="min-w-0 flex-[0_0_33.333%] px-2"
-            >
-              <ProductBox product={product} />
-            </div>
-          ))}
+          <div className="flex-[0_0_33.333%]">Slide 1</div>
+          <div className="flex-[0_0_33.333%]">Slide 2</div>
+          <div className="flex-[0_0_33.333%]">Slide 3</div>
+
+          <div className="flex-[0_0_33.333%]">Slide 1</div>
+          <div className="flex-[0_0_33.333%]">Slide 2</div>
+          <div className="flex-[0_0_33.333%]">Slide 3</div>
         </div>
       </div>
     </section>
