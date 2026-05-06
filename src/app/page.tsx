@@ -8,10 +8,12 @@ import CategoryList from "./components/CategoryList";
 import { wixClientServer } from "./lib/wixClientServer";
 
 const HomePage = async () => {
+  const TOTAL_CAROUSEL_PRODUCTS = 20;
   const wixClient = await wixClientServer();
-  const productQuery = wixClient.products.queryProducts();
+  const productQuery = wixClient.products.queryProducts().limit(TOTAL_CAROUSEL_PRODUCTS);
   const res = await productQuery.find();
   const items = [...res.items];
+  
 
   return (
     <div className="">
@@ -26,7 +28,7 @@ const HomePage = async () => {
           />
 
           <div className="my-5">
-            <Carousel carouselTitle={'Noutati'} products={items} />
+            <Carousel carouselTitle={'Noutati'} products={items} productsLimit={TOTAL_CAROUSEL_PRODUCTS}/>
           </div>
 
         </Suspense>
