@@ -7,9 +7,10 @@ import { products } from "@wix/stores";
 type CarouselProps = {
   products?: any;
   carouselTitle?: string;
+ 
 };
 
-export default function Carousel({ carouselTitle, products } : CarouselProps) {
+export default function Carousel({ carouselTitle, products} : CarouselProps) {
    const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "start",
@@ -26,7 +27,7 @@ export default function Carousel({ carouselTitle, products } : CarouselProps) {
   return (
     <section className="w-full">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-xl font-semibold">{carouselTitle}</h3>
+        <div className="text-2xl">{carouselTitle}</div>
 
         <div className="flex gap-2">
            <button
@@ -57,7 +58,8 @@ export default function Carousel({ carouselTitle, products } : CarouselProps) {
             /* Slide */
             <div
               key={product._id}
-              className="min-w-0 flex-[0_0_50%] px-2">
+              className="min-w-0 px-2 flex-[0_0_50%] lg:flex-[0_0_25%]"
+            >
                <ProductBox
                   id={product._id!}
                   slug={product.slug!}
@@ -77,6 +79,7 @@ export default function Carousel({ carouselTitle, products } : CarouselProps) {
                       ? product.discount.value
                       : null
                   }
+                  customClasses={"w-full"}
                 />
             </div>
           ))}

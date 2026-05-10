@@ -18,6 +18,7 @@ export type ProductBoxProps = {
   currency?: string;
   discountPercent?: number | null;
   isOpen?: boolean;
+  customClasses?: string;
 };
 
 export default function ProductBox({
@@ -32,10 +33,12 @@ export default function ProductBox({
   currency,
   discountPercent,
   isOpen,
+  customClasses,
 }: ProductBoxProps) {
   const gCurrency = currency == "RON" ? "Lei" : currency;
+  
   return (
-    <div className={`product-box relative w-full sm:w-[40%] ${isOpen ? 'lg:w-[12%]' : 'lg:w-[22%]'}`}>
+    <div className={`product-box relative w-full ${customClasses || (isOpen ? 'lg:w-[12%]' : 'lg:w-[22%]')}`}>
       <div className="wishlist-btn absolute top-2 right-2 z-20">
         <AddToWishlistButton
           productId={id}
