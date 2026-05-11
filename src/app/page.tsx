@@ -14,7 +14,7 @@ const HomePage = async () => {
 
       <div className="mt-10 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px]">
 
-         <div className="homepage-title mt-5 text-center">
+         <div className="homepage-title my-20 text-center">
             <h1 className="text-2xl font-bold">Discover Curated Products for a Smarter Shopping Experience</h1>
          </div>
         
