@@ -14,12 +14,12 @@ const HomePage = async () => {
 
       <div className="mt-24 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px]">
 
-         <div className="homepage-title mt-3 text-center">
+         <div className="homepage-title mt-10 text-center">
             <h1>Discover Curated Products for a Smarter Shopping Experience</h1>
          </div>
         
         <Suspense fallback={"Loading..."}>
-           <div className="my-5">
+           <div className="mt-10">
             <CarouselProducts
               categoryId={process.env.FEATURED_PRODUCTS_CATEGORY_ID!}
               limit={4}
@@ -27,7 +27,7 @@ const HomePage = async () => {
             />
           </div>
 
-          <div className="my-5">
+          <div className="mt-10">
             <CarouselProducts carouselTitle={'New in'} limit={10} />
           </div>
           
