@@ -1,12 +1,9 @@
 // "use client";
 
 import { Suspense } from "react";
-import Carousel from "./components/Carousel";
 import Slider from "./components/Slider";
-// import ProductList from "./components/ProductList";
 import CarouselProducts from "./components/CarouselProducts";
 import CategoryList from "./components/CategoryList";
-import { wixClientServer } from "./lib/wixClientServer";
 
 const HomePage = async () => {
 
@@ -31,8 +28,6 @@ const HomePage = async () => {
           
         </Suspense>
       </div>
-
-      {/* <Carousel /> */}
 
       <div className="mt-24">
         <div className="text-3xl px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] mb-12">
