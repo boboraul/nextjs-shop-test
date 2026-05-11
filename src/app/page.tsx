@@ -9,9 +9,14 @@ const HomePage = async () => {
 
   return (
     <div className="">
-      {/* <h1>HomePage</h1> */}
+    
       <Slider />
+
       <div className="mt-24 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px]">
+
+         <div className="homepage-title mt-3 text-center">
+            <h1>Discover Curated Products for a Smarter Shopping Experience</h1>
+         </div>
         
         <Suspense fallback={"Loading..."}>
            <div className="my-5">
