@@ -23,7 +23,7 @@ const HomePage = async () => {
           /> */}
 
           <div className="my-5">
-            <CarouselProducts carouselTitle={'New in'} limit={10} />
+            <CarouselProducts carouselTitle={'New in'} limit={10} categoryId={''} />
           </div>
 
         </Suspense>

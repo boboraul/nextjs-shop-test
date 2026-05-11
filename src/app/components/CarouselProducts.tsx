@@ -4,12 +4,20 @@ import { wixClientServer } from "../lib/wixClientServer";
 type CarouselProductsProps = {
   carouselTitle?: string;
   limit?: number;
+  categoryId?: string;
 };
 
-export default async function CarouselProducts({ carouselTitle, limit } : CarouselProductsProps) {
+export default async function CarouselProducts({ carouselTitle, limit, categoryId } : CarouselProductsProps) {
   const wixClient = await wixClientServer();
   const CAROUSEL_PRODUCTS_LIMIT = 20;
-  const res = await wixClient.products.queryProducts().limit(limit || CAROUSEL_PRODUCTS_LIMIT).find();
+
+  let query = wixClient.products.queryProducts();
+
+  if (categoryId) {
+    query = query.eq("collectionIds", categoryId);
+  }
+
+  const res = await query.limit(limit || CAROUSEL_PRODUCTS_LIMIT).find();
 
   const filteredProducts = res.items.filter((product) => {
     return product.visible !== false;
