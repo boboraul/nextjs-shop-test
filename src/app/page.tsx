@@ -3,17 +3,13 @@
 import { Suspense } from "react";
 import Carousel from "./components/Carousel";
 import Slider from "./components/Slider";
-import ProductList from "./components/ProductList";
+// import ProductList from "./components/ProductList";
+import CarouselProducts from "./components/CarouselProducts";
 import CategoryList from "./components/CategoryList";
 import { wixClientServer } from "./lib/wixClientServer";
 
 const HomePage = async () => {
-  const TOTAL_CAROUSEL_PRODUCTS = 20;
-  const wixClient = await wixClientServer();
-  const productQuery = wixClient.products.queryProducts().limit(TOTAL_CAROUSEL_PRODUCTS);
-  const res = await productQuery.find();
-  const items = [...res.items];
-  
+
   return (
     <div className="">
       {/* <h1>HomePage</h1> */}
@@ -27,7 +23,7 @@ const HomePage = async () => {
           /> */}
 
           <div className="my-5">
-            <Carousel carouselTitle={'New in'} products={items} />
+            <CarouselProducts carouselTitle={'New in'} limit={10} />
           </div>
 
         </Suspense>
