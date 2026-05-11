@@ -26,14 +26,14 @@ export default function Carousel({ carouselTitle, products} : CarouselProps) {
 
   return (
     <section className="w-full">
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-10 flex items-center justify-between">
         <div className="text-2xl">{carouselTitle}</div>
 
         <div className="flex gap-2">
            <button
             type="button"
             onClick={scrollPrev}
-            className="h-9 w-9 rounded-full bg-primary-500 text-white"
+            className="h-9 w-9 rounded-full text-xl bg-primary-500 text-white"
             aria-label="Previous products"
           >
             ‹
@@ -42,7 +42,7 @@ export default function Carousel({ carouselTitle, products} : CarouselProps) {
           <button
             type="button"
             onClick={scrollNext}
-            className="h-9 w-9 rounded-full bg-primary-500 text-white"
+            className="h-9 w-9 rounded-full text-xl bg-primary-500 text-white"
             aria-label="Next products"
           >
             ›
