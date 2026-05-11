@@ -33,7 +33,7 @@ export default function Carousel({ carouselTitle, products} : CarouselProps) {
            <button
             type="button"
             onClick={scrollPrev}
-            className="h-9 w-9 rounded-full border"
+            className="h-9 w-9 rounded-full bg-primary-500 text-white"
             aria-label="Previous products"
           >
             ‹
@@ -42,7 +42,7 @@ export default function Carousel({ carouselTitle, products} : CarouselProps) {
           <button
             type="button"
             onClick={scrollNext}
-            className="h-9 w-9 rounded-full border"
+            className="h-9 w-9 rounded-full bg-primary-500 text-white"
             aria-label="Next products"
           >
             ›
