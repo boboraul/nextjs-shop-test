@@ -16,16 +16,19 @@ const HomePage = async () => {
       <Slider />
       <div className="mt-24 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px]">
         
-        <Suspense fallback={"loading"}>
-          {/* <ProductList
-            categoryId={process.env.FEATURED_PRODUCTS_CATEGORY_ID!}
-            limit={4}
-          /> */}
-
-          <div className="my-5">
-            <CarouselProducts carouselTitle={'New in'} limit={10} categoryId={''} />
+        <Suspense fallback={"Loading..."}>
+           <div className="my-5">
+            <CarouselProducts
+              categoryId={process.env.FEATURED_PRODUCTS_CATEGORY_ID!}
+              limit={4}
+              carouselTitle={'Featured'}
+            />
           </div>
 
+          <div className="my-5">
+            <CarouselProducts carouselTitle={'New in'} limit={10} />
+          </div>
+          
         </Suspense>
       </div>
 
