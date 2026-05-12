@@ -36,7 +36,7 @@ const HomePage = async () => {
 
       <div className="mt-10">
 
-        <div className="text-3xl px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] mb-10">
+        <div className="text-3xl px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] mb-8">
           <div className="text-2xl">
             Categories
           </div>

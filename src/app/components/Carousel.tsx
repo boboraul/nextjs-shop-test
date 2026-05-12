@@ -26,7 +26,7 @@ export default function Carousel({ carouselTitle, products} : CarouselProps) {
 
   return (
     <section className="w-full">
-      <div className="mb-10 flex items-center justify-between">
+      <div className="mb-8 flex items-center justify-between">
         <div className="text-2xl">{carouselTitle}</div>
 
         <div className="flex gap-2">
