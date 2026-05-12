@@ -5,6 +5,7 @@ type CarouselProductsProps = {
   carouselTitle?: string;
   limit?: number;
   categoryId?: string;
+  latestProducts?: number;
 };
 
 export default async function CarouselProducts({ carouselTitle, limit, categoryId } : CarouselProductsProps) {

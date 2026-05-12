@@ -22,13 +22,13 @@ const HomePage = async () => {
            <div className="mt-10">
             <CarouselProducts
               categoryId={process.env.FEATURED_PRODUCTS_CATEGORY_ID!}
-              limit={4}
+              limit={20}
               carouselTitle={'Featured'}
             />
           </div>
 
           <div className="mt-20">
-            <CarouselProducts carouselTitle={'New in'} limit={10} />
+            <CarouselProducts carouselTitle={'New in'} limit={20} latestProducts={30} />
           </div>
           
         </Suspense>
