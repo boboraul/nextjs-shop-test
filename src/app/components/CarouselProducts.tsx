@@ -8,7 +8,7 @@ type CarouselProductsProps = {
   latestProducts?: number;
 };
 
-export default async function CarouselProducts({ carouselTitle, limit, categoryId } : CarouselProductsProps) {
+export default async function CarouselProducts({ carouselTitle, limit, categoryId, latestProducts } : CarouselProductsProps) {
   const wixClient = await wixClientServer();
   const CAROUSEL_PRODUCTS_LIMIT = 20;
 
