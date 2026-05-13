@@ -36,7 +36,7 @@ const config: Config = {
           500: '#0ecb3aff'
         },
         alert: {
-          500: '#fcd34d'
+          500: '#fcad4d'
         }
       },
       rotate: {
