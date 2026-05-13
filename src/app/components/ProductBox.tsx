@@ -40,7 +40,7 @@ export default function ProductBox({
   const gCurrency = currency == "RON" ? "Lei" : currency;
   
   return (
-    <div className={`product-box relative w-full ${customClasses || (isOpen ? 'lg:w-[12%]' : 'lg:w-[22%]')}${availability === 'OUT_OF_STOCK' && ' opacity-[75]'}`}>
+    <div className={`product-box relative w-full ${customClasses || (isOpen ? 'lg:w-[12%]' : 'lg:w-[22%]')}${availability === 'OUT_OF_STOCK' && ' opacity-[0.65]'}`}>
       <div className="wishlist-btn absolute top-2 right-2 z-20">
         
         <AddToWishlistButton
