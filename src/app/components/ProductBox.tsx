@@ -42,7 +42,7 @@ export default function ProductBox({
   return (
     <div className={`product-box relative w-full ${customClasses || (isOpen ? 'lg:w-[12%]' : 'lg:w-[22%]')}`}>
       <div className="wishlist-btn absolute top-2 right-2 z-20">
-        <h1 className="availability">Availability {availability}</h1>
+        
         <AddToWishlistButton
           productId={id}
           productName={name}
@@ -84,7 +84,16 @@ export default function ProductBox({
           )}
         </div>
         <div className="flex justify-between mt-2">
-          <h3 className="font-medium line-clamp-2 mb-0">{name}</h3>
+          <h4 className="font-medium line-clamp-2 mb-0">{name}</h4>
+
+          <div className="availability">
+            {availability === 'IN_STOCK'
+              ? <span className="text-success-500 text-[10px]">In Stock</span>
+              : availability === 'PARTIALLY_OUT_OF_STOCK'
+              ? <span className="text-primary-500 text-[10px]">Partially Out of Stock</span>
+              : <span className="text-danger-500 text-[10px]">Out of Stock</span>
+            }
+          </div>
         </div>
 
         {shortDescHtml && (
