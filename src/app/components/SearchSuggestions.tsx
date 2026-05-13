@@ -40,7 +40,6 @@ export default function SearchSuggestions({items, isOpen}: SearchSuggestionsProp
                         />
                     ))
                 )}
-               
             </div>
         </div>
     )

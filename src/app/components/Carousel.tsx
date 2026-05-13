@@ -24,8 +24,6 @@ export default function Carousel({ carouselTitle, products} : CarouselProps) {
     emblaApi?.scrollNext();
   };
 
-  console.log('carousel prods: ', products)
-
   return (
     <section className="w-full">
       <div className="mb-6 flex items-center justify-between">

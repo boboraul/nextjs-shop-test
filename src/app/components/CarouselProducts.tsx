@@ -32,6 +32,8 @@ export default async function CarouselProducts({ carouselTitle, limit, categoryI
   const filteredProducts = items.filter((product) => {
     return product.visible !== false;
   });
+  
+  console.log('filteredprods: ', filteredProducts);
 
   return (
     <Carousel
