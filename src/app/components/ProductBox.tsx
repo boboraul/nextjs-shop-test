@@ -19,7 +19,7 @@ export type ProductBoxProps = {
   discountPercent?: number | null;
   isOpen?: boolean;
   customClasses?: string;
-  availability?: boolean;
+  availability?: string;
 };
 
 export default function ProductBox({
