@@ -21,6 +21,8 @@ export default async function CarouselProducts({ carouselTitle, limit, categoryI
   const res = await query.limit(limit || CAROUSEL_PRODUCTS_LIMIT).find();
   const items = [...res.items];
 
+  console.log('carousel items: ' + items);
+
   if (sortKey) {
     if (sortKey === "lastUpdated") {
       items.sort((a: any, b: any) => 
