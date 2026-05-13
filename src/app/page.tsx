@@ -30,7 +30,7 @@ const HomePage = async () => {
           <div className="mt-20">
             {/* New Products carousel */}
             <CarouselProducts carouselTitle={'New in'} 
-            limit={20} 
+            limit={20}
             sortKey={'lastUpdated'} 
             />
           </div>
