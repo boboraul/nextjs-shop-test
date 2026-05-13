@@ -5,10 +5,10 @@ type CarouselProductsProps = {
   carouselTitle?: string;
   limit?: number;
   categoryId?: string;
-  latestProducts?: number;
+  sortKey?: string;
 };
 
-export default async function CarouselProducts({ carouselTitle, limit, categoryId, latestProducts } : CarouselProductsProps) {
+export default async function CarouselProducts({ carouselTitle, limit, categoryId, sortKey } : CarouselProductsProps) {
   const wixClient = await wixClientServer();
   const CAROUSEL_PRODUCTS_LIMIT = 20;
 
@@ -19,10 +19,20 @@ export default async function CarouselProducts({ carouselTitle, limit, categoryI
   }
 
   const res = await query.limit(limit || CAROUSEL_PRODUCTS_LIMIT).find();
+  const items = [...res.items];
 
-  const filteredProducts = res.items.filter((product) => {
+  if (sortKey) {
+    if (sortKey === "lastUpdated") {
+      items.sort((a: any, b: any) => 
+        new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime(),
+      );
+    }
+  }
+
+  const filteredProducts = items.filter((product) => {
     return product.visible !== false;
   });
+
 
   return (
     <Carousel
