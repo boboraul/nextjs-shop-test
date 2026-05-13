@@ -81,6 +81,7 @@ const ProductList = async ({
                 ? product.discount.value
                 : null
             }
+            availability={product.stock}
           />
         </React.Fragment>
       ))}
