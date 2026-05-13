@@ -90,7 +90,7 @@ export default function ProductBox({
             {availability === 'IN_STOCK'
               ? <span className="text-success-500 text-[10px]">In Stock</span>
               : availability === 'PARTIALLY_OUT_OF_STOCK'
-              ? <span className="text-alert-500 text-[10px]">Partially Out of Stock</span>
+              ? <span className="text-alert-500 text-[10px]">Allmost gone</span>
               : <span className="text-danger-500 text-[10px]">Out of Stock</span>
             }
           </div>
@@ -103,7 +103,7 @@ export default function ProductBox({
                 (section: any) => section.title === "shortDesc",
               )?.description
             }
-            classes="short-description text-sm text-gray-500 line-clamp-2"
+            classes="short-description text-sm text-gray-500 line-clamp-2 mt-2"
           />
         )}
 
