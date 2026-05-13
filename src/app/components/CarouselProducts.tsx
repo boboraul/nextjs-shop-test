@@ -24,7 +24,7 @@ export default async function CarouselProducts({ carouselTitle, limit, categoryI
   if (sortKey) {
     if (sortKey === "lastUpdated") {
       items.sort((a: any, b: any) => 
-        new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime(),
+        new Date(a.lastUpdated).getTime() - new Date(b.lastUpdated).getTime(),
       );
     }
   }
@@ -32,7 +32,6 @@ export default async function CarouselProducts({ carouselTitle, limit, categoryI
   const filteredProducts = items.filter((product) => {
     return product.visible !== false;
   });
-
 
   return (
     <Carousel
