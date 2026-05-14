@@ -88,7 +88,7 @@ export default function ProductBox({
           <h4 className={`font-medium line-clamp-2 mb-0 ${isOpen ? 'text-[12px]' : 'text-[14px]'}`}>{name}</h4>
         </div>
 
-         <div className="availability mt-2 text-center">
+         <div className="availability mt-1 text-center">
             {availability === 'IN_STOCK'
               ? <span className="text-success-500 text-[12px]">In Stock</span>
               : availability === 'PARTIALLY_OUT_OF_STOCK'
@@ -104,11 +104,11 @@ export default function ProductBox({
                 (section: any) => section.title === "shortDesc",
               )?.description
             }
-            classes="short-description text-sm text-gray-500 line-clamp-2 mt-2"
+            classes="short-description text-sm text-gray-500 line-clamp-2 mt-1"
           />
         )}
 
-        <div className="flex justify-between items-center mt-4">
+        <div className="flex justify-between items-center mt-1">
           <button className="add-2cart-btn rounded-2xl ring-1 ring-primary-500 bg-primary-500 text-white px-4 py-2 text-xs hover:bg-white hover:text-primary-500 easy duration-200">
             Add to Cart
           </button>
