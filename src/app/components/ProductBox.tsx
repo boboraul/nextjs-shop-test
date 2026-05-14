@@ -90,7 +90,7 @@ export default function ProductBox({
           <h4 className={`font-medium line-clamp-2 mb-0 ${isOpen ? 'text-[12px]' : 'text-[14px]'}`}>{name}</h4>
         </div>
 
-        <div className="ratings flex items-center space-x-1">
+        <div className="ratings flex items-center">
           {[1, 2, 3, 4, 5].map((index) => (
             <StarIcon
               key={index}
