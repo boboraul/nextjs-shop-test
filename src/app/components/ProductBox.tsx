@@ -88,12 +88,12 @@ export default function ProductBox({
           <h4 className={`font-medium line-clamp-2 mb-0 ${isOpen ? 'text-[12px]' : 'text-[14px]'}`}>{name}</h4>
         </div>
 
-         <div className="availability mt-2">
+         <div className="availability mt-2 text-center">
             {availability === 'IN_STOCK'
-              ? <span className="text-success-500 text-[10px]">In Stock</span>
+              ? <span className="text-success-500 text-[12px]">In Stock</span>
               : availability === 'PARTIALLY_OUT_OF_STOCK'
-              ? <span className="text-alert-500 text-[10px]">Allmost gone</span>
-              : <span className="text-danger-500 text-[10px]">Out of Stock</span>
+              ? <span className="text-alert-500 text-[12px]">Allmost gone</span>
+              : <span className="text-danger-500 text-[12px]">Out of Stock</span>
             }
           </div>
 
