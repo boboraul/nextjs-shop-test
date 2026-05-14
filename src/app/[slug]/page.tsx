@@ -73,7 +73,7 @@ export default async function Page({
           classes="characteristics pl-5 text-gray-500"
         />
         
-        <div className="price-box my-2">
+        <div className="price-box">
           {product.price?.price === product.price?.discountedPrice ? (
             <div className="text-2xl h2 text-primary-500 font-medium">
               {product.price?.formatted?.discountedPrice?.replace("lei", " ")}
@@ -93,7 +93,7 @@ export default async function Page({
           )}
         </div>
 
-       <div className="availability mt-1">
+       <div className="availability">
           {availability === 'IN_STOCK'
             ? <span className="text-success-500 text-[14px]">In Stock</span>
             : availability === 'PARTIALLY_OUT_OF_STOCK'
