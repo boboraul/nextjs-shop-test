@@ -80,6 +80,7 @@ export default function Carousel({ carouselTitle, products} : CarouselProps) {
                       : null
                   }
                   customClasses={"w-full"}
+                  availability={product.stock?.inventoryStatus}
                 />
             </div>
           ))}
