@@ -55,6 +55,7 @@ export default function Carousel({ carouselTitle, products} : CarouselProps) {
         {/* Container / Track */}
         <div className="flex">
          {products.map((product: products.Product) => (
+          {product.stock?.inventoryStatus != 'OUT_OF_STOCK' && (
             /* Slide */
             <div
               key={product._id}
@@ -83,6 +84,7 @@ export default function Carousel({ carouselTitle, products} : CarouselProps) {
                   availability={product.stock?.inventoryStatus}
                 />
             </div>
+            )}
           ))}
         </div>
       </div>
