@@ -84,7 +84,7 @@ export default function ProductBox({
           )}
         </div>
 
-        <div className="flex justify-between mt-2">
+        <div className="text-center mt-2">
           <h4 className={`font-medium line-clamp-2 mb-0 ${isOpen ? 'text-[12px]' : 'text-[14px]'}`}>{name}</h4>
         </div>
 
