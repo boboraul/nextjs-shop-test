@@ -82,8 +82,13 @@ export default function ProductBox({
               className="absolute object-cover rounded-md"
             />
           )}
+        </div>
 
-          <div className="availability bg-primary-300">
+        <div className="flex justify-between mt-2">
+          <h4 className="font-medium line-clamp-2 mb-0">{name}</h4>
+        </div>
+
+         <div className="availability mt-2">
             {availability === 'IN_STOCK'
               ? <span className="text-success-500 text-[10px]">In Stock</span>
               : availability === 'PARTIALLY_OUT_OF_STOCK'
@@ -91,11 +96,6 @@ export default function ProductBox({
               : <span className="text-danger-500 text-[10px]">Out of Stock</span>
             }
           </div>
-
-        </div>
-        <div className="flex justify-between mt-2">
-          <h4 className="font-medium line-clamp-2 mb-0">{name}</h4>
-        </div>
 
         {shortDescHtml && (
           <SafeHtml
