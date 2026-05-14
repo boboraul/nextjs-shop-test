@@ -95,10 +95,10 @@ export default async function Page({
 
        <div className="availability mt-1">
           {availability === 'IN_STOCK'
-            ? <span className="text-success-500 text-[12px]">In Stock</span>
+            ? <span className="text-success-500 text-[14px]">In Stock</span>
             : availability === 'PARTIALLY_OUT_OF_STOCK'
-            ? <span className="text-alert-500 text-[12px]">Allmost gone</span>
-            : <span className="text-danger-500 text-[12px]">Out of Stock</span>
+            ? <span className="text-alert-500 text-[14px]">Allmost gone</span>
+            : <span className="text-danger-500 text-[14px]">Out of Stock</span>
           }
         </div> 
 
