@@ -94,7 +94,7 @@ export default function ProductBox({
           {[1, 2, 3, 4, 5].map((index) => (
             <StarIcon
               key={index}
-              className={`h-3 w-3 ${
+              className={`h-3 w-3 mr-[2px] ${
                 index <= ratingScore 
                   ? 'text-amber-400'  // Galben/Auriu pentru rating activ
                   : 'text-gray-300'   // Gri pentru rating inactiv
