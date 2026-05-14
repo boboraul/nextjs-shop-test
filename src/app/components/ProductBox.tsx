@@ -87,15 +87,17 @@ export default function ProductBox({
         <div className="text-center mt-2">
           <h4 className={`font-medium line-clamp-2 mb-0 ${isOpen ? 'text-[12px]' : 'text-[14px]'}`}>{name}</h4>
         </div>
-
-         <div className="availability mt-1 text-center">
+        
+        {!isOpen && (
+         <div className="availability mt-1">
             {availability === 'IN_STOCK'
               ? <span className="text-success-500 text-[12px]">In Stock</span>
               : availability === 'PARTIALLY_OUT_OF_STOCK'
               ? <span className="text-alert-500 text-[12px]">Allmost gone</span>
               : <span className="text-danger-500 text-[12px]">Out of Stock</span>
             }
-          </div>
+          </div> 
+        )}
 
         {shortDescHtml && (
           <SafeHtml
@@ -108,7 +110,7 @@ export default function ProductBox({
           />
         )}
 
-        <div className="flex justify-between items-center mt-1">
+        <div className="flex justify-between items-center mt-2">
           <button className="add-2cart-btn rounded-2xl ring-1 ring-primary-500 bg-primary-500 text-white px-4 py-2 text-xs hover:bg-white hover:text-primary-500 easy duration-200">
             Add to Cart
           </button>
