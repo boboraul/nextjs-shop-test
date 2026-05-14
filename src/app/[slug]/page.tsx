@@ -31,6 +31,7 @@ export default async function Page({
     product.discount?.type === "PERCENT" ? product.discount.value! : null;
   const gCurrency =
     product.price?.currency == "RON" ? "Lei" : product.price?.currency;
+  const availability = product.stock?.inventoryStatus;  
 
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] relative flex flex-col lg:flex-row lg:items-start gap-8 mt-8 lg:mt-12">
@@ -74,16 +75,16 @@ export default async function Page({
         
         <div className="price-box my-2">
           {product.price?.price === product.price?.discountedPrice ? (
-            <h2 className="text-2xl text-primary-500 font-medium">
+            <div className="text-2xl h2 text-primary-500 font-medium">
               {product.price?.formatted?.discountedPrice?.replace("lei", " ")}
               {gCurrency}
-            </h2>
+            </div>
           ) : (
             <div className="flex items-center gap-4">
-              <h3 className="text-xl text-gray-500 line-through">
+              <div className="text-xl h3 text-gray-500 line-through">
                 {product.price?.formatted?.price?.replace("lei", " ")}
                 {gCurrency}
-              </h3>
+              </div>
               <h2 className="font-medium text-2xl text-primary-500">
                 {product.price?.formatted?.discountedPrice?.replace("lei", " ")}
                 {gCurrency}
@@ -91,6 +92,16 @@ export default async function Page({
             </div>
           )}
         </div>
+
+       <div className="availability mt-1">
+          {availability === 'IN_STOCK'
+            ? <span className="text-success-500 text-[12px]">In Stock</span>
+            : availability === 'PARTIALLY_OUT_OF_STOCK'
+            ? <span className="text-alert-500 text-[12px]">Allmost gone</span>
+            : <span className="text-danger-500 text-[12px]">Out of Stock</span>
+          }
+        </div> 
+
         {product.variants && product.productOptions ? (
           <CustomizeProducts
             productId={product._id!}
