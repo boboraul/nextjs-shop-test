@@ -33,7 +33,7 @@ const config: Config = {
           500: '#ef4444'
         },
         success: {
-          500: '#c6fc03'
+          500: '#98c700'
         },
         alert: {
           500: '#ffc107'
