@@ -92,14 +92,9 @@ export default function ProductBox({
 
         <div className="ratings flex items-center">
           {[1, 2, 3, 4, 5].map((index) => (
-            <StarIcon
-              key={index}
-              className={`h-3 w-3 mr-[2px] ${
-                index <= ratingScore 
-                  ? 'text-amber-400'  // Galben/Auriu pentru rating activ
-                  : 'text-gray-300'   // Gri pentru rating inactiv
-              }`}
-            />
+            <button key={index} className="transition transform hover:scale-110 active:scale-95 focus:outline-none">
+              <StarIcon className={index <= 5 ? 'text-amber-400' : 'text-gray-300'} />
+            </button>
           ))}
         </div>
  
