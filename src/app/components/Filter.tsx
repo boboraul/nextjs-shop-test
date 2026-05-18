@@ -35,7 +35,15 @@ const Filter = () => {
     replace(`${pathname}?${newParams.toString()}`);
   };
 
-  const hasFilter = Array.from(searchParams.keys())[2];
+  const hasFilter = Array.from(searchParams.keys()).map((p) => {
+    if (p == 'type' || p == 'sort' || p == 'max' || p == 'min') {
+      return true;
+    }
+    else {
+      return false;
+    }
+  });
+
   console.log('keys ' + Array.from(searchParams.keys()));
 
   return (
