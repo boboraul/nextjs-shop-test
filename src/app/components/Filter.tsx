@@ -18,7 +18,7 @@ const Filter = () => {
     replace(`${pathname}?${params.toString()}`);
   };
 
-  console.log(searchParams)
+  console.log(searchParams.get('page'));
 
   const clearFilters = () => {
     // Keep only the first param
