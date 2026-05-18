@@ -36,6 +36,8 @@ const Filter = () => {
     if (firstKey && firstValue) newParams.set(firstKey, firstValue);
     if (pageValue) newParams.set("page", pageValue);
 
+    setHasFilter(false
+      
     // Replace URL
     replace(`${pathname}?${newParams.toString()}`);
   };
