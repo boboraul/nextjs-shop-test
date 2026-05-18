@@ -30,14 +30,13 @@ const Filter = () => {
 
     if (pageValue) newParams.set("page", pageValue);
     
-
     if (firstKey && firstValue) newParams.set(firstKey, firstValue);
 
     // Replace URL
     replace(`${pathname}?${newParams.toString()}`);
   };
 
-  const hasFilter = Array.from(searchParams.keys())[1];
+  const hasFilter = Array.from(searchParams.keys())[2];
 
   return (
     <div className="filters mt-4">
