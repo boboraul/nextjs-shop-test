@@ -8,13 +8,14 @@ const Filter = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
+  const [ hasFilter, setHasFilter ] = useState(false);
+
 
   const handleFilterChange = (
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>,
   ) => {
     const { name, value } = e.target;
     const params = new URLSearchParams(searchParams);
-    const [hasFilter, setHasFilter] = useState(false);
 
     params.set(name, value);
 
@@ -38,14 +39,14 @@ const Filter = () => {
     replace(`${pathname}?${newParams.toString()}`);
   };
 
-    useEffect(() => {
-      Array.from(searchParams.keys()).map((p) => {
-        if (p == 'type' || p == 'sort' || p == 'max' || p == 'min') {
-          setHasFilter(true)
-        }
-      });
-    
-    }, [searchParams]);
+  useEffect(() => {
+    Array.from(searchParams.keys()).map((p) => {
+      if (p == 'type' || p == 'sort' || p == 'max' || p == 'min') {
+        setHasFilter(true)
+      }
+    });
+  
+  }, [searchParams]);
 
   console.log('keys ' + Array.from(searchParams.keys()));
 
