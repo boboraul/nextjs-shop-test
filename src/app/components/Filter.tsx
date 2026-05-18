@@ -9,6 +9,8 @@ const Filter = () => {
   const searchParams = useSearchParams();
   const { replace } = useRouter();
   const [ hasFilter, setHasFilter ] = useState(false);
+  const page = searchParams.get("page");
+  const cat = searchParams.get("cat");
 
   const handleFilterChange = (
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>,
@@ -45,9 +47,7 @@ const Filter = () => {
       }
     });
   
-  }, [searchParams, hasFilter]);
-
-  console.log('keys ' + Array.from(searchParams.keys()));
+  }, [cat, page, hasFilter]);
 
   return (
     <div className="filters mt-4">
