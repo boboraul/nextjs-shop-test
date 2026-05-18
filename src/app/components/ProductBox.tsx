@@ -93,7 +93,7 @@ export default function ProductBox({
         <div className="ratings flex items-center">
           {[1, 2, 3, 4, 5].map((index) => (
             <button key={index} className="transition transform hover:scale-110 active:scale-95 focus:outline-none">
-              <StarIcon className={index <= 5 ? 'text-amber-400' : 'text-gray-300'} />
+              <StarIcon className={index <= 4.5 ? 'text-amber-400' : 'text-gray-300'} />
             </button>
           ))}
         </div>

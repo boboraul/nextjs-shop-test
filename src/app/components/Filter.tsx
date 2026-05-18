@@ -18,6 +18,8 @@ const Filter = () => {
     replace(`${pathname}?${params.toString()}`);
   };
 
+  console.log(searchParams)
+
   const clearFilters = () => {
     // Keep only the first param
     const firstKey = Array.from(searchParams.keys())[0];
