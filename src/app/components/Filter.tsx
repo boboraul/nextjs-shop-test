@@ -32,11 +32,9 @@ const Filter = () => {
     const pageValue = searchParams.get("page");
 
     const newParams = new URLSearchParams();
-    
+    setHasFilter(false);
     if (firstKey && firstValue) newParams.set(firstKey, firstValue);
     if (pageValue) newParams.set("page", pageValue);
-
-    setHasFilter(false);
 
     // Replace URL
     replace(`${pathname}?${newParams.toString()}`);
