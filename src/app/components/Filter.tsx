@@ -10,7 +10,6 @@ const Filter = () => {
   const { replace } = useRouter();
   const [ hasFilter, setHasFilter ] = useState(false);
 
-
   const handleFilterChange = (
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>,
   ) => {
@@ -46,7 +45,7 @@ const Filter = () => {
       }
     });
   
-  }, [searchParams]);
+  }, [searchParams, hasFilter]);
 
   console.log('keys ' + Array.from(searchParams.keys()));
 
