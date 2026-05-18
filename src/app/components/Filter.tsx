@@ -27,10 +27,9 @@ const Filter = () => {
     const pageValue = searchParams.get("page");
 
     const newParams = new URLSearchParams();
-
-    if (pageValue) newParams.set("page", pageValue);
     
     if (firstKey && firstValue) newParams.set(firstKey, firstValue);
+    if (pageValue) newParams.set("page", pageValue);
 
     // Replace URL
     replace(`${pathname}?${newParams.toString()}`);
