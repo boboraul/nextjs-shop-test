@@ -7,6 +7,7 @@ const Filter = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
+  cosnt pageParam = searchParams.get('page');
 
   const handleFilterChange = (
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>,
@@ -15,10 +16,12 @@ const Filter = () => {
     const params = new URLSearchParams(searchParams);
     params.set(name, value);
 
+    console.log(params);
+
     replace(`${pathname}?${params.toString()}`);
   };
 
-  console.log(searchParams.get('page'));
+  // console.log(searchParams.get('page'));
 
   const clearFilters = () => {
     // Keep only the first param
