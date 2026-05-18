@@ -23,8 +23,6 @@ export const Pagination = ({
     replace(`${pathname}?${params}`);
   };
 
-  console.log(currentPage);
-
   return (
     <div className="pagination mt-2 flex w-full">
       {hasPrev && (

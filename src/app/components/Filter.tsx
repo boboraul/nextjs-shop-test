@@ -36,6 +36,7 @@ const Filter = () => {
   };
 
   const hasFilter = Array.from(searchParams.keys())[2];
+  console.log('keys ', searchParams.keys());
 
   return (
     <div className="filters mt-4">
