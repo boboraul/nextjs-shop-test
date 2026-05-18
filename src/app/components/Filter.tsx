@@ -2,6 +2,7 @@
 
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import React from "react";
+import { useState, useEffect } from "react";
 
 const Filter = () => {
   const pathname = usePathname();
@@ -13,6 +14,8 @@ const Filter = () => {
   ) => {
     const { name, value } = e.target;
     const params = new URLSearchParams(searchParams);
+    const [hasFilter, setHasFilter] = useState(false);
+
     params.set(name, value);
 
     replace(`${pathname}?${params.toString()}`);
@@ -35,14 +38,14 @@ const Filter = () => {
     replace(`${pathname}?${newParams.toString()}`);
   };
 
-  const hasFilter = Array.from(searchParams.keys()).map((p) => {
-    if (p == 'type' || p == 'sort' || p == 'max' || p == 'min') {
-      return true;
-    }
-    else {
-      return false;
-    }
-  });
+    useEffect(() => {
+      Array.from(searchParams.keys()).map((p) => {
+        if (p == 'type' || p == 'sort' || p == 'max' || p == 'min') {
+          setHasFilter(true)
+        }
+      });
+    
+    }, [searchParams]);
 
   console.log('keys ' + Array.from(searchParams.keys()));
 
