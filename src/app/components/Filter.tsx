@@ -49,7 +49,7 @@ const Filter = () => {
       }
     });
   
-  }, [cat, page, hasFilter]);
+  }, [searchParams, hasFilter]);
 
   return (
     <div className="filters mt-4">
