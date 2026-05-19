@@ -27,16 +27,17 @@ export default async function Page({
   const product = products.items[0];
 
   const categoryId = product.collectionIds?.[0];
+  console.log('my prod: ', product);
 
   let categoryName = '';
 
-  
+  if (categoryId) {
     const category = await wixClient.collections.getCollection(categoryId);
-    console.log('mycateg: ', category);
+    console.log('mycateg: ', category)
 
     categoryName = category.name || '';
     categoryUrl = category.slug || '';
-  
+  }
 
   const discountPercent =
     product.discount?.type === "PERCENT" ? product.discount.value! : null;
