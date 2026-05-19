@@ -28,7 +28,7 @@ export default async function Page({
 
   const product = products.items[0];
 
-  console.log('product: ', product)
+  console.log('product: ' + product);
 
   const discountPercent =
     product.discount?.type === "PERCENT" ? product.discount.value! : null;
@@ -37,16 +37,16 @@ export default async function Page({
 
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] relative flex flex-col lg:flex-row lg:items-start gap-8 mt-8 lg:mt-12">
-      {/* <Breadcrumbs items={[
+      <Breadcrumbs items={[
           {
             label: 'Home',
             href: '/',
            },
            {
-            label: cat?.collection?.name || "Products",
+            label: slug || "Products",
            }
           ]}
-      /> */}
+      />
       
       <div className="w-full lg:w-1/2 h-max relative">
         {discountPercent && (
