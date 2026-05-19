@@ -41,7 +41,7 @@ const Filter = () => {
   useEffect(() => {
     
     const hasActiveFilters = Array.from(searchParams.keys()).some((p) => 
-     p !== 'type' || p == 'sort' || p == 'max' || p == 'min'     
+     p == 'type' || p == 'sort' || p == 'max' || p == 'min'     
       
     );
 
