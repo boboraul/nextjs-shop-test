@@ -17,6 +17,18 @@ const ListPage = async ({ searchParams }: { searchParams: Promise<any> }) => {
 
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] relative mt-4">
+      
+      <Breadcrumbs items={[
+          {
+            label: 'Home',
+            href: '/',
+           },
+           {
+            label: cat?.collection?.name || "Products",
+           }
+          ]}
+      />
+
       {/* Campaign */}
       <div className="bg-gradient-primary-500-r px-4 flex flex-col lg:flex-row justify-between h-96 lg:h-64">
         <div className="w-full lg:w-2/3 flex py-6 lg:py-0 flex-col items-center justify-center gap-4">
@@ -32,7 +44,6 @@ const ListPage = async ({ searchParams }: { searchParams: Promise<any> }) => {
           <Image src="/woman.png" alt="" fill className="object-contain" />
         </div>
 
-         <Breadcrumbs label={cat} href={cat} />
       </div>
       {/* Filters */}
       <Filter />

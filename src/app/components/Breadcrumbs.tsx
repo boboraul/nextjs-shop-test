@@ -4,11 +4,6 @@ type BreadcrumbItem = {
   href?: string;
 };
 
-items: {
-  label: string;
-  href?: string;
-}[]
-
 const Breadcrumbs = ({ items }: { items: BreadcrumbItem[] }) => {
   return (
     <div className="text-sm text-gray-500 flex items-center flex-wrap gap-2">
