@@ -53,14 +53,14 @@ export default async function Page({
               label: 'Home',
               href: '/',
             },
-            // {
-            //   label: categoryName || "Products",
-            //   href: categoryUrl || '',
-            // },
+            {
+              label: categoryName || "Products",
+              href: categoryUrl || '',
+            },
             {
               label: product.name || "Product",
             }
-            ]}
+          ]}
         />
       </div>
       
