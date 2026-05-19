@@ -57,7 +57,6 @@ export default async function Page({
             //   href: categoryUrl || '',
             // },
             {
-              href: product.slug,
               label: product.name || "Product",
             }
             ]}
