@@ -39,12 +39,13 @@ const Filter = () => {
   };
 
   useEffect(() => {
-    const filterFound = Array.from(searchParams.keys()).some((p) => 
-      p !== 'cat' && p !== 'page'
-   
-    )
+    
+    const hasActiveFilters = Array.from(searchParams.keys()).some((p) => 
+     p !== 'type' || p == 'sort' || p == 'max' || p == 'min'     
+      
+    );
 
-    setHasFilter(filterFound);
+    setHasFilter(hasActiveFilters);
   
   }, [searchParams]);
 
