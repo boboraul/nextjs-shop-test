@@ -27,8 +27,9 @@ export default async function Page({
   const product = products.items[0];
 
   const categoryId = product.collectionIds?.[0];
-  let categoryName = '';
 
+  let categoryName = '';
+  let categoryUrl = '';
 
   if (categoryId) {
     console.log('collection ', await wixClient.collections.getCollection(categoryId))
