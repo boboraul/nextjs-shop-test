@@ -50,7 +50,7 @@ const Filter = () => {
   }, [searchParams]);
 
   return (
-    <div className="filters mt-4">
+    <div className="filters">
       <div className="clearFilters h-8">
         {hasFilter && (
           <button
@@ -58,7 +58,7 @@ const Filter = () => {
             onClick={clearFilters}
             className="py-2 px-4 rounded-2xl border border-slate-200 bg-gray-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
           >
-            Clear Filters
+            Clear Filters x
           </button>
         )}
       </div>
