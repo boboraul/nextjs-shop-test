@@ -4,7 +4,7 @@ type BreadcrumbItem = {
   href?: string;
 };
 
-const Bredcrumbs = ({ items }: { items: BreadcrumbItem[] }) => {
+const Breadcrumbs = ({ items }: { items: BreadcrumbItem[] }) => {
   return (
     <div className="text-sm text-gray-500 flex items-center flex-wrap gap-2">
       {items.map((item, index) => {
