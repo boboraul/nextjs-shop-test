@@ -25,14 +25,14 @@ export default async function Page({
     notFound();
   }
 
-  const categoryId = product?.collectionIds?.[0];
+  const categoryId = product.collectionIds?.[0];
   let categoryName = '';
 
   if (categoryId) {
     const category = await wixClient.collections.getCollection(categoryId);
 
-    categoryName = category?.collection?.name || '';
-    categoryUrl = category?.collection?.slug || '';
+    categoryName = category.collection?.name || '';
+    categoryUrl = category.collection?.slug || '';
   }
 
   const product = products.items[0];
