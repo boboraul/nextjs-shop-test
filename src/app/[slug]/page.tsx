@@ -26,9 +26,8 @@ export default async function Page({
   }
   const product = products.items[0];
 
-  // const categoryId = product.collectionIds?.[0];
-  console.log('my prod: ', product);
-
+  const categoryId = product.collectionIds?.[0];
+  console.log('catId: ' + categoryId)
   let categoryName = '';
 
   // if (categoryId) {
