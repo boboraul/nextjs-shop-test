@@ -32,6 +32,7 @@ export default async function Page({
     const category = await wixClient.collections.getCollection(categoryId);
 
     categoryName = category?.collection?.name || '';
+    categoryUrl = category?.collection?.slug || '';
   }
 
   const product = products.items[0];
@@ -50,6 +51,7 @@ export default async function Page({
            },
            {
             label: categoryName || "Products";
+            href: categoryUrl || '';
            },
            {
             label: slug || "Product",
