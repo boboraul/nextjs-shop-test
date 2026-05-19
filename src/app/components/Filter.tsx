@@ -39,11 +39,10 @@ const Filter = () => {
   };
 
   useEffect(() => {
-    const filterFound = Array.from(searchParams.keys()).some((p) => {
-      if (p !== 'cat' && p !== 'page') {
-        
-      }
-    });
+    const filterFound = Array.from(searchParams.keys()).some((p) => 
+      p !== 'cat' && p !== 'page'
+   
+    )
 
     setHasFilter(filterFound);
   
