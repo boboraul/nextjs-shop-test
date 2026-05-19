@@ -52,7 +52,7 @@ export default async function Page({
               href: '/',
             },
             {
-              label: categoryName || "Products";
+              label: categoryName || "Products",
               href: categoryUrl || '',
             },
             {
