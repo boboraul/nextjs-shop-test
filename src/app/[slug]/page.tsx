@@ -27,15 +27,16 @@ export default async function Page({
   const product = products.items[0];
 
   const categoryId = product.collectionIds?.[0];
-  console.log('catId: ' + categoryId)
   let categoryName = '';
 
-  // if (categoryId) {
-  //   const category = await wixClient.collections.getCollection(categoryId);
+   console.log('collection ', await wixClient.collections.getCollection(categoryId))
 
-  //   categoryName = category.name || '';
-  //   categoryUrl = category.slug || '';
-  // }
+  if (categoryId) {
+    const category = await wixClient.collections.getCollection(categoryId);
+   
+    categoryName = category.name || '';
+    categoryUrl = category.slug || '';
+  }
 
   const discountPercent =
     product.discount?.type === "PERCENT" ? product.discount.value! : null;
