@@ -20,15 +20,21 @@ export default async function Page({
     .queryProducts()
     .eq("slug", slug)
     .find();
-    console.log('products acum: ' + products.items[0]);
 
   if (!products.items[0]) {
     notFound();
   }
 
-  const product = products.items[0];
+  const categoryId = product?.collectionIds?.[0];
+  let categoryName = '';
 
-  
+  if (categoryId) {
+    const category = await wixClient.collections.getCollection(categoryId);
+
+    categoryName = category?.collection?.name || '';
+  }
+
+  const product = products.items[0];
 
   const discountPercent =
     product.discount?.type === "PERCENT" ? product.discount.value! : null;
@@ -43,7 +49,10 @@ export default async function Page({
             href: '/',
            },
            {
-            label: slug || "Products",
+            label: categoryName || "Products";
+           },
+           {
+            label: slug || "Product",
            }
           ]}
       />
