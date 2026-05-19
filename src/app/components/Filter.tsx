@@ -9,8 +9,6 @@ const Filter = () => {
   const searchParams = useSearchParams();
   const { replace } = useRouter();
   const [ hasFilter, setHasFilter ] = useState(false);
-  const page = searchParams.get("page");
-  const cat = searchParams.get("cat");
 
   const handleFilterChange = (
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>,
@@ -32,7 +30,7 @@ const Filter = () => {
     const pageValue = searchParams.get("page");
 
     const newParams = new URLSearchParams();
-    setHasFilter(false);
+
     if (firstKey && firstValue) newParams.set(firstKey, firstValue);
     if (pageValue) newParams.set("page", pageValue);
 
@@ -41,13 +39,15 @@ const Filter = () => {
   };
 
   useEffect(() => {
-    Array.from(searchParams.keys()).map((p) => {
-      if (p == 'type' || p == 'sort' || p == 'max' || p == 'min') {
-        setHasFilter(true)
+    const filterFound = Array.from(searchParams.keys()).some((p) => {
+      if (p !== 'cat' && p !== 'page') {
+        
       }
     });
+
+    setHasFilter(filterFound);
   
-  }, [searchParams, hasFilter]);
+  }, [searchParams]);
 
   return (
     <div className="filters mt-4">
