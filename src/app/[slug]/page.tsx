@@ -30,13 +30,13 @@ export default async function Page({
 
   let categoryName = '';
 
-  if (categoryId) {
+  
     const category = await wixClient.collections.getCollection(categoryId);
     console.log('mycateg: ', category);
 
     categoryName = category.name || '';
     categoryUrl = category.slug || '';
-  }
+  
 
   const discountPercent =
     product.discount?.type === "PERCENT" ? product.discount.value! : null;
