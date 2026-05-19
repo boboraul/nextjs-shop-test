@@ -4,6 +4,7 @@ import ProductList from "../components/ProductList";
 import Filter from "../components/Filter";
 import { wixClientServer } from "../lib/wixClientServer";
 import { Spinner } from "../components/Spinner";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 const ListPage = async ({ searchParams }: { searchParams: Promise<any> }) => {
   const wixClient = await wixClientServer();
@@ -30,6 +31,8 @@ const ListPage = async ({ searchParams }: { searchParams: Promise<any> }) => {
         <div className="relative w-full h-64 lg:h-full lg:w-1/3">
           <Image src="/woman.png" alt="" fill className="object-contain" />
         </div>
+
+         <Breadcrumbs label={cat} href={cat} />
       </div>
       {/* Filters */}
       <Filter />
