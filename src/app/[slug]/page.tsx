@@ -35,8 +35,8 @@ export default async function Page({
 
     const category = await wixClient.collections.getCollection(categoryId);
    
-    categoryName = category.collection?.name || '';
-    categoryUrl = category.collection?.slug || '';
+    categoryName = category.name || '';
+    categoryUrl = category.slug || '';
   }
 
   const discountPercent =
