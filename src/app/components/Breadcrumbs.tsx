@@ -5,8 +5,9 @@ type BreadcrumbItem = {
 };
 
 const Breadcrumbs = ({ items }: { items: BreadcrumbItem[] }) => {
+
   return (
-    <div className="text-sm text-gray-500 flex items-center flex-wrap gap-2">
+    <div className="text-sm text-gray-500 flex items-center flex-wrap gap-2 my-5">
       {items.map((item, index) => {
         const isLast = index === items.length - 1;
 

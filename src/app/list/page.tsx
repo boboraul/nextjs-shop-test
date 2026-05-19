@@ -35,7 +35,7 @@ const ListPage = async ({ searchParams }: { searchParams: Promise<any> }) => {
 
       </div>
 
-      <Breadcrumbs className="my-5" items={[
+      <Breadcrumbs items={[
           {
             label: 'Home',
             href: '/',
