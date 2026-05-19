@@ -14,13 +14,13 @@ export default async function Page({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-
   const wixClient = await wixClientServer();
 
   const products = await wixClient.products
     .queryProducts()
     .eq("slug", slug)
     .find();
+    console.log('products acum: ' + products.items[0]);
 
   if (!products.items[0]) {
     notFound();
@@ -28,7 +28,7 @@ export default async function Page({
 
   const product = products.items[0];
 
-  console.log('product: ' + product);
+  
 
   const discountPercent =
     product.discount?.type === "PERCENT" ? product.discount.value! : null;
