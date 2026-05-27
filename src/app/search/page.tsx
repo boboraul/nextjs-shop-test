@@ -4,7 +4,7 @@ import { Spinner } from "../components/Spinner";
 
 export default function Page() {
   return (
-    <Suspense fallback={<Spinner className="h-6 w-6 font-semibold text-primary-500" />}>
+    <Suspense fallback={<Spinner />}>
       <SearchClient />
     </Suspense>
   );

@@ -50,7 +50,7 @@ const ListPage = async ({ searchParams }: { searchParams: Promise<any> }) => {
       <Filter />
       {/* Products */}
       <h1 className="mt-4 text-xl font-semibold">{cat?.collection?.name}</h1>
-      <Suspense fallback={<Spinner className="h-6 w-6 font-semibold text-primary-500" />}>
+      <Suspense fallback={<Spinner />}>
         <ProductList
           categoryId={cat.collection?._id || ALL_PRODUCTS_ID}
           searchParams={sp}
