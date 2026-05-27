@@ -51,8 +51,9 @@ const Filter = () => {
 
   return (
     <div className="filters">
-      <div className="clearFilters h-8">
-        {hasFilter && (
+      
+      {hasFilter && (
+        <div className="clearFilters h-8">
           <button
             type="button"
             onClick={clearFilters}
@@ -60,8 +61,8 @@ const Filter = () => {
           >
             Clear Filters x
           </button>
-        )}
-      </div>
+        </div>
+      )}
 
       <div className="flex justify-between flex-wrap gap-2 mt-4">
         <div className="flex gap-2 flex-wrap">
