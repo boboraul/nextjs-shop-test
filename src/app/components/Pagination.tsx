@@ -41,8 +41,8 @@ export const Pagination = ({
       {Array.from({ length: totalPages }, (_, i) => (
         <button
           key={i}
-          className={`${currentPage === (i) ? 'bg-primary-500 text-white' : 'text-primary-500 bg-white'} border border-primary-500 mx-[2px] p-1 text-xs cursor-pointer`}
-          onClick={() => createPageUrl(i)}
+          className={`${currentPage === (i + 1) ? 'bg-primary-500 text-white' : 'text-primary-500 bg-white'} border border-primary-500 mx-[2px] p-1 text-xs cursor-pointer`}
+          onClick={() => createPageUrl(i + 1)}
           >
           {i}
         </button>
