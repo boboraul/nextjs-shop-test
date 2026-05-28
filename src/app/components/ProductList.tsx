@@ -21,10 +21,11 @@ const ProductList = async ({
   const wixClient = await wixClientServer();
   const sp = (await searchParams) ?? {};
 
-  const catProducts = wixClient.products.queryProducts().eq("collectionIds", categoryId).find();
-  const totalCatProducts = catProducts.items.length;
+  const catProducts = wixClient.products.queryProducts().eq("collectionIds", categoryId);
+  const resProd = await catProducts.find();
 
-  console.log(totalCatProducts);
+
+  console.log(resProd);
 
   const productQuery = wixClient.products
     .queryProducts()
