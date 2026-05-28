@@ -23,9 +23,9 @@ const ProductList = async ({
 
   const catProducts = wixClient.products.queryProducts().eq("collectionIds", categoryId);
   const resProd = await catProducts.find();
-  const resProdArr = [...resProd.items];
+  const resProdArr = [...resProd.items].length;
 
-  console.log('test products new: ', resProdArr);
+  console.log('prod nr: ', resProdArr);
 
   const productQuery = wixClient.products
     .queryProducts()
