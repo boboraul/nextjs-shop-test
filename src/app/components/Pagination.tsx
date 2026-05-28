@@ -26,12 +26,12 @@ export const Pagination = ({
   };
 
   return (
-    <div className="pagination mt-2 flex w-full">
+    <div className="pagination mt-2 flex content-center w-full">
       {hasPrev && (
         <button
           onClick={() => createPageUrl(currentPage - 1)}
           // disabled={!hasPrev}
-          className="bg-primary-500 text-white py-1 mr-auto text-sm w-24 cursor-pointer"
+          className="bg-primary-500 text-white py-1 text-sm w-24 cursor-pointer"
         >
           &lsaquo; Previous
         </button>
@@ -56,7 +56,7 @@ export const Pagination = ({
       {hasNext && (
         <button
           onClick={() => createPageUrl(currentPage + 1)}
-          className="bg-primary-500 ml-auto text-white py-1 text-sm w-24 cursor-pointer"
+          className="bg-primary-500 text-white py-1 text-sm w-24 cursor-pointer"
         >
           Next &rsaquo;
         </button>
