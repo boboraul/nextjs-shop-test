@@ -21,6 +21,10 @@ const ProductList = async ({
   const wixClient = await wixClientServer();
   const sp = (await searchParams) ?? {};
 
+  const catTotalProducts = wixClient.products.queryProducts().eq("collectionIds", categoryId).length;
+
+  console.log(catTotalProducts);
+
   const productQuery = wixClient.products
     .queryProducts()
     .startsWith("name", sp?.name || "")
