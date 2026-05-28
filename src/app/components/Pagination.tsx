@@ -31,7 +31,7 @@ export const Pagination = ({
         <button
           onClick={() => createPageUrl(currentPage - 1)}
           // disabled={!hasPrev}
-          className="bg-primary-500 text-white py-1 text-sm w-24 cursor-pointer"
+          className="bg-primary-500 text-white py-1 text-sm w-18 cursor-pointer"
         >
           &lsaquo; Previous
         </button>
@@ -40,7 +40,7 @@ export const Pagination = ({
       {Array.from({ length: totalPages }, (_, i) => (
         <button
           key={i}
-          className={`${currentPage === (i + 1) ? 'bg-primary-500 text-white' : 'text-primary-500 bg-white'} border border-primary-500 mx-[2px] py-1 text-sm w-8 cursor-pointer`}
+          className={`${currentPage === (i + 1) ? 'bg-primary-500 text-white' : 'text-primary-500 bg-white'} border border-primary-500 mx-[2px] py-1 text-sm w-6 cursor-pointer`}
           onClick={() => createPageUrl(i + 1)}
           >
           {i + 1}
@@ -56,7 +56,7 @@ export const Pagination = ({
       {hasNext && (
         <button
           onClick={() => createPageUrl(currentPage + 1)}
-          className="bg-primary-500 text-white py-1 text-sm w-24 cursor-pointer"
+          className="bg-primary-500 text-white py-1 text-sm w-18 cursor-pointer"
         >
           Next &rsaquo;
         </button>
