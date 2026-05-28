@@ -31,7 +31,7 @@ export const Pagination = ({
         <button
           onClick={() => createPageUrl(currentPage - 1)}
           // disabled={!hasPrev}
-          className="bg-primary-500 text-white py-1 text-sm w-18 cursor-pointer"
+          className="bg-primary-500 text-white py-1 text-xs w-18 cursor-pointer"
         >
           &lsaquo; Previous
         </button>
