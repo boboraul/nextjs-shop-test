@@ -25,7 +25,9 @@ const ProductList = async ({
   const resProd = await catProducts.find();
   const resProdArr = [...resProd.items].length;
 
-  console.log('prod nr: ', resProdArr);
+  const totalPages = Math.floor(resProdArr / (limit || PRODUCT_PER_PAGE))
+
+  console.log('total pages: ' + totalPages);
 
   const productQuery = wixClient.products
     .queryProducts()
