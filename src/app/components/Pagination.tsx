@@ -41,16 +41,16 @@ export const Pagination = ({
         <button
           key={i}
           className="bg-primary-500 mx-[2px] text-white py-1 text-sm w-8 cursor-pointer"
-        onClick={() => createPageUrl(i)}>
+        onClick={() => createPageUrl(i +1)}>
           {i + 1}
         </button>
       ))}
 
-      {currentPage && (
+      {/* {currentPage && (
         <button className="bg-primary-500 mx-auto text-white py-1 text-sm w-8 cursor-pointer">
           {currentPage}
         </button>
-      )}
+      )} */}
       
       {hasNext && (
         <button
