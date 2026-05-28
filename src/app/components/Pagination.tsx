@@ -27,6 +27,7 @@ export const Pagination = ({
 
   return (
     <div className="pagination mt-2 flex justify-center w-full">
+      {currentPage}
       {hasPrev && (
         <button
           onClick={() => createPageUrl(currentPage - 1)}
