@@ -25,7 +25,7 @@ const ProductList = async ({
   const resProd = await catProducts.find();
   const resProdArr = [...resProd.items];
 
-  console.log('test products: ', resProdArr);
+  console.log('test products new: ' + resProdArr);
 
   const productQuery = wixClient.products
     .queryProducts()
