@@ -7,9 +7,6 @@ import Pagination from "./Pagination";
 
 import ProductBox from "../components/ProductBox";
 
-const PRODUCT_PER_PAGE = 8;
-const perPage = limit || PRODUCT_PER_PAGE;
-
 const ProductList = async ({
   categoryId,
   limit,
@@ -20,6 +17,8 @@ const ProductList = async ({
   searchParams?: Promise<any>;
 }) => {
   const wixClient = await wixClientServer();
+  const PRODUCT_PER_PAGE = 8;
+  const perPage = limit || PRODUCT_PER_PAGE;
 
   const sp = (await searchParams) ?? {};
   const currentPage = sp.page ? Number(sp.page) : 1;
@@ -38,7 +37,7 @@ const ProductList = async ({
     .hasSome("productType", [sp?.type || "physical", "digital"])
     .gt("priceData.price", sp?.min || 0)
     .lt("priceData.price", sp?.max || 999999)
-    .limit(limit || PRODUCT_PER_PAGE)
+    .limit(perPage)
     .skip((currentPage - 1) * perPage);
   // .find();
 
