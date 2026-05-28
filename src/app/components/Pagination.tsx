@@ -41,7 +41,7 @@ export const Pagination = ({
         <button
           key={i}
           className="bg-primary-500 mx-[2px] text-white py-1 text-sm w-8 cursor-pointer"
-        >
+        onClick={() => createPageUrl(i)}>
           {i + 1}
         </button>
       ))}
