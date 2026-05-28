@@ -7,8 +7,10 @@ export const Pagination = ({
   currentPage,
   hasPrev,
   hasNext,
+  totalPages,
 }: {
   currentPage: number;
+  totalPages: number,
   hasPrev: boolean;
   hasNext: boolean;
 }) => {
@@ -35,6 +37,15 @@ export const Pagination = ({
         </button>
       )}
 
+      {Array.from({ length: totalPages }, (_, i) => (
+        <button
+          key={i}
+          className="bg-primary-500 mx-[2px] text-white py-1 text-sm w-8 cursor-pointer"
+        >
+          {i + 1}
+        </button>
+      ))}
+
       {currentPage && (
         <button className="bg-primary-500 mx-auto text-white py-1 text-sm w-8 cursor-pointer">
           {currentPage}
@@ -52,5 +63,7 @@ export const Pagination = ({
     </div>
   );
 };
+
+
 
 export default Pagination;
