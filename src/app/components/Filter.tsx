@@ -9,8 +9,6 @@ const Filter = () => {
   const searchParams = useSearchParams();
   const { replace } = useRouter();
   const [ hasFilter, setHasFilter ] = useState(false);
-  const page = searchParams.get("page");
-  const cat = searchParams.get("cat");
 
   const handleFilterChange = (
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>,
@@ -26,7 +24,6 @@ const Filter = () => {
   // console.log(searchParams.get('page'));
 
   const clearFilters = () => {
-    
     // Keep only the first param
     const firstKey = Array.from(searchParams.keys())[0];
     const firstValue = searchParams.get(firstKey);
@@ -42,26 +39,30 @@ const Filter = () => {
   };
 
   useEffect(() => {
-    const hasActiveFilters = Array.from(searchParams.keys()).some(
-      (p) => p === "type" || p === "sort" || p === "max" || p === "min"
+    
+    const hasActiveFilters = Array.from(searchParams.keys()).some((p) => 
+     p == 'type' || p == 'sort' || p == 'max' || p == 'min'     
+      
     );
 
     setHasFilter(hasActiveFilters);
+  
   }, [searchParams]);
 
   return (
-    <div className="filters mt-4">
-      <div className="clearFilters h-8">
-        {hasFilter && (
+    <div className="filters">
+      
+      {hasFilter && (
+        <div className="clearFilters h-8">
           <button
             type="button"
             onClick={clearFilters}
-            className="py-2 px-4 rounded-2xl border border-slate-200 bg-gray-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+            className="py-2 px-4 rounded-2xl border border-slate-200 bg-gray-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
           >
-            Clear Filters
+            Clear Filters x
           </button>
-        )}
-      </div>
+        </div>
+      )}
 
       <div className="flex justify-between flex-wrap gap-2 mt-4">
         <div className="flex gap-2 flex-wrap">
@@ -79,7 +80,7 @@ const Filter = () => {
             type="number"
             name="min"
             placeholder="min price"
-            className="text-xs rounded-2xl w-24 border border-slate-200 bg-white px-3 py-2 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+            className="text-xs rounded-2xl w-24 border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
             onChange={handleFilterChange}
           />
 
@@ -87,7 +88,7 @@ const Filter = () => {
             type="number"
             name="max"
             placeholder="max price"
-            className="text-xs rounded-2xl w-24 border border-slate-200 bg-white px-3 py-2 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+            className="text-xs rounded-2xl w-24 border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
             onChange={handleFilterChange}
           />
           {/* <select
@@ -137,7 +138,7 @@ const Filter = () => {
         </div>
 
         <select
-          className="py-2 px-4 rounded-2xl border border-slate-200 bg-gray-200 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+          className="py-2 px-4 rounded-2xl border border-slate-200 bg-gray-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
           name="sort"
           id=""
           onChange={handleFilterChange}

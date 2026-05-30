@@ -7,8 +7,10 @@ export const Pagination = ({
   currentPage,
   hasPrev,
   hasNext,
+  totalPages,
 }: {
   currentPage: number;
+  totalPages: number,
   hasPrev: boolean;
   hasNext: boolean;
 }) => {
@@ -24,27 +26,38 @@ export const Pagination = ({
   };
 
   return (
-    <div className="pagination mt-2 flex w-full">
+    <div className="pagination mt-2 flex justify-center w-full">
+      
       {hasPrev && (
         <button
           onClick={() => createPageUrl(currentPage - 1)}
           // disabled={!hasPrev}
-          className="bg-primary-500 text-white py-1 mr-auto text-sm w-24 cursor-pointer"
+          className="bg-primary-500 text-white p-1 text-xs w-18 cursor-pointer mr-[2px]"
         >
           &lsaquo; Previous
         </button>
       )}
 
-      {currentPage && (
+      {Array.from({ length: totalPages }, (_, i) => (
+        <button
+          key={i}
+          className={`${currentPage === (i + 1) ? 'bg-primary-500 text-white' : 'text-primary-500 bg-white'} border border-primary-500 mx-[2px] p-1 text-xs cursor-pointer`}
+          onClick={() => createPageUrl(i + 1)}
+          >
+          {i + 1}
+        </button>
+      ))}
+
+      {/* {currentPage && (
         <button className="bg-primary-500 mx-auto text-white py-1 text-sm w-8 cursor-pointer">
           {currentPage}
         </button>
-      )}
+      )} */}
       
       {hasNext && (
         <button
           onClick={() => createPageUrl(currentPage + 1)}
-          className="bg-primary-500 ml-auto text-white py-1 text-sm w-24 cursor-pointer"
+          className="bg-primary-500 text-white p-1 text-xs w-18 cursor-pointer ml-[2px]"
         >
           Next &rsaquo;
         </button>
@@ -52,5 +65,7 @@ export const Pagination = ({
     </div>
   );
 };
+
+
 
 export default Pagination;

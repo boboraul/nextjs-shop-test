@@ -156,7 +156,7 @@ const Checkout = () => {
           <p className="text-[24px] mr-2 font-semibold text-primary-500">
             Loading
           </p>
-          <Spinner className="h-6 w-6 font-semibold text-primary-500" />
+          <Spinner />
         </div>
       )}
 

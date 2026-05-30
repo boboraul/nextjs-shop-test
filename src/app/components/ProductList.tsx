@@ -7,8 +7,6 @@ import Pagination from "./Pagination";
 
 import ProductBox from "../components/ProductBox";
 
-const PRODUCT_PER_PAGE = 8;
-
 const ProductList = async ({
   categoryId,
   limit,
@@ -19,7 +17,18 @@ const ProductList = async ({
   searchParams?: Promise<any>;
 }) => {
   const wixClient = await wixClientServer();
+  const PRODUCT_PER_PAGE = 8;
+  const perPage = limit || PRODUCT_PER_PAGE;
+
   const sp = (await searchParams) ?? {};
+  const currentPage = sp.page ? Number(sp.page) : 1;
+
+  const catProducts = wixClient.products.queryProducts().eq("collectionIds", categoryId);
+  const resProd = await catProducts.find();
+  const resProdArr = [...resProd.items].length;
+  const totalPages = Math.ceil(resProdArr / perPage);
+
+  console.log('total pages: ' + totalPages);
 
   const productQuery = wixClient.products
     .queryProducts()
@@ -28,8 +37,8 @@ const ProductList = async ({
     .hasSome("productType", [sp?.type || "physical", "digital"])
     .gt("priceData.price", sp?.min || 0)
     .lt("priceData.price", sp?.max || 999999)
-    .limit(limit || PRODUCT_PER_PAGE)
-    .skip(sp?.page ? parseInt(sp.page) * (limit || PRODUCT_PER_PAGE) : 0);
+    .limit(perPage)
+    .skip((currentPage - 1) * perPage);
   // .find();
 
   const res = await productQuery.find();
@@ -88,6 +97,7 @@ const ProductList = async ({
       {searchParams && (
         <Pagination
           currentPage={res.currentPage || 1}
+          totalPages={totalPages}
           hasPrev={res.hasPrev()}
           hasNext={res.hasNext()}
         />
