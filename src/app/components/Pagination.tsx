@@ -20,21 +20,32 @@ export const Pagination = ({
 
   const createPageUrl = (pageNr: number) => {
     const params = new URLSearchParams(searchParams);
+    
     params.set("page", pageNr.toString());
 
     replace(`${pathname}?${params}`);
   };
 
   return (
+    
     <div className="pagination mt-2 flex justify-center w-full">
-      
+
+      {currentPage > 1 && (
+        <button
+          onClick={() => createPageUrl(1)}
+          className="bg-primary-500 text-white p-1 text-sm w-18 cursor-pointer mr-[2px]"
+        >
+          &lsaquo;&lsaquo;
+        </button>
+      )}
+        
       {hasPrev && (
         <button
           onClick={() => createPageUrl(currentPage - 1)}
           // disabled={!hasPrev}
-          className="bg-primary-500 text-white p-1 text-xs w-18 cursor-pointer mr-[2px]"
+          className="bg-primary-500 text-white p-1 text-sm w-18 cursor-pointer mr-[2px]"
         >
-          &lsaquo; Previous
+          &lsaquo;
         </button>
       )}
 
@@ -59,13 +70,20 @@ export const Pagination = ({
           onClick={() => createPageUrl(currentPage + 1)}
           className="bg-primary-500 text-white p-1 text-xs w-18 cursor-pointer ml-[2px]"
         >
-          Next &rsaquo;
+          &rsaquo;
+        </button>
+      )}
+      
+      {currentPage < totalPages && (
+        <button
+          onClick={() => createPageUrl(totalPages)}
+          className="bg-primary-500 text-white p-1 text-sm w-18 cursor-pointer ml-[2px]"
+        >
+          &rsaquo;&rsaquo;
         </button>
       )}
     </div>
   );
 };
-
-
 
 export default Pagination;

@@ -52,18 +52,18 @@ const Filter = () => {
   return (
     <div className="filters">
       
-      {hasFilter && (
-        <div className="clearFilters h-8">
+      <div className="clearFilters h-8">
+        {hasFilter && (
           <button
             type="button"
             onClick={clearFilters}
-            className="rounded-2xl border border-slate-200 bg-gray-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+            className="rounded-2xl border border-slate-200 bg-alert-500 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
           >
             Clear Filters x
           </button>
-        </div>
-      )}
-
+        )}
+      </div>
+      
       <div className="flex justify-between flex-wrap gap-2 mt-4">
         <div className="flex gap-2 flex-wrap">
           <select

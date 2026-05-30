@@ -28,8 +28,6 @@ const ProductList = async ({
   const resProdArr = [...resProd.items].length;
   const totalPages = Math.ceil(resProdArr / perPage);
 
-  console.log('total pages: ' + totalPages);
-
   const productQuery = wixClient.products
     .queryProducts()
     .startsWith("name", sp?.name || "")
@@ -96,7 +94,7 @@ const ProductList = async ({
       ))}
       {searchParams && (
         <Pagination
-          currentPage={res.currentPage || 1}
+          currentPage={res.currentPage! + 1 || 1}
           totalPages={totalPages}
           hasPrev={res.hasPrev()}
           hasNext={res.hasNext()}
