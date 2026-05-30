@@ -57,7 +57,7 @@ const Filter = () => {
           <button
             type="button"
             onClick={clearFilters}
-            className="py-2 px-4 rounded-2xl border border-slate-200 bg-gray-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+            className="rounded-2xl border border-slate-200 bg-gray-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
           >
             Clear Filters x
           </button>
@@ -80,7 +80,7 @@ const Filter = () => {
             type="number"
             name="min"
             placeholder="min price"
-            className="text-xs rounded-2xl w-24 border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+            className="rounded-2xl w-24 border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
             onChange={handleFilterChange}
           />
 
@@ -88,7 +88,7 @@ const Filter = () => {
             type="number"
             name="max"
             placeholder="max price"
-            className="text-xs rounded-2xl w-24 border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+            className="rounded-2xl w-24 border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
             onChange={handleFilterChange}
           />
           {/* <select
@@ -138,7 +138,7 @@ const Filter = () => {
         </div>
 
         <select
-          className="py-2 px-4 rounded-2xl border border-slate-200 bg-gray-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
+          className="rounded-2xl border border-slate-200 bg-gray-200 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary-500/30"
           name="sort"
           id=""
           onChange={handleFilterChange}
