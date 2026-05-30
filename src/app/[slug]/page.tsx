@@ -32,7 +32,6 @@ export default async function Page({
   let categoryUrl = '';
 
   if (categoryId) {
-    console.log('collection ', await wixClient.collections.getCollection(categoryId))
 
     const category = await wixClient.collections.getCollection(categoryId);
    
