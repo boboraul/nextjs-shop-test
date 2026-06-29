@@ -38,6 +38,7 @@ export async function POST(req: Request) {
           product.discount?.type === "PERCENT"
             ? product.discount.value
             : null,
+        availability: product.stock?.inventoryStatus ?? null,   
       })),
     });
   } catch (error) {

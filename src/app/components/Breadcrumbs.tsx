@@ -1,3 +1,4 @@
+import Link from "next/link";
 
 type BreadcrumbItem = {
   label: string;
@@ -14,12 +15,12 @@ const Breadcrumbs = ({ items }: { items: BreadcrumbItem[] }) => {
         return (
           <div key={index} className="flex items-center gap-2">
             {item.href && !isLast ? (
-              <a
-                href={item.href}
+              <Link
+                href={`/list?cat=${item.href}`}
                 className="hover:text-primary-500 transition-colors"
               >
                 {item.label}
-              </a>
+              </Link>
             ) : (
               <span className="text-gray-700 font-medium">
                 {item.label}

@@ -20,6 +20,7 @@ type Product = {
   shortDescHtml: any;
   currency: string | null;
   discountPercent: number | null;
+  availability: string | null;
 };
 
 const SearchPage = () => {
@@ -111,6 +112,7 @@ const SearchPage = () => {
                   secondaryImageUrl={item.secondaryImageUrl!}
                   shortDescHtml={""}
                   currency={item.currency}
+                  availability={item.availability!}
                   discountPercent={item.discountPercent}
                 />
               ))}
