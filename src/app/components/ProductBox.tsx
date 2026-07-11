@@ -86,7 +86,7 @@ export default function ProductBox({
           )}
         </div>
 
-        <div className="name mt-2">
+        <div className="name mt-2">aaa
           <h4 className={`font-medium line-clamp-2 mb-0 ${isOpen ? 'text-[12px]' : 'text-[14px]'}`}>{name}</h4>
         </div>
 
