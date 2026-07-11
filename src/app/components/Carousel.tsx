@@ -27,9 +27,9 @@ export default function Carousel({ carouselTitle, products} : CarouselProps) {
   return (
     <section className="w-full">
       <div className="mb-6 flex items-center justify-between">
-        <div className="text-2xl">{carouselTitle}</div>
+        <div className="text-2xl px-2">{carouselTitle}</div>
 
-        <div className="flex gap-2">
+        <div className="flex gap-2 px-2">
            <button
             type="button"
             onClick={scrollPrev}
@@ -62,7 +62,7 @@ export default function Carousel({ carouselTitle, products} : CarouselProps) {
             .map((product: products.Product) => (
               <div
                 key={product._id}
-                className="min-w-0 px-2 flex-[0_0_50%] lg:flex-[0_0_25%]"
+                className="min-w-0 px-2 flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_25%]"
               >
                 <ProductBox
                   id={product._id!}

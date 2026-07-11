@@ -92,7 +92,7 @@ const SearchPage = () => {
       </div>
 
       {/* Products */}
-      <div className="flex mt-8 gap-x-8 gap-y-12 flex-wrap justify-between">
+      <div className="flex mt-8 gap-x-4 gap-y-12 flex-wrap justify-between">
         {!loading &&
           (items.length == 0 ? (
             <div className="empty text-center mt-10 w-full">
@@ -114,6 +114,7 @@ const SearchPage = () => {
                   currency={item.currency}
                   availability={item.availability!}
                   discountPercent={item.discountPercent}
+                  customClasses={"w-full sm:w-[48%] lg:w-[23%]"}
                 />
               ))}
             </>

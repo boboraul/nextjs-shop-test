@@ -66,12 +66,13 @@ const ProductList = async ({
   }
 
   return (
-    <div className="flex mt-8 gap-x-8 gap-y-16 flex-wrap justify-between">
+    <div className="flex mt-8 gap-x-4 gap-y-16 flex-wrap justify-between">
       {items.map((product: products.Product) => (
         <React.Fragment key={product._id}>
           <ProductBox
             id={product._id!}
             slug={product.slug!}
+            customClasses={"w-full sm:w-[48%] lg:w-[23%]"}
             name={product.name!}
             price={product.price?.price!}
             discountedPrice={product.price?.discountedPrice!}

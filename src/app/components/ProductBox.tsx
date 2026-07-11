@@ -42,7 +42,7 @@ export default function ProductBox({
   const ratingScore = 5;
 
   return (
-    <div className={`product-box relative w-full ${customClasses || (isOpen ? 'lg:w-[12%]' : 'lg:w-[22%]')} ${availability === 'OUT_OF_STOCK' ? 'opacity-50' : 'opacity-100'}`}>
+    <div className={`product-box relative ${(isOpen ? 'lg:w-[12%]' : customClasses)} ${availability === 'OUT_OF_STOCK' ? 'opacity-50' : 'opacity-100'}`}>
       <div className="wishlist-btn absolute top-2 right-2 z-20">
         
         <AddToWishlistButton
@@ -86,7 +86,7 @@ export default function ProductBox({
           )}
         </div>
 
-        <div className="name mt-2">aaa
+        <div className="name mt-2">
           <h4 className={`font-medium line-clamp-2 mb-0 ${isOpen ? 'text-[12px]' : 'text-[14px]'}`}>{name}</h4>
         </div>
 
