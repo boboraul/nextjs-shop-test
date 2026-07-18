@@ -2,7 +2,7 @@
 
 import { Suspense } from "react";
 import Slider from "./components/Slider";
-import CarouselProducts from "./components/CarouselProducts";
+import ProductsCarousel from "./components/ProductsCarousel";
 import CategoryList from "./components/CategoryList";
 
 const HomePage = async () => {
@@ -20,7 +20,7 @@ const HomePage = async () => {
         
         <Suspense fallback={"Loading..."}>
            <div className="mt-10">
-            <CarouselProducts
+            <ProductsCarousel
               categoryId={process.env.FEATURED_PRODUCTS_CATEGORY_ID!}
               limit={8}
               carouselTitle={'Featured'}
@@ -29,7 +29,7 @@ const HomePage = async () => {
 
           <div className="mt-20">
             {/* New Products carousel */}
-            <CarouselProducts carouselTitle={'New in'} 
+            <ProductsCarousel carouselTitle={'New in'} 
             limit={20}
             sortKey={'lastUpdated'} 
             />

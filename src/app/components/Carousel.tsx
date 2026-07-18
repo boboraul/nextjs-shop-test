@@ -28,26 +28,27 @@ export default function Carousel({ carouselTitle, products} : CarouselProps) {
     <section className="w-full">
       <div className="mb-6 flex items-center justify-between">
         <div className="text-2xl px-2">{carouselTitle}</div>
+         {products.length > 4 && (
+          <div className="controls flex gap-2 px-2">
+            <button
+              type="button"
+              onClick={scrollPrev}
+              className="h-9 w-9 rounded-full text-xl bg-primary-500 text-white"
+              aria-label="Previous products"
+            >
+              ‹
+            </button>
 
-        <div className="flex gap-2 px-2">
-           <button
-            type="button"
-            onClick={scrollPrev}
-            className="h-9 w-9 rounded-full text-xl bg-primary-500 text-white"
-            aria-label="Previous products"
-          >
-            ‹
-          </button>
-
-          <button
-            type="button"
-            onClick={scrollNext}
-            className="h-9 w-9 rounded-full text-xl bg-primary-500 text-white"
-            aria-label="Next products"
-          >
-            ›
-          </button>
-        </div>
+            <button
+              type="button"
+              onClick={scrollNext}
+              className="h-9 w-9 rounded-full text-xl bg-primary-500 text-white"
+              aria-label="Next products"
+            >
+              ›
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Viewport Embla */}

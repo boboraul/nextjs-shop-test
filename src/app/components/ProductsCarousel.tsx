@@ -1,14 +1,14 @@
 import Carousel from "./Carousel";
 import { wixClientServer } from "../lib/wixClientServer";
 
-type CarouselProductsProps = {
+type ProductsCarouselProps = {
   carouselTitle?: string;
   limit?: number;
   categoryId?: string;
   sortKey?: string;
 };
 
-export default async function CarouselProducts({ carouselTitle, limit, categoryId, sortKey } : CarouselProductsProps) {
+export default async function ProductsCarousel({ carouselTitle, limit, categoryId, sortKey } : ProductsCarouselProps) {
   const wixClient = await wixClientServer();
   const CAROUSEL_PRODUCTS_LIMIT = 20;
 

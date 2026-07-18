@@ -8,6 +8,6 @@ export async function GET() {
     apiKey: process.env.QDRANT_API_KEY!,
   });
 
-  const res = await client.scroll(COLLECTION, { limit: 10, with_payload: true });
+  const res = await client.scroll(COLLECTION, { limit: 20, with_payload: true });
   return Response.json(res);
 }
