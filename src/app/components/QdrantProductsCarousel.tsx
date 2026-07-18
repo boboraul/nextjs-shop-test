@@ -31,14 +31,12 @@ async function getRelatedProductIds(
     with_payload: true,
   });
 
-  console.log("QdrantProductsCarousel hits:", hits);
 
   const relatedIds = hits
   .filter((hit) => hit.id !== productId && hit.score > 0.75)
   .map((hit) => String(hit.payload?.id))
   .filter(Boolean)
   .slice(0, limit);
-  console.log("QdrantProductsCarousel relatedIds:", relatedIds);
 
   return relatedIds;
 }
