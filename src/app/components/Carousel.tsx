@@ -23,11 +23,11 @@ export default function Carousel({ carouselTitle, products} : CarouselProps) {
   const scrollNext = () => {
     emblaApi?.scrollNext();
   };
-
+console.log("products in carousel", products.length);
   return (
     <section className="w-full">
       <div className="mb-6 flex items-center justify-between">
-        <div className="text-2xl px-2">{carouselTitle}</div>
+        <div className="text-2xl px-2 font-bold">{carouselTitle}</div>
          {products.length > 4 && (
           <div className="controls flex gap-2 px-2">
             <button
@@ -55,12 +55,7 @@ export default function Carousel({ carouselTitle, products} : CarouselProps) {
       <div className="overflow-hidden" ref={emblaRef}>
         {/* Container / Track */}
        <div className="flex">
-          {products
-            ?.filter(
-              (product: products.Product) =>
-                product.stock?.inventoryStatus !== "OUT_OF_STOCK"
-            )
-            .map((product: products.Product) => (
+          {products.map((product: products.Product) => (
               <div
                 key={product._id}
                 className="min-w-0 px-2 flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_25%]"

@@ -6,9 +6,10 @@ type ProductsCarouselProps = {
   limit?: number;
   categoryId?: string;
   sortKey?: string;
+  productId?: string;
 };
 
-export default async function ProductsCarousel({ carouselTitle, limit, categoryId, sortKey } : ProductsCarouselProps) {
+export default async function ProductsCarousel({ carouselTitle, limit, categoryId, sortKey, productId } : ProductsCarouselProps) {
   const wixClient = await wixClientServer();
   const CAROUSEL_PRODUCTS_LIMIT = 20;
 
@@ -28,10 +29,15 @@ export default async function ProductsCarousel({ carouselTitle, limit, categoryI
       );
     }
   }
+  
 
   const filteredProducts = items.filter((product) => {
-    return product.visible !== false;
+    return product.visible !== false && product._id !== productId
   });
+
+  if (!filteredProducts.length) {
+    return null;
+  }
 
   return (
     <Carousel

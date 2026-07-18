@@ -21,9 +21,9 @@ const HomePage = async () => {
         <Suspense fallback={"Loading..."}>
            <div className="mt-10">
             <ProductsCarousel
-              categoryId={process.env.FEATURED_PRODUCTS_CATEGORY_ID!}
+              categoryId={process.env.SALES_PRODUCTS_CATEGORY_ID!}
               limit={8}
-              carouselTitle={'Featured'}
+              carouselTitle={'Sales'}
             />
           </div>
 
@@ -41,7 +41,7 @@ const HomePage = async () => {
       <div className="mt-10">
 
         <div className="text-3xl px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px] mb-6">
-          <div className="text-2xl">
+          <div className="text-2xl font-bold">
             Categories
           </div>
         </div>

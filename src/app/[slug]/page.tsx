@@ -47,7 +47,7 @@ export default async function Page({
     product.discount?.type === "PERCENT" ? product.discount.value! : null;
   const gCurrency =
     product.price?.currency == "RON" ? "Lei" : product.price?.currency;
-
+  
   return (
     <>
       <div className="breadcrumbs px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 3xl:px-[300px]">
@@ -161,17 +161,18 @@ export default async function Page({
           </div>
         </div> 
 
-        <div className="prod-carousel mt-16">
+        {/* <div className="prod-carousel mt-16">
           <Suspense fallback={"Loading..."}>
             <div className="mt-10">
               <ProductsCarousel
                 categoryId={categoryId!}
                 limit={8}
                 carouselTitle={'Related Products'}
+                productId={product._id!}
               />
             </div>
           </Suspense>
-        </div>
+        </div> */}
 
         <div className="qdrant-prod-carousel mt-16">
           <Suspense fallback={"Loading..."}>

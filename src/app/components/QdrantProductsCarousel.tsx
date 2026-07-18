@@ -33,7 +33,7 @@ async function getRelatedProductIds(
 
 
   const relatedIds = hits
-  .filter((hit) => hit.id !== productId && hit.score > 0.75)
+  .filter((hit) => hit.id !== productId && hit.score > 0.7)
   .map((hit) => String(hit.payload?.id))
   .filter(Boolean)
   .slice(0, limit);
